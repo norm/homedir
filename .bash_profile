@@ -3,7 +3,7 @@
 # anything in this file is executed only at login, anything to happen in
 # every shell should be placed in the bashrc file instead
 
-source ~/.bashrc
+source ~/etc/bash/run
 
 echo ''
 fortune startrek
