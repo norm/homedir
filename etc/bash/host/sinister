@@ -1,0 +1,3 @@
+# ~/etc/bash/host/sinister
+
+[ -x ${HOME}/bin/textmate ]     && export VISUAL="${HOME}/bin/textmate"
