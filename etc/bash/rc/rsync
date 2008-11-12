@@ -1,0 +1,19 @@
+# ~/etc/bash/rc/rsync
+# 
+# commonly used rsync options
+
+export RSYNC_RSH='/usr/bin/ssh'
+
+    rs_ignore="--exclude '.Trash'"
+    rs_ignore="${rs_ignore} --exclude '.Trashes'"
+    rs_ignore="${rs_ignore} --exclude '.Spotlight-V100'"
+    rs_ignore="${rs_ignore} --exclude '.DS_Store'"
+rs_s3_options="--size-only --inplace"
+
+# disk-to-disk synchronisation
+alias     rs="rsync -aHvP ${rs_ignore}"
+alias    rsd="rs --delete"
+
+# disk-to-s3 synchronisation (when mounted via JungleDisk)
+alias    rs3="rsync -rptgvP ${rs_s3_options} ${rs_ignore}"
+alias   rs3d="rs3 --delete"

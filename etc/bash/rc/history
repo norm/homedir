@@ -1,0 +1,12 @@
+# ~/etc/bash/rc/history
+#
+# control history capturing
+
+export   HISTCONTROL=erasedups
+export  HISTFILESIZE=10000
+export      HISTFILE=~/.bash/saved_history
+
+alias    h='history 20'
+alias   hg='history | grep'
+
+shopt -s histappend

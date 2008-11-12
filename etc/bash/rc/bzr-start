@@ -1,0 +1,23 @@
+# ~/etc/bash/rc/bzr-start
+#
+# create and checkout centralised bazaar repository
+
+export BZR_BASE=bzr+ssh://bzr.cackhanded.net/bazaar/
+
+function bzr-start {    
+    if [ -n "$1" ]; then
+        repo="${BZR_BASE}${1}/"
+
+        # chained so any failure stops the whole operation
+        echo init-repo                              \
+                && bzr init-repository ${repo}      \
+            && echo init                            \
+                && bzr init ${repo}/trunk/          \
+            && echo branch                          \
+                && bzr branch ${repo}/trunk/        \
+                && mv trunk ${1}
+
+    else
+        echo "Usage: bzr-start [branch]"
+    fi
+}

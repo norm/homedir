@@ -1,0 +1,43 @@
+# ~/etc/bash/run
+# 
+# anything in this file gets applied to every bash shell, login or otherwise
+
+# exit if not interactive
+# [[ $- != *i* ]]     &&  return
+
+
+# useful flags
+hosttype=`uname`
+hostname=`hostname -s`
+
+
+# most common bash settings kept in separate rc files
+files=$( echo ~/etc/bash/rc/* )
+for rc_file in $files
+do
+    source $rc_file
+done
+
+
+# type-specific settings
+if [ -f ~/etc/bash/arch/${hosttype} ]; then
+    source ~/etc/bash/arch/${hosttype}
+fi
+
+
+# host-specific settings
+if [ -f ~/etc/bash/host/${hostname} ]; then
+    source ~/etc/bash/host/${hostname}
+fi
+
+
+# yahoo-specific settings
+is_yahoo=`hostname | grep yahoo.com`
+if [ -n "$is_yahoo" ]; then
+    source ~/etc/bash/host/yahoo.com
+fi
+
+export PATH
+
+source ~/etc/bash/prompt
+export PS1

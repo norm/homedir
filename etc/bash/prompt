@@ -1,0 +1,14 @@
+# ~/etc/bash/prompt
+# 
+# set the prompt (should be done as late as possible)
+
+# most basic prompt
+current_path="${bold}\$(pwdn 2)${reset}"
+PS1="${hostname} ${current_path})\$"
+
+# optional prefixes to the basic prompt
+[ $USER != 'mfrancis' ]     && PS1="${USER}@${PS1}"
+[ -n "$prompt_prefix" ]     && PS1="${prompt_prefix} ${PS1}"
+[ -n "$WINDOW" ]            && PS1="${blue}scr-${WINDOW}${reset} ${PS1}"
+
+PS1="($PS1 "

@@ -1,0 +1,16 @@
+# ~/etc/bash/rc/files
+#
+# useful output when working with files
+
+alias    diff='diff -u'
+
+alias      f.='find .'
+alias     fgr='find . | grep -i'
+alias     fgx='find . -print0 | xargs -0 grep -i'
+
+alias      ll='ls -la'
+alias      ls='ls -F'
+
+alias   mkdir='mkdir -p'
+
+alias      rm='rm -i'

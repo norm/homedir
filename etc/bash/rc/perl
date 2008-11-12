@@ -1,0 +1,10 @@
+# ~/etc/bash/rc/perl
+#
+# working with perl
+
+export PERL5LIB="${HOME}/lib/perl"
+
+unixdate='print UnixDate( shift, "%s\n" );'
+
+alias   stamp="perl -MDate::Manip -e '${unixdate}'"
+alias      pm='perl Makefile.PL ; make ; make test'

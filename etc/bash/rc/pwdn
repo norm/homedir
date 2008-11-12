@@ -1,0 +1,34 @@
+# ~/etc/bash/rc/pwdn
+#
+# echo the last n parts of the current working directory (used in prompts)
+
+function pwdn {
+    MAX_LEN=10  # maximum length of directory to echo (otherwise trimmed)
+    
+    depth=$1
+    pwd | perl -e "
+        \$_ = <>;
+        if ( m{^ / $}x ) {
+            print;
+        }
+        else {
+            s{^ /Users/(\w+) }{~\$1}x;      # fix /Users/xxx to ~xxx
+            s{^ /home/(\w+)  }{~\$1}x;      # fix /home/xxx  to ~xxx
+            s{ ~ \$ENV{USER} }{~}x;         # fix ~$USER     to ~
+            @dirs = split( m{/} );
+            foreach ( 1 .. $depth ) {
+                if ( @dirs ) {
+                    my \$x    = pop @dirs;
+                    my \$half = int( ( $MAX_LEN - 1 ) / 2 );
+                    
+                    # if this directory name is greater than MAX_LEN, 
+                    # truncate the middle (replaced with an ellipsis)
+                    \$x   =~ m{^ (.{0,\$half}) (.*?) (.{0,\$half}) $}x;
+                    \$x    = \"\$1…\$3\"  if ( length( \$2 ) > 2 );
+                    push( @return, \$x );
+                }
+            }
+            print join( q(/), reverse @return );
+        }
+    "
+}

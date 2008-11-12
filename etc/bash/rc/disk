@@ -1,0 +1,11 @@
+# ~/etc/bash/rc/disk
+# 
+# readable output from disk utilities
+
+export BLOCKSIZE='1k'
+
+alias   df='df -h'
+alias   du='du -h'
+
+# current directory usage (sorted least-to-most) with total
+alias   dus='\du -s * | sort -n ; du -s .'
