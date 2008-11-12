@@ -1,0 +1,7 @@
+# ~/.bash/host.sinister
+
+[ -x ~/bin/textmate ]   &&  export VISUAL="${HOME}/bin/textmate"
+
+[ -d /sites/htdocs ]    &&  export CDPATH="$CDPATH:/sites/htdocs"
+
+[ -d /Applications/Stanza.app ] &&  alias stanza='open -a Stanza'

@@ -1,0 +1,5 @@
+# ~/.bash/r3
+
+# possible locations for the directory
+[ -d /sites/r3 ]            && export R3HOME='/sites/r3'
+[ -d /home/y/share/r3 ]     && export R3HOME='/home/y/share/r3'

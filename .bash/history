@@ -1,0 +1,4391 @@
+cd Projects/
+rm -rf x
+mv home x
+bzr-start home
+cd home
+mv ../x/.bash* .
+bzr add .bash* 
+bzr commit
+cd
+mkdir tmp
+mv .bash* tmp
+bzr checkout bzr+ssh://bzr.cackhanded.net/bazaar/home/trunk/
+mv trunk/.b* .
+rmdir trunk
+bzr status
+bzr status|more
+ioreg -w0 -l | grep Capacity
+tm .cshrc*
+tm .bash*
+man test
+screen
+ssh southpaw
+mv .bazaar/plugins .
+cd tmpp
+cd tmp
+bzr branch bzr+ssh://bzr.cackhanded.net/bazaar/home/
+bzr branch bzr+ssh://bzr.cackhanded.net/bazaar/home/trunk/
+cd trunk/
+ls
+bzr up
+ssh bzr.cackhanded.net 
+ssh bzr.cackhanded.net 
+cd Desktop/HexColorPicker-1.4/
+rs HexColorPicker.colorPicker ~/Library/ColorPickers
+bzr branch bzr+ssh://bzr.cackhanded.net/bazaar/home/
+bzr branch bzr+ssh://bzr.cackhanded.net/bazaar/home/trunk/
+cd trunk/
+bzr up
+ssh bzr.cackhanded.net 
+cd /Volumes/data/
+du -s *
+rm Dr.\ Horrible\ -\ 1x01\ -\ Dr.\ Horrible\'s\ Sing-Along\ Blog.avi 
+rm -rf windowsxppro_master new_xp new-itunes  Weeds\ -\ 4x03\ -\ The\ Whole\ Blah\ Damn\ Thing
+rm Install\ Flash\ Player\ 9\ UB.dmg 
+rmdir tv
+ls tv
+rmdir tv/Firefly/Season\ 1/
+cd tv/Firefly/Season\ 1/
+du
+rm -rf 1x01\ -\ Serenity.avi 
+cd ../..
+cd ..
+rm -rf tv
+ls
+dus
+ls VMware\ Virtual\ Machines/
+du VMware\ Virtual\ Machines/*
+df .
+rs3 Library/Keychains /Volumes/iphone/Library
+ssh southpaw
+ssh southpaw
+ssh thinkreal.london.corp.yahoo.com 
+fix_app itunes.app
+tm bin/fix_app 
+fix_app /Applications/iTunes.app
+mailq
+ilq
+pine
+psg netauth
+kill 8036
+pwgen 
+pwgen len20
+dhshushu
+vi /etc/hosts
+ssh beanglass.london.corp.yahoo.com 
+cd Downloads/
+wget 'http://downloads.sourceforge.net/rthree/r3-1.3.12.tgz?modtime=1216652862&big_mirror=0'
+sudo pear uninstall r3
+sudo pear install r3-1.3.12.tgz 
+sudo pear uninstall stickleback
+sudo pear install stickleback-1.3.6.tgz 
+sudo pear install --alldeps r3-1.3.12.tgz 
+r3
+mkdir /tmp/r3
+export R3HOME=/tmp/r3
+r3 setup setuphome /tmp/r3
+r3 setup installdb
+r3 setup dimension
+r3 setup dimension create product
+r3 setup dimension create product generic
+r3 setup dimension create intl world
+r3 setup dimension list
+r3 dimension product list
+openssl sha1 PwnageTool_2.0.1.zip 
+open PwnageTool_2.0.1.zip 
+open PwnageTool.app
+ping root@192.168.1.65
+ping 192.168.1.65
+cd Projects/home/
+alias f.=find .
+alias f.='find .'
+f.
+tm .bash*
+ssh root@192.168.1.65
+df
+df -l
+ls
+du -s *
+dus
+rm -rf Invader\ Zim Terminator_\ The\ Sarah\ Connor\ Chronicles
+rs southpaw:/files/downloads/*iso .
+rs 'southpaw:/files/downloads/*iso' .
+rs 'southpaw:/files/downloads/*ISO' .
+open .
+open *ISO
+cd
+cd Desktop/
+rs DRWHO_182a_CELE.m4v southpaw:.
+cd /Volumes/data/
+top
+open -a VLC 182a_A_CELEBRATION.ISO 
+bzr status|more
+ioreg -w0 -l | grep Capacity
+tm .cshrc*
+tm .bash*
+man test
+screen
+cat .inputrc 
+tm .inputrc 
+bzr add .bash/*
+bzr add .bash/*/*
+bzr diff | tm
+cd Projects/
+cd tmp
+rm -rf trunk
+bzr-start home
+rm -rf .bzr
+mv tmp/home/.bzr .
+bzr add .bash_profile .bashrc
+bzr add .bash/ansi 
+bzr add .bash/arch
+bzr add .bash/functions 
+bzr add .bash/host
+bzr add .bash/r3
+bzr add .inputrc 
+bzr commit
+bzr diff
+cd /Volumes/vault/
+fgr ripper
+ls
+cd cd
+cd
+bzr add .bash/functions 
+bzr add .bash/host
+bzr add .bash/r3
+bzr add .inputrc 
+bzr commit
+bzr diff
+cd /Volumes/vault/
+fgr ripper
+cd cd
+cd
+mkdir lib/perl
+touch lib/perl/Twitter.pm
+tm lib/perl/Twitter.pm
+tm Projects/Upcoming/Upcoming.pm 
+cd /Users/work
+wget http://search.cpan.org/CPAN/authors/id/C/CT/CTHOM/Net-Twitter-1.14.tar.gz
+port search twitter
+tar xzf Net-Twitter-1.14.tar.gz 
+cd Net-Twitter-1.14/
+ls
+cat README 
+pm
+sudo make install
+cd 
+cd Projects/
+tm collect_twitter
+perl collect_twitter 
+ssh chl
+psg quicks
+kill 233
+open /Applications/Quicksilver.app
+open ~/Library/Scripts/Quick\ Lock.scpt 
+psg screens
+bzr add .inputrc 
+bzr commit
+bzr diff
+cd /Volumes/vault/
+fgr ripper
+ls
+cd cd
+cd
+tm /tmp/battery
+sh /tmp/battery 
+where zsh
+which zsh
+zsh /tmp/battery 
+zsh /tmp/battery short
+zsh /tmp/battery long
+zsh /tmp/battery compat
+zsh /tmp/battery compact
+ioreg -p IODeviceTree -n battery -w 0
+ioreg -p IODeviceTree -n battery -w 0|grep -i battery
+ioreg -p IODeviceTree | grep -i battery
+ioreg 
+ioreg |grep -i batter
+ioreg -p IODeviceTree -n "battery" -w 0
+ioreg -p IODeviceTree -n "battery" -w 0 | grep -i batt
+ioreg -l 
+ioreg -l |grep batt
+ioreg -l |grep -i batt
+ioreg -lw0 |grep -i batt
+ioreg -lw0 |grep -i time
+ioreg -lw0 |grep Capac
+ioreg -lw0 |grep 19
+dc
+ioreg -lw0 |grep 259
+ioreg -lw0 |grep TimeR
+ioreg -lw0 |tm
+ioreg -lw0 -p AppleSmartBattery
+ioreg -lw0 -p AppleSmartBattery|more
+ioreg -lw0 -n AppleSmartBattery|more
+man ioreg
+cd /Volumes/data/
+du -s itunes
+df .
+psg geek
+mv trunk/.b* .
+rmdir trunk
+bzr status
+bzr status|more
+ioreg -w0 -l | grep Capacity
+tm .cshrc*
+tm .bash*
+man test
+screen
+ssh southpaw
+ls
+fgr appz
+fgr pacif
+fgr scrob
+fgr senut
+fgr pukka
+fgr prio
+fgr libr
+fgr hexcol
+fgr ds
+fgr deep
+fgr disco
+fgr outli
+mv /Users/mfrancis/Downloads/OmniOutlinerPro-3.6.5.dmg document\ editors
+fgr chm
+fgr ffv
+mv /Users/mfrancis/Downloads/Chmox-0.* document\ viewers
+fgr torr
+fgr unis
+fgr hunter
+fgr transm
+fgr cha
+fgr mousep
+fgr dockl
+fgr geek
+fgr stat
+fgr tink
+fgr alarm
+fgr work
+fgr office
+mkdir office
+pwd
+cd `pwd`
+cd '`pwd`'
+cd /Volumes/s3/os\ x/software/
+fgr task
+fgr vnc
+fgr cano
+fgr keych
+fgr peria
+fgr ripper
+find /Users/mfrancis/Downloads | grep -i ripp
+rmdir /Volumes/vault/jdisk/software/os\ x/*
+fgr hex
+fgr hijack
+fgr inve
+fgr growl
+fgr graf
+fgr service
+cd
+backup itunes vault
+backup itunes vault
+psg mail
+kill 8218
+sudo shutdown -r now
+dc
+man expand
+man expand
+cd Downloads/
+cd ../Desktop/
+fgr swf
+ssh chl
+ssh webdev.www.corp.ukl.yahoo.com 
+backup itunes pile
+ls -l /Volumes/pile/
+ls -l /Volumes/rsnapshots
+ls -l /Volumes/rsnapshots/sinister/
+date
+ssh bzr.cackhanded.net 
+man expand
+cd Documents/
+fgr wedding
+open brain/wedding
+psg racoon
+cd
+cd Projects/
+ls
+tm stint
+ssh chl
+ssh cowpaw.cackhanded.net 
+cd code/
+cat smelt/README 
+cat smelt/notes/IndexPage.txt 
+find smelt/
+ls
+tm .bashrc
+cd .ba
+ls
+cd .bazaar/
+find .
+cat ignore 
+cd ..
+ls plugins/
+mv plugins .bazaar
+ssh cowpaw.cackhanded.net 
+ls plugins/
+mv plugins .bazaar
+ssh cowpaw.cackhanded.net 
+cd tmp
+bzr branch bzr+ssh://bzr.cackhanded.net/bazaar/marknormanfrancis.com/
+bzr branch bzr+ssh://bzr.cackhanded.net/bazaar/marknormanfrancis.com/trunk/
+cd trunk/
+touch bob
+bzr add bob
+bzr commit bob
+unset PYTHONLIB
+touch bob2
+bzr add bob2
+bzr commit bob2
+port search bzr
+ls
+touch bob3
+bzr add bob3
+bzr commit bob3
+touch bob4
+bzr add bob4
+bzr commit
+cd
+mv .bazaar/plugins tmp/bzr-plugins
+ssh bzr.cackhanded.net 
+ssh bzr.cackhanded.net 
+cd .bazaar/
+ls
+cd 
+ls tmp/
+find . | grep publish
+ssh cowpaw.cackhanded.net 
+cd /Volumes/data/
+dus
+fix_app itunes
+fix_app itunes.app
+fix_app /Applications/iTunes.app
+ssh southpaw
+tm .bashrc
+timestamp next tuesday
+timestamp 'next tuesday'
+man bash
+timestamp now
+defaults write com.apple.mail DisableDataDetectors YES
+fix_app /Applications/iTunes.app
+cd /sites/htdocs/marknormanfrancis/com/www/site
+ls
+rs assets cowpaw.cackhanded.net:/sites/htdocs/marknormanfrancis/com/www/site
+tm Projects
+cd /Users/dreamhost/
+fgr markn
+fgr png
+ls thenorm/cackhanded.flourish/site/site/
+tm thenorm/cackhanded.flourish/site/site
+cp thenorm/cackhanded.flourish/site/site/60fff.png /sites/htdocs/marknormanfrancis/com/www/site/assets
+dc
+psg mail
+kill 8218
+sudo shutdown -r now
+dc
+man expand
+man expand
+cd Downloads/
+cd ../Desktop/
+fgr swf
+ssh chl
+ssh webdev.www.corp.ukl.yahoo.com 
+backup itunes pile
+ls -l /Volumes/pile/
+ls -l /Volumes/rsnapshots
+ls -l /Volumes/rsnapshots/sinister/
+date
+ssh bzr.cackhanded.net 
+man expand
+cd Documents/
+fgr wedding
+open brain/wedding
+psg racoon
+cd
+cd Projects/
+tm stint
+ssh chl
+ssh cowpaw.cackhanded.net 
+cd code/
+cat smelt/README 
+cat smelt/notes/IndexPage.txt 
+find smelt/
+cat /etc/hosts
+cd /sites/htdocs/marknormanfrancis/com/www/site
+export DOCUMENT_ROOT /sites/htdocs/marknormanfrancis/com/www/site/
+export DOCUMENT_ROOT=/sites/htdocs/marknormanfrancis/com/www/site/
+export CONTENT_ROOT=/sites/htdocs/marknormanfrancis/com/www/content/
+export PATH_INFO=/
+touch /tmp/mnf-flourish.cache 
+sudo chmod 777 /tmp/mnf-flourish.cache 
+./flourish.fcgi 
+mkdir my-life/incidents
+touch my-life/incidents/i-broke-my-elbow.txt
+touch my-life/incidents/i-broke-my-elbow.meta
+tm my-life/incidents/i-broke-my-elbow.*
+tm .
+timestamp now
+
+timestamp 10pm
+perldoc Date::Manip
+alias timestamp
+perl -MDate::Manip -e 'print UnixDate( shift, "%s\n" );' now
+tm ../site/assets
+ls ../site/assets
+find trunk/
+ssh atv
+rm -rf trunk
+bzr-start marknormanfrancis.com
+mv marknormanfrancis.com content
+webctl restart
+webctl stop
+sudo rm /tmp/mnf-flourish.cache 
+webctl start
+h
+find .
+rs cowpaw.cackhanded.net:/
+rs cowpaw.cackhanded.net:/sites/htdocs/marknormanfrancis/com/www/content/. content/.
+ls content/
+cd content/
+ls -la
+mv marknormanfrancis.com/.bzr .
+rmdir marknormanfrancis.com
+bzr bzr commit
+tm ~/.bazaar/plugins
+bzr
+bzr --version
+echo $PYTHONLIB 
+ls /Users/mfrancis/lib/pythn
+ls /Users/mfrancis/lib/python
+mkdir /Users/mfrancis/lib/python
+bzr comit
+bzr commit --unchanged
+ls
+bzr status
+pwd
+rm -rf .bzr
+cd ..
+cd content
+bzr checkout bzr+ssh://bzr.cackhanded.net/bazaar/marknormanfrancis.com/trunk/ 
+mv trunk/.bzr .
+rmdir trunk
+bzr add about/* code/os-x/away-script.* events/at-media/2006.* gadgets/mobile-phone/nokia-n80-review.* games/os-x/iconquer.* presentations/*/* yahoo-europe/*
+bzr add my-life/incidents/i-broke-my-elbow.*
+bzr commit
+bzr add my-life/incidents/i-broke-my-elbow.*
+bzr commit
+backup itunes southpaw
+ssh sp
+tm bin/backup
+ssh sp
+tm bin/backup
+bzr push
+cat .bzr/branch/branch.conf 
+cd Projects/
+mv home homex
+bzr checkout bzr+ssh://bzr.cackhanded.net/bazaar/home/trunk/
+mv trunk home
+cd home
+bzr revno
+bzr up
+ssh bzr.cackhandednet
+ssh bzr.cackhanded.net
+ssh bzr.cackhanded.net
+cd Projects/home
+ls
+bzr revo
+cd ..
+rm -rf home
+bzr checkout bzr+ssh://bzr.cackhanded.net/bazaar/home/trunk/ ; mv trunk home
+cd home
+bzr revno
+cd
+cd home
+bzr revno
+cd
+cd /usr/local/bin
+sudo mv /usr/bin/expan .
+rmdir /Volumes/maple*
+expan connect maple
+tm /Volumes/maple
+expan eject maple
+top
+psg rsync
+
+backup itunes
+backup itunes pile
+df -l
+df 
+h
+rs /Users/mfrancis/Downloads/codeexercise/newhotjobsmock.png thenorm@scagnetti.dreamhost.com:cackhanded/bumph/site
+cat Library/Favorites/vnc-southpaw.inetloc 
+cd ..
+cd content
+bzr checkout bzr+ssh://bzr.cackhanded.net/bazaar/marknormanfrancis.com/trunk/ 
+rmdir trunk
+bzr add about/* code/os-x/away-script.* events/at-media/2006.* gadgets/mobile-phone/nokia-n80-review.* games/os-x/iconquer.* presentations/*/* yahoo-europe/*
+bzr add my-life/incidents/i-broke-my-elbow.*
+bzr add my-life/incidents/i-broke-my-elbow.*
+backup itunes southpaw
+ssh sp
+tm bin/backup
+bzr status
+tm bin/upfiles 
+man bash
+upfiles bob
+upfiles bob.yahoo.com
+man grep
+upfiles bob ; upfiles bob.yahoo.com
+upfiles cackhanded.net
+ls
+find .
+bzr help update
+bzr update Projects/home
+tm .bash*
+bzr commit
+bzr diff 
+bzr commit .bash/functions 
+h
+cat Projects/home/.bash/functions 
+cd Projects/home/
+bzr up
+cd
+cat .bzr/branch/branch.conf 
+bzr push
+bzr push bzr+ssh://bzr.cackhanded.net/bazaar/home/trunk/
+bzr checkout bzr+ssh://bzr.cackhanded.net/bazaar/home/trunk/
+rm -rf .bzr
+mv trunk/.bzr .
+bzr diff
+rm -rf trunk
+bzr revno
+upfiles beanglass.london.corp.yahoo.com 
+tm .bashrc 
+rs .bash* beanglass.london.corp.yahoo.com:.
+bzr checkout bzr+ssh://bzr.cackhanded.net/bazaar/marknormanfrancis.com/trunk/ 
+mv trunk/.bzr .
+rmdir trunk
+bzr add about/* code/os-x/away-script.* events/at-media/2006.* gadgets/mobile-phone/nokia-n80-review.* games/os-x/iconquer.* presentations/*/* yahoo-europe/*
+bzr add my-life/incidents/i-broke-my-elbow.*
+bzr commit
+cd /Volumes/
+ls
+find s3
+rm -rf s3
+cd
+backup itunes southpaw
+tm bin/fix_app 
+ssh beanglass.london.corp.yahoo.com 
+bzr revno
+cd
+open /Volumes/pile/rsnapshots.sparsebundle
+df
+df -l
+cd /Volumes/pile/
+du -s *
+rm rsnapshots.dmg 
+ls
+cd 
+du -s /Volumes/pile/rsnapshots.dmg 
+psg disk
+ssh beanglass.london.corp.yahoo.com 
+fgr stickelback
+backup itunes southpaw
+tm bin/fix_app 
+ssh beanglass.london.corp.yahoo.com 
+bzr revno
+cd
+open /Volumes/pile/rsnapshots.sparsebundle
+df
+df -l
+cd /Volumes/pile/
+du -s *
+rm rsnapshots.dmg 
+ls
+cd 
+du -s /Volumes/pile/rsnapshots.dmg 
+psg disk
+ssh beanglass.london.corp.yahoo.com 
+fgr stickelback
+mkdir /tmp/r3-13
+export R3HOME=/tmp/r3-13
+cd Downloads
+r3 setup setuphome /tmp/r3-13
+sudo pear install stickleback-1.3.6.tgz 
+sudo pear install --alldeps r3-1.3.12.tgz 
+rm -rf /tmp/r3-13
+export R3HOME=/tmp/r3
+sudo pear uninstall r3
+sudo pear uninstall stickleback
+sudo pear install stickleback-1.3.0.tgz 
+sudo pear install --alldeps r3-1.5.0.tgz 
+r3 setup dimension create site generic
+rm -rf /tmp/r3
+r3 setup setuphome /tmp/r3
+r3 setup installdb
+r3 setup dimension create site 
+r3 setup dimension list
+r3 dimension site create generic
+ssh beanglass.london.corp.yahoo.com 
+bzr revno
+open /Volumes/pile/rsnapshots.sparsebundle
+df
+df -l
+cd /Volumes/pile/
+du -s *
+rm rsnapshots.dmg 
+cd 
+du -s /Volumes/pile/rsnapshots.dmg 
+psg disk
+ssh beanglass.london.corp.yahoo.com 
+cd /Volumes/s3/php/
+ls
+cd
+cd Downloads/
+fgr r3
+sudo pear uninstall stickelback
+sudo pear install r3-1.5.0.tgz 
+fgr stick
+ls /Volumes/s3/php
+sudo pear install stickleback-1.3.6\ 1.tgz 
+sudo pear install stickleback-1.3.0.tgz 
+sudo pear install --alldeps r3-1.5.0.tgz 
+sudo pear uninstall r3
+sudo pear uninstall stickleback
+sudo pear install stickleback-1.3.6.tgz 
+sudo pear install --alldeps r3-1.3.12.tgz 
+rm -rf /tmp/r3
+r3 setup setuphome /tmp/r3
+bzr push bzr+ssh://bzr.cackhanded.net/bazaar/home/trunk/
+bzr checkout bzr+ssh://bzr.cackhanded.net/bazaar/home/trunk/
+rm -rf .bzr
+mv trunk/.bzr .
+bzr diff
+rm -rf trunk
+bzr revno
+upfiles beanglass.london.corp.yahoo.com 
+tm .bashrc 
+rs .bash* beanglass.london.corp.yahoo.com:.
+bzr checkout bzr+ssh://bzr.cackhanded.net/bazaar/marknormanfrancis.com/trunk/ 
+mv trunk/.bzr .
+rmdir trunk
+bzr add about/* code/os-x/away-script.* events/at-media/2006.* gadgets/mobile-phone/nokia-n80-review.* games/os-x/iconquer.* presentations/*/* yahoo-europe/*
+bzr add my-life/incidents/i-broke-my-elbow.*
+bzr commit
+cd /Volumes/
+ls
+find s3
+rm -rf s3
+backup itunes southpaw
+tm bin/fix_app 
+ssh beanglass.london.corp.yahoo.com 
+bzr revno
+open /Volumes/pile/rsnapshots.sparsebundle
+df
+df -l
+cd /Volumes/pile/
+du -s *
+rm rsnapshots.dmg 
+ls
+cd 
+du -s /Volumes/pile/rsnapshots.dmg 
+psg disk
+ssh beanglass.london.corp.yahoo.com 
+mkdir /tmp/r3
+export R3HOME=/tmp/r3
+r3 setup installdb 
+
+r3 setup dimension create product generic
+ls /sites/htdocs/marknormanfrancis/com/www/site
+r3 setup dimension create tld 
+r3 setup dimension create host www
+r3 dimension tld create all
+r3 dimension intl list
+r3 dimension product list
+mkdir r3
+r3 setup dimension
+r3 setup dimension create tld all
+r3 setup dimension create host generic
+r3 setup dimension create section generic
+r3 dimension site 
+r3 dimension 
+r3 dimension list 
+cd
+cd /tmp
+r3 setup dimension create intl
+r3 setup dimension create intl generic
+r3 dimension intl create generic
+r3 dimension intl create floopitydoopity
+r3 setup dimension create site generic
+rm -rf r3
+r3 setup setuphome /tmp/r3
+r3 setup installdb
+r3 setup dimension create site
+r3 dimension list
+r3 setup dimension list
+r3 setup dimension domain
+r3 setup dimension create domain
+r3 setup dimension create host
+r3 setup dimension create content
+r3 dimension site create generic
+r3 dimension site list
+r3 dimension site create meta-flourish
+r3 dimension site create meta-flrsh
+r3 dimension site create meta-flrs
+r3 dimension site create meta-flr
+hibernate 
+rm /Volumes/pile/rsnapshots.dmg
+df /Volumes/pile/
+ping 4thfloorbluecolour.london.corp.yahoo.com
+ping 4thfloorblue.london.corp.yahoo.com
+cd Downloads/
+fgr r3
+sudo pear uninstall stickelback
+sudo pear install r3-1.5.0.tgz 
+fgr stick
+ls /Volumes/s3/php
+sudo pear install stickleback-1.3.6\ 1.tgz 
+sudo pear install stickleback-1.3.0.tgz 
+sudo pear install --alldeps r3-1.5.0.tgz 
+sudo pear uninstall r3
+sudo pear uninstall stickleback
+sudo pear install stickleback-1.3.6.tgz 
+sudo pear install --alldeps r3-1.3.12.tgz 
+rm -rf /tmp/r3
+r3 setup setuphome /tmp/r3
+cd /Library/
+fgr finder
+v
+cd 
+vi bin/mounted-pile 
+cat bin/backup-prompt 
+growlnotify
+tm bin/backup-prompt 
+backup-prompt 'itunes backup' 'Run "backup itunes pile".'
+backup itunes pile
+man rsync
+cd /Volumes/maple/
+ls
+cd ..
+ping google.com
+psg disk
+cd Desktop/
+fgr 21
+fgr valid
+mv clean/2* /Users/mfrancis/Documents/articles/web\ standards\ curriculum/
+tm /Users/mfrancis/Documents/articles/web\ standards\ curriculum/
+r3
+r3 version
+r3 dimension list
+r3 setup dimension list
+cd
+ssh beanglass.london.corp.yahoo.com 
+cd /sites/hackday/
+ls
+tm templates
+cd templates
+fgr php_init
+cat media/eu/generic/php_init_apis.ros 
+cat media/eu/generic/php_init_content_type_header.ros 
+cat media/eu/generic/php_init_errors_on.ros 
+fgr content_modules
+tm media/eu/news_article.php/body_content_modules.ros 
+cat media/eu/news_category.php/body_content_modules.ros 
+cat tv/eu/news_index.php/body_content_modules.ros 
+fgr footer_mod
+cat media/eu/generic/body_footer_modules.ros 
+fgr fetch
+cat media/eu/news_index.php/r3_data_fetch.ros 
+fgr get_artic
+tm media/eu/generic/php_api_get_articles.ros
+nslookup 10.76.38.165
+ping red4.london.corp.yahoo.com
+cd 
+vi bin/mounted-pile 
+cat bin/backup-prompt 
+growlnotify
+tm bin/backup-prompt 
+backup-prompt 'itunes backup' 'Run "backup itunes pile".'
+backup itunes pile
+ssh thinkreal.london.corp.yahoo.com 
+ssh thinkreal.london.corp.yahoo.com:11022
+ssh -p11022 thinkreal.london.corp.yahoo.com
+rs --port=11022 thinkreal.london.corp.yahoo.com:/home/y/share/htdocs/assets .
+rs --port=11023 thinkreal.london.corp.yahoo.com:/home/y/share/htdocs/assets .
+rs thinkreal.london.corp.yahoo.com:11022:/home/y/share/htdocs/assets .
+man rsync
+cd tmp
+mv trunk trunkx
+rm -rf trunk
+ls
+bzr branch bzr+ssh://thinkreal.london.corp.yahoo.com/home/y/share/bazaar/static/trunk/
+bzr checkout bzr+ssh://thinkreal.london.corp.yahoo.com:11022/home/y/share/bazaar/static/trunk/
+mv trunk assets
+ls assets/
+rs assets beanglass.london.corp.yahoo.com:.
+rm -rf /tmp/r3
+r3 setup setuphome /tmp/r3
+cd Documents/Colloquy\ Transcripts/
+grep pitstop *
+ping 6thfloorblue.london.corp.yahoo.com
+nslookup 6thfloorblue.london.corp.yahoo.com
+nslookup 4-blue.london.corp.yahoo.com
+psg finder
+cd
+cd /Volumes/maple
+ls
+cd 
+ls /Volumes/maple/
+rmdir /Volumes/maple
+tm /Volumes/maple/
+ssh beanglass.london.corp.yahoo.com 
+ls /Volumes/s3/php
+sudo pear install stickleback-1.3.6\ 1.tgz 
+sudo pear install stickleback-1.3.0.tgz 
+sudo pear install --alldeps r3-1.5.0.tgz 
+sudo pear uninstall r3
+sudo pear uninstall stickleback
+sudo pear install stickleback-1.3.6.tgz 
+sudo pear install --alldeps r3-1.3.12.tgz 
+rm -rf /tmp/r3
+r3 setup setuphome /tmp/r3
+locate finder.app
+locate Finder.app
+open /System/Library/CoreServices/Finder.app
+mkdir /Volumes/rsnapshots/sinister
+rsnap pile daily
+df
+cd /Volumes/pile/
+rm -rf rsnapshots.sparsebundle
+bg
+fg
+j
+du .
+du -s .
+du -s *
+df .
+cd /Volumes/maple
+ls -la templates/
+ls -l registry/
+cd 
+cd /Volumes/
+cd ma
+cd maple/
+ls
+ls -la
+cd
+tm /Volumes/maple
+ls /Volumes/
+ssh sp
+crontab -l
+ssh southpaw
+ssh southpaw
+top
+kill 269
+psg textexp
+backup itunes pile
+tm .bash/host/sinister 
+top
+kill 269
+psg textexp
+backup itunes pile
+cd Downloads/
+rs southpaw:/Volumes/clarke/downloads/to-sort/text-books
+ 
+mv text-books /Users/mfrancis/Desktop
+cd /Users/mfrancis/Desktop
+rs southpaw:/Volumes/clarke/downloads/to-sort/text-books .
+cd text-books/
+tm *lory*
+rs southpaw:/Volumes/clarke/downloads/to-sort/text-books/. .
+open find .
+find .
+du -s *
+dus
+cd
+cd Documents/
+mkdir Books/Ebooks
+cd Books/Ebooks
+mkdir Science\ Fiction
+cd Science\ Fiction
+mkdir 'Heinlein, Robert'
+cd 'Heinlein, Robert'
+mv /Users/mfrancis/Desktop/text-books/*einlein* .
+open -a Stanza *dadd*
+fgr pupp
+tm *Pupp*
+diff -u *Pupp*
+rm Heinlein\,\ Robert\ A\ -\ Puppet\ Masters\,\ The.txt 
+mv Heinlein\,\ Robert\ A\ -\ The\ Puppet\ Masters.txt The\ Puppet\ Masters.txt
+ls
+open -a Stanza The\ Puppet\ Masters.txt 
+ls *ory* 
+ls *lory* 
+mv *lory* Glory\ Road.txt
+tm *lory* *uppet*
+ls *uppet*
+rm *ein*uppet*
+tm .
+ls *unset*
+ls | more
+ls *riday*
+mv *riday* Friday.txt
+tm Friday.txt
+ls *roope*
+tm *rooper*
+ls -la *rooper*
+diff -u *roop*
+diff -u Hein*roop*
+tm Hein
+diff -u Hein*roop*|more
+diff Heinlein\,\ Robert\ Anson\ -\ Starship\ troopers.txt Robert\ *roop*
+diff Heinlein\,\ Robert\ Anson\ -\ Starship\ troopers.txt Robert\ *roop*|more
+mv Heinlein\,\ Robert\ Anson\ -\ Starship\ troopers.txt Starship\ Troopers.txt
+tm Starship\ Troopers.txt
+pwd
+pwd
+ssh sp
+port search oddm
+port search odd
+cd /sites/htdocs/
+mkdir wiki
+cd wiki
+mkdir source
+mkdir site
+cd site
+wget http://www.emacswiki.org/scripts/current.pl
+tm ..
+touch wiki.cgi
+tm wiki.cgi
+chmod 755 *
+tm /ports/etc/lighttpd
+tm /etc/hosts
+tm wiki.cgi 
+ls ..
+mkdir ../content
+rmdir ../source/
+sudo chmod 777 ../content
+cp ../../marknormanfrancis/com/www/site/rewrite.lua .
+tm rewrite.lua 
+webctl restart
+mkdir ../content/modules/Markdown
+cp /Users/mfrancis/Downloads/Markdown_1.0.1/Markdown.pl ../content/modules/Markdown
+cd
+mv Heinlein\,\ Robert\ Anson\ -\ Starship\ troopers.txt Starship\ Troopers.txt
+tm Starship\ Troopers.txt
+pwd
+ssh southpaw.cackhanded.net 
+cd Do
+cd Downloads
+rs *omb* norm@southpaw.cackhanded.net:Desktop
+ls *torr
+ls *torrent
+\rm *torrent
+ssh norm@southpaw.cackhanded.net
+cd ../Desktop/
+ln -sf /Volumes/s3/os\ x/software
+cd /Volumes/s3/os\ x/software/
+fgr path
+mv Leap_1.1.0.dmg file\ management/
+mv Yep_1.8.0.dmg document\ viewers
+mkdir maps
+mv GoogleEarthMac.dmg maps
+ls *dmg
+mv Stanza.dmg document\ viewers
+ls
+tm Starship\ Troopers.txt
+pwd
+backup itunes southpaw
+diff Heinlein\,\ Robert\ Anson\ -\ Starship\ troopers.txt Robert\ *roop*
+diff Heinlein\,\ Robert\ Anson\ -\ Starship\ troopers.txt Robert\ *roop*|more
+mv Heinlein\,\ Robert\ Anson\ -\ Starship\ troopers.txt Starship\ Troopers.txt
+tm Starship\ Troopers.txt
+pwd
+cd Desktop/text-books/
+mkdir Niven,\ Larry
+ls *iven*
+mv *iven* Niven\,\ Larry
+mv NIVEN\,\ Larry\ -\ \[IT02\]\ -\ The\ Smoke\ Ring\ \(V1\).txt Niven\,\ Larry
+mkdir Reynolds\,\ Alastair
+mv Reynolds\,\ Alastair\ -\ * Reynolds\,\ Alastai
+mv Reynolds\,\ Alastair\ -\ * Reynolds\,\ Alastair
+mv Alastair\ Reynolds\ -\ Spirey\ And\ The\ Queen.txt Reynolds\,\ Alastair
+mv Niven\,\ Larry Reynolds\,\ Alastair /Users/mfrancis/Documents/Books/Ebooks/Science\ Fiction
+ls
+open PGSFCD-032007.iso 
+top
+ls *uppet*
+rm *ein*uppet*
+tm .
+ls *unset*
+ls *riday*
+mv *riday* Friday.txt
+tm Friday.txt
+ls *roope*
+tm *rooper*
+ls -la *rooper*
+diff -u *roop*
+diff -u Hein*roop*
+tm Hein
+diff -u Hein*roop*|more
+diff Heinlein\,\ Robert\ Anson\ -\ Starship\ troopers.txt Robert\ *roop*
+diff Heinlein\,\ Robert\ Anson\ -\ Starship\ troopers.txt Robert\ *roop*|more
+mv Heinlein\,\ Robert\ Anson\ -\ Starship\ troopers.txt Starship\ Troopers.txt
+tm Starship\ Troopers.txt
+cd /Users/mfrancis/Documents/Books/Ebooks/Science Fiction/Heinlein, Robert
+cd '/Users/mfrancis/Documents/Books/Ebooks/Science Fiction/Heinlein, Robert
+'
+cd '/Users/mfrancis/Documents/Books/Ebooks/Science Fiction/Heinlein, Robert'
+mv Heinlein\,\ Robert Heinlein\,\ Robert\ A.
+cd Heinlein\,\ Robert\ A./
+s
+mkdir to-sort
+mv Robert\ * Heinl* to-sort
+mv %book\ %a\ Robert\ A\ Heinlein\ %t\ Double\ Star.txt \(ebook-txt\)\ Robert\ A.\ Heinlein\ -\ Stranger\ in\ a\ Strange\ Land.txt Worlds\ of\ Robert\ A\ Heinlein\,\ The.txt to-sort/
+mkdir Harrison,\ Harry
+cd Harrison\,\ Harry/
+rs 'southpaw:/Volumes/clarke/downloads/to-sort/unsorted/stainless*' .
+find 
+find .
+open .
+cd ../Heinlein\,\ Robert\ A./
+ls *oon*
+ls *arsh*
+mv 'Heinlein, Robert A - The Moon Is A Harsh Mistress.txt' ../'The Moon Is A Harsh Mistress.txt'
+tm ../'The Moon Is A Harsh Mistress.txt'
+ls *arship*
+rm *arship*
+ls *ranger*
+ls |more
+tm *hildr*
+diff -u *hildr*
+diff -u *hildr*|more
+mv *ethuselah\'s* ../Methuselah\'s\ Children.txt
+ls *hildr*
+ls | more
+grep -i kettle *
+grep -li kettle *
+tm *ssignment*
+stanza 'Heinlein, Robert A - Assignment in Eternity.txt
+'
+stanza 'Heinlein, Robert A - Assignment in Eternity.txt'
+*ethuselah\'s* ../Methuselah\'s\ Children.txt
+h
+mv 'Heinlein, Robert A - Assignment in Eternity.txt' ../'Assignment in Eternity.txt'
+cd ..
+tm Assignment\ in\ Eternity.txt Methuselah\'s\ Children.txt 
+tm Assignment\ in\ Eternity.txt 
+stanza Assignment\ in\ Eternity.txt 
+stanza *txt
+tm The\ Puppet\ Masters.txt 
+cd to-sort/
+ls *ixth*
+ls -la *ixth*
+diff -u Robert\ A\ Heinlein\ -\ Sixth\ Column*
+diff -u Robert\ A\ Heinlein\ -\ Sixth\ Column.txt Robert\ A.\ Heinlein\ -\ Sixth\ Column.txt 
+diff -u Robert\ A\ Heinlein\ -\ Sixth\ Column.txt Robert\ A.\ Heinlein\ -\ Sixth\ Column.txt |more
+tm *ixth*
+stanza ../Sixth\ Column.txt 
+ls
+tm *ranger*
+ls -la *ranger*
+diff -u 'Robert Heinlein - Stranger In A Strange Land - Original Uncut Version.txt' 'Robert A. Heinlein - Stranger in a Strange Land.txt' 
+diff -u 'Robert Heinlein - Stranger In A Strange Land - Original Uncut Version.txt' 'Robert A. Heinlein - Stranger in a Strange Land.txt' |more
+mv 'Robert A. Heinlein - Stranger in a Strange Land.txt' ../'Stranger in a Strange Land.txt' .
+mv 'Robert A. Heinlein - Stranger in a Strange Land.txt' ../'Stranger in a Strange Land.txt' 
+tm ../'Stranger in a Strange Land.txt'
+stanza ../'Stranger in a Strange Land.txt'
+pwd
+ssh southpaw
+ssh southpaw
+ssh bzr.cackhanded.net 
+tm ../'Stranger in a Strange Land.txt'
+stanza ../'Stranger in a Strange Land.txt'
+pwd
+ssh southpaw
+ssh southpaw
+ssh bzr.cackhanded.net 
+cd Downloads/
+stanza *rtf
+tm bob.html 
+stanza bob.html 
+open *rtf
+cd /ports/lib/perl5/
+fgr trigg
+tm vendor_perl/5.8.8/Class/Trigger.pm 
+ssh southpaw
+ssh norm@sp
+cd /Users/work/
+wget http://prdownload.berlios.de/iat/iat-0.1.3-src.tar.bz2
+tar zxf iat
+tar zxf ls iat*
+ls
+tar zxf iat-0.1.3-src.tar.bz2 
+bunzp iat-0.1.3-src.tar.bz2 
+bunzip iat-0.1.3-src.tar.bz2 
+port search bzip
+sudo port install bzip2
+bunzip2 iat-0.1.3-src.tar.bz2 
+open vnc://localhost:5901/
+cd /Volumes/data/incoming/
+df .
+rs 'sp:/Volumes/lacie/to-sort/audio/Nathan McCree' .
+rs 'sp:/Volumes/lacie/to-sort/audio/Nathan\ McCree' .
+top
+ssh chl
+top
+ssh beanglass.london.corp.yahoo.com 
+cd /sites/hackday/
+tm templates
+cd templates
+fgr php_init
+cat media/eu/generic/php_init_apis.ros 
+cat media/eu/generic/php_init_content_type_header.ros 
+cat media/eu/generic/php_init_errors_on.ros 
+fgr content_modules
+tm media/eu/news_article.php/body_content_modules.ros 
+cat media/eu/news_category.php/body_content_modules.ros 
+cat tv/eu/news_index.php/body_content_modules.ros 
+fgr footer_mod
+cat media/eu/generic/body_footer_modules.ros 
+fgr fetch
+cat media/eu/news_index.php/r3_data_fetch.ros 
+fgr get_artic
+tm media/eu/generic/php_api_get_articles.ros
+nslookup 10.76.38.165
+ping red4.london.corp.yahoo.com
+vi bin/mounted-pile 
+cat bin/backup-prompt 
+growlnotify
+tm bin/backup-prompt 
+backup-prompt 'itunes backup' 'Run "backup itunes pile".'
+backup itunes pile
+ssh thinkreal.london.corp.yahoo.com 
+ssh thinkreal.london.corp.yahoo.com:11022
+ssh -p11022 thinkreal.london.corp.yahoo.com
+rs --port=11022 thinkreal.london.corp.yahoo.com:/home/y/share/htdocs/assets .
+rs --port=11023 thinkreal.london.corp.yahoo.com:/home/y/share/htdocs/assets .
+rs thinkreal.london.corp.yahoo.com:11022:/home/y/share/htdocs/assets .
+man rsync
+cd tmp
+mv trunk trunkx
+rm -rf trunk
+bzr branch bzr+ssh://thinkreal.london.corp.yahoo.com/home/y/share/bazaar/static/trunk/
+bzr checkout bzr+ssh://thinkreal.london.corp.yahoo.com:11022/home/y/share/bazaar/static/trunk/
+mv trunk assets
+ls assets/
+rs assets beanglass.london.corp.yahoo.com:.
+rm -rf /tmp/r3
+r3 setup setuphome /tmp/r3
+cd Documents/Colloquy\ Transcripts/
+grep pitstop *
+ping 6thfloorblue.london.corp.yahoo.com
+nslookup 6thfloorblue.london.corp.yahoo.com
+nslookup 4-blue.london.corp.yahoo.com
+psg finder
+cd
+cd /Volumes/maple
+ls /Volumes/maple/
+rmdir /Volumes/maple
+tm /Volumes/maple/
+ssh beanglass.london.corp.yahoo.com 
+ls /Volumes/s3/php
+sudo pear install stickleback-1.3.6\ 1.tgz 
+sudo pear install stickleback-1.3.0.tgz 
+sudo pear install --alldeps r3-1.5.0.tgz 
+sudo pear uninstall r3
+sudo pear uninstall stickleback
+sudo pear install stickleback-1.3.6.tgz 
+sudo pear install --alldeps r3-1.3.12.tgz 
+rm -rf /tmp/r3
+r3 setup setuphome /tmp/r3
+locate finder.app
+locate Finder.app
+open /System/Library/CoreServices/Finder.app
+mkdir /Volumes/rsnapshots/sinister
+rsnap pile daily
+df
+cd /Volumes/pile/
+rm -rf rsnapshots.sparsebundle
+bg
+fg
+j
+du .
+du -s .
+du -s *
+df .
+cd /Volumes/maple
+ls -la templates/
+ls -l registry/
+cd /Volumes/
+cd ma
+cd maple/
+ls -la
+cd
+tm /Volumes/maple
+ls /Volumes/
+ssh sp
+crontab -l
+ssh southpaw
+ssh southpaw
+top
+kill 269
+psg textexp
+backup itunes pile
+cd Projects/stint/
+rm ] 
+stint
+perl stint
+perl test
+mv stint stint.old
+bzr-start stint
+cd /tmp
+bzr checkout bzr+ssh://bzr.cackhanded.net/bazaar/stint/
+cd trunk
+find .
+bzr up
+cd 
+cd Projects/
+lszr up
+bzr checkout bzr+ssh://bzr.cackhanded.net/bazaar/stint/trunk/
+mv trunk stint
+cd ..
+tm .
+cd stint
+touch notes.txt
+tm notes.txt 
+ls
+mkdir lib
+touch lib/Stint.pm
+touch stint
+chmod 700 stint 
+perldoc Readonly
+mkdir ~/bugs
+tm ~/bugs/stint.cfg
+perldoc -f true
+man perlfaq
+port search paran
+port install cdparanoia
+sudo port install cdparanoia
+cdparanoia 
+port search abcde
+perldoc Class::Trigger
+perldoc Config::Std
+./stint 
+fgr innovation
+fgr innovation|tm
+top
+ssh bzr.cackhanded.net 
+tm ../'Stranger in a Strange Land.txt'
+stanza ../'Stranger in a Strange Land.txt'
+pwd
+ssh southpaw
+ssh southpaw
+ssh bzr.cackhanded.net 
+cd Downloads/
+stanza *rtf
+tm bob.html 
+stanza bob.html 
+open *rtf
+fgr trigg
+cd /ports/lib/perl
+cd /ports/lib/perl5/
+fgr trig
+
+cd bugs/
+find .
+cat 1A9D3B3A-68C2-11DD-A9EF-DF9E3566A002.stint 
+tm vendor_perl/5.8.8/Class/Trigger.pm 
+rm *stint
+perldoc Class::Std
+perldoc Config::Std
+cat *stint
+\rm *stint
+ls
+cat stint.cfg 
+pwd
+ssh southpaw
+ssh southpaw
+ssh bzr.cackhanded.net 
+cd Downloads/
+stanza *rtf
+tm bob.html 
+stanza bob.html 
+open *rtf
+cd /ports/lib/perl5/
+fgr trigg
+tm vendor_perl/5.8.8/Class/Trigger.pm 
+cd Desktop/
+rs 'southpaw:/files/downloads/Tomb*' .
+cd Tomb\ Raider\ PSX/
+cp Tomb\ Raider.mdf Tomb\ Raider.iso
+bg
+du -s *
+rm Tomb\ Raider.iso 
+mv Tomb\ Raider.mdf Tomb\ Raider.cdr
+open 
+open .
+mv Tomb\ Raider.cdr Tomb\ Raider.mdf
+port search mdf
+port search iat
+sudo port install mdf2iso
+mdf2iso 
+mdf2iso Tomb\ Raider.mdf
+open Tomb\ Raider.iso 
+ls
+rs 'southpaw.cackhanded.net:/files/downloads/Tomb*' .
+ssh sp
+ssh norm@sp
+psg quicks
+open /Applications/Quicksilver.app
+port search tidy
+ssh southpaw
+cd /Volumes/data/incoming/
+echo "Darn you, Crash Bandicoot\!" | wc
+ssh thinkreal.london.corp.yahoo.com 
+fgr pcf
+cd /
+sudo find . | grep pcf
+locate cisco
+locate cisco|more
+cd /Library/Frameworks/cisco-vpnclient.framework/
+fgr pcf
+locate pcf
+locate pcf|more
+cd /private/etc/opt/cisco-vpnclient/Profiles
+ls
+scp London.pcf thinkreal.london.corp.yahoo.com:.
+ssh thinkreal.london.corp.yahoo.com 
+top
+ping dexter
+mv Tomb\ Raider.cdr Tomb\ Raider.mdf
+port search mdf
+port search iat
+sudo port install mdf2iso
+mdf2iso 
+mdf2iso Tomb\ Raider.mdf
+open Tomb\ Raider.iso 
+rs 'southpaw.cackhanded.net:/files/downloads/Tomb*' .
+ssh sp
+ssh norm@sp
+ssh chl
+cd /Volumes/to-sort/
+fgr silent.hill|more
+backup itunes vault
+top
+ssh beanglass.london.corp.yahoo.com 
+open Desktop/tidy/code\ reviews.key/
+open Desktop/tidy/innovation.key/
+open Documents/brain/2008/07/23/excellence.key
+open Desktop/clean/Generic Media Site.key
+open 'Desktop/clean/Generic Media Site.key'
+cd /Volumes/jdisk/
+cd software/fonts/
+cd /Volumes/s3/
+cd ..
+cd s3-1
+cd fonts/
+fgr goth
+fgr gotham
+cp old-fonts-to-sort/gotham_1_mac.zip /Users/mfrancis/Desktop
+open ~/Desktop/gotham_1_mac.zip 
+cd /
+cd Volumes/
+ls 
+rm -rf s3
+df 
+df -l
+ls dexter
+du -s d*
+du -s dexter*
+rm dexter*/.DS_Store
+rm dexter*/*
+rm dexter*/.??*
+rmdir dexter*
+cd
+cd /Volumes/vault
+rm -rf sinister-home.sparsebundle
+rm -rf jungledisk.sparsebundle/
+df .
+ls
+top
+cd Desktop/
+cd ../Documents/
+fgr hein
+cd Books/Ebooks/Science\ Fiction/
+open .
+h
+ls
+exit
+fgr trigg
+tm vendor_perl/5.8.8/Class/Trigger.pm 
+cd Desktop/
+rs 'southpaw:/files/downloads/Tomb*' .
+cd Tomb\ Raider\ PSX/
+cp Tomb\ Raider.mdf Tomb\ Raider.iso
+bg
+du -s *
+rm Tomb\ Raider.iso 
+mv Tomb\ Raider.mdf Tomb\ Raider.cdr
+open 
+open .
+mv Tomb\ Raider.cdr Tomb\ Raider.mdf
+port search mdf
+port search iat
+sudo port install mdf2iso
+mdf2iso 
+mdf2iso Tomb\ Raider.mdf
+open Tomb\ Raider.iso 
+rs 'southpaw.cackhanded.net:/files/downloads/Tomb*' .
+ssh sp
+ssh norm@sp
+psg quicks
+open /Applications/Quicksilver.app
+port search tidy
+ssh southpaw
+cd /Volumes/data/incoming/
+echo "Darn you, Crash Bandicoot\!" | wc
+ssh thinkreal.london.corp.yahoo.com 
+fgr pcf
+cd /
+sudo find . | grep pcf
+locate cisco
+locate cisco|more
+cd /Library/Frameworks/cisco-vpnclient.framework/
+fgr pcf
+locate pcf
+locate pcf|more
+cd /private/etc/opt/cisco-vpnclient/Profiles
+scp London.pcf thinkreal.london.corp.yahoo.com:.
+ssh thinkreal.london.corp.yahoo.com 
+cd /Volumes
+sleep 3 ; open ~/Documents/articles/web\ standards\ curriculum
+cd 
+cd Documents/Books/Ebooks/Science\ Fiction/Heinlein\,\ Robert\ A./
+touch '1949 Gulf.txt'
+touch '1941 Elsewhen.txt'
+tm '1941 Elsewhen.txt'
+touch '1941 Lost Legacy.txt'
+tm '1941 Lost Legacy.txt'
+touch '1947 Jerry Was a Man.txt'
+tm '1947 Jerry Was a Man.txt'
+rm Assignment\ in\ Eternity.txt 
+mv Friday.txt '1982 Friday.txt'
+tm '1982 Friday.txt'
+mv Glory\ Road.txt 1963\ Glory\ Road.txt 
+mv Sixth\ Column.txt 1949\ Sixth\ Column.txt 
+tm 1949\ Sixth\ Column.txt
+mv Starship\ Troopers.txt 1959\ Starship\ Troopers.txt 
+tm 1959\ Starship\ Troopers.txt
+mv Methuselah\'s\ Children.txt 1958\ Methuselah\'s\ Children.txt 
+tm Stranger\ in\ a\ Strange\ Land.txt 
+mv Stranger\ in\ a\ Strange\ Land.txt 1961\ Stranger\ in\ a\ Strange\ Land.txt
+mv The\ Moon\ Is\ A\ Harsh\ Mistress.txt 1966\ The\ Moon\ Is\ A\ Harsh\ Mistress.txt 
+mv The\ Puppet\ Masters.txt 1951\ The\ Puppet\ Masters.txt 
+grep Title: *
+tm 1942\ The\ Unpleasant\ Profession\ of\ Jonathan\ Hoag.txt 1951\ The\ Puppet\ Masters.txt 1954\ The\ Star\ Beast.txt 1956\ Time\ For\ The\ Stars.txt 
+grep '^Title:' *
+tm 1963\ Orphans\ of\ the\ Sky.txt 1966\ The\ Moon\ Is\ A\ Harsh\ Mistress.txt 1984\ -\ A\ Comedy\ of\ Justice.txt 1985\ The\ Cat\ Who\ Walks\ Through\ Walls.txt 1987\ To\ Sail\ Beyond\ The\ Sunset.txt 
+ls *ouble*
+diff *ouble*
+diff -u *ouble*
+tm *ouble*|more
+man unexpand
+expand %book\ %a\ Robert\ A\ Heinlein\ %t\ Double\ Star.txt 
+expand %book\ %a\ Robert\ A\ Heinlein\ %t\ Double\ Star.txt  > /tmp/x
+diff -u *ouble*|more
+mv 'Heinlein, Robert A - Double Star.txt' ../1956\ Double\ Star.txt
+tm ../1956\ Double\ Star.txt
+rm %book\ %a\ Robert\ A\ Heinlein\ %t\ Double\ Star.txt 
+fgr strang
+rm ./\(ebook-txt\)\ Robert\ A.\ Heinlein\ -\ Stranger\ in\ a\ Strange\ Land.txt 'Heinlein, Robert A - novel - Stranger in a Strange Land (unc.txt' 'Robert Heinlein - Stranger In A Strange Land - Original Uncut Version.txt' 
+diff -u Heinlein\,\ Robert\ -\ Destination\ Moon\(1950\)\[ss\].txt 'Robert A Heinlein - Destination Moon.txt' 
+diff -u Heinlein\,\ Robert\ -\ Destination\ Moon\(1950\)\[ss\].txt 'Heinlein, Robert A - Shooting Destination Moon (Article).txt' 
+tm 'Heinlein, Robert A - Shooting Destination Moon (Article).txt'
+mv 'Heinlein, Robert - Destination Moon(1950)[ss].txt' ../1950\ Destination\ Moon.txt
+tm ../1950\ Destination\ Moon.txt
+fgr dest
+rm *estin*
+diff ./Heinlein, Robert - The Number Of The Beast(1979).txt
+diff './Heinlein, Robert - The Number Of The Beast(1979).txt
+diff 'Heinlein, Robert - The Number Of The Beast(1979).txt' 'Heinlein, Robert A - The Number of the Beast.txt' 
+tm *umber*
+ls *1979*
+stanza *1979*
+mv *1979* ../1979\ The\ Number\ Of\ The\ Beast.txt
+tm ../1979\ The\ Number\ Of\ The\ Beast.txt
+fgr tender
+diff -u *enderf*
+tm *enderf*
+mv *enderf* ../1956\ Tenderfoot\ In\ Space.txt
+tm ../1956\ Tenderfoot\ In\ Space.txt
+fgr zomb
+tm *ombi*
+diff *ombi*
+mv *ombi* ../1959\ All\ You\ Zombies.txt
+tm ../1959\ All\ You\ Zombies.txt
+fgr house
+ls *ouse*
+mv *ouse* ../1941\ And\ He\ Built\ A\ Crooked\ House.txt
+tm ../1941\ And\ He\ Built\ A\ Crooked\ House.txt
+fgr twee
+diff *twee*
+tm *twee*
+mv *twee* ../1951\ Between\ Planets.txt
+mv Heinlein\,\ Robert\ A\ -\ Beyond\ Doubt.txt ../1941\ Beyond\ Doubt.txt
+tm ../1941\ Beyond\ Doubt.txt
+fgr eyond
+mv *eyon* ../1948\ Beyond\ This\ Horizon.txt
+tm ../1948\ Beyond\ This\ Horizon.txt
+stanza ../1948\ Beyond\ This\ Horizon.txt
+fgr luna
+mv *una* ../1948\ The\ Black\ Pits\ Of\ Luna.txt
+tm ../1948\ The\ Black\ Pits\ Of\ Luna.txt
+diff *lowup*
+mv Heinlein\,\ Robert\ A\ -\ Blowups\ happen.txt ../1940 FH7\ Blowups\ Happen.txt
+mv Heinlein\,\ Robert\ A\ -\ Blowups\ happen.txt ../1940\ FH7\ Blowups\ Happen.txt
+tm ../1940\ FH7\ Blowups\ Happen.txt
+fgr misf
+diff *isfit*
+tm *isfit*
+mv *isfit* ../1939\ FH2\ Misfit.txt
+wc *ethus*
+fgr jock
+diff *ocke*
+ls *ocke*
+ls *ockey*
+diff *ockey*
+tm *ockey*
+mv *ockey* ../1947\ FH13\ Space\ Jockey.txt
+fgr blow
+tm ../1940\ FH7\ Blowups\ Happen.txt *lowup*
+rm *lowup*
+fgr roll
+mv *ust*oll* ../1940\ FH3\ The\ Roads\ Must\ Roll.txt
+tm ../1940\ FH3\ The\ Roads\ Must\ Roll.txt
+fgr life
+mv *ife*ine* ../1939\ FH1\ Life-Line.txt
+tm ../1939\ FH1\ Life-Line.txt
+fgr req
+mv *equi* ../1940\ FH4\ Requiem.txt
+tm ../1940\ FH4\ Requiem.txt
+fgr goes
+diff *oes*
+mv Heinlein\,\ Robert\ A\ -\ If\ this\ goes\ on.txt ../1940\ FH5\ If This Goes On.txt
+mv Heinlein\,\ Robert\ A\ -\ If\ this\ goes\ on.txt ../1940\ FH5\ If\ This\ Goes\ On.txt
+tm ../1940\ FH5\ If\ This\ Goes\ On.txt
+fgr cov
+fgr coven
+diff *oventr*
+mv Heinlein\,\ Robert\ A\ -\ Coventry.txt ../1940\ FH6\ Coventry.txt
+tm ../1940\ FH6\ Coventry.txt
+ls ../
+fgr univ
+diff *\-\ Univ*
+tm *\-\ Univ*
+ls *\-\ Univ*
+mv *\-\ Univ* ../1941\ FH8\ Universe.txt
+fgr dog
+mv *ogs* ../1941\ FH9\ We\ Also\ Walk\ Dogs.txt
+tm ../1941\ FH9\ We\ Also\ Walk\ Dogs.txt
+fgr comm
+mv *ommon* ../1941\ FH10\ Common\ Sense.txt
+tm ../1941\ FH10\ Common\ Sense.txt
+fgr logic
+diff *ogic*
+mv Heinlein\,\ Robert\ A\ -\ Logic\ of\ Empire.txt ../1941\ FH11\ Logic\ Of\ Empire.txt
+tm ../1941\ FH11\ Logic\ Of\ Empire.txt
+mv ../1947\ FH13\ Space\ Jockey.txt ../1947\ FH12\ Space\ Jockey.txt 
+tm ../1947\ FH12\ Space\ Jockey.txt
+fgr back
+fgr great
+mv *reat* ../1947\ FH13\ It\'s\ Great\ To\ Be\ Back.txt
+tm ../1947\ FH13\ It\'s\ Great\ To\ Be\ Back.txt
+diff *ills*
+tm *ills*
+tm *ills*|more
+diff *ills* | tm
+wc *ills*
+mv Heinlein\,\ Robert\ A\ -\ The\ Green\ Hills\ Of\ Earth.txt ../1947\ FH14\ The\ Green\ Hills\ Of\ Earth.txt
+ym ../1947\ FH14\ The\ Green\ Hills\ Of\ Earth.txt
+tm ../1947\ FH14\ The\ Green\ Hills\ Of\ Earth.txt
+fgr hills
+rm *ills*
+fgr orde
+mv *rdeal* ../1948\ FH15\ Ordeal\ In\ Space.txt
+tm ../1948\ FH15\ Ordeal\ In\ Space.txt
+fgr long
+mv *ong*atch* ../1948\ FH16\ The\ Long\ Watch.txt
+tm ../1948\ FH16\ The\ Long\ Watch.txt
+fgr gent
+mv *entl* ../1948\ FH17\ Gentlemen,\ Be\ Seated.txt
+tm ../1948\ FH17\ Gentlemen,\ Be\ Seated.txt
+ls ..
+mv ../1948\ The\ Black\ Pits\ Of\ Luna.txt ../1948\ FH18\ The\ Black\ Pits\ Of\ Luna.txt 
+tm ../1948\ FH18\ The\ Black\ Pits\ Of\ Luna.txt
+fgr rig
+mv *igg* ../1949\ FH19\ Delilah\ And\ The\ Space\ Rigger.txt
+tm ../1949\ FH19\ Delilah\ And\ The\ Space\ Rigger.txt
+fgr moon
+fgr sold
+tm *old*
+mv Robert\ A.\ Heinlein\ -\ Man\ Who\ Sold\ the\ Moon\,\ The.txt ../1951\ FH20\ The\ Man\ Who\ Sold\ The\ Moon.txt
+tm ../1951\ FH20\ The\ Man\ Who\ Sold\ The\ Moon.txt
+stanza ../1951\ FH20\ The\ Man\ Who\ Sold\ The\ Moon.txt
+fgr menace
+mv *enace* ../1957\ FH21\ The\ Menace\ From\ Earth.txt
+tm ../1957\ FH21\ The\ Menace\ From\ Earth.txt
+fgr searchl
+mv *earchl* ../1962\ FH22\ Searchlight.txt
+tm ../1962\ FH22\ Searchlight.txt
+fgr magic
+mv *agic* ../1940\ Magic,\ Inc.txt
+tm ../1940\ Magic,\ Inc.txt
+fgr solu
+mv *olut* ../1940\ Solution\ Unsatisfactory.txt
+tm ../1940\ Solution\ Unsatisfactory.txt
+fgr boot
+mv *ootst* ../1941\ By\ His\ Bootstraps.txt
+tm ../1941\ By\ His\ Bootstraps.txt
+fgr lost
+mv *ost*ega* ../1941\ Lost\ Legacy.txt
+tm ../1941\ Lost\ Legacy.txt
+fgx shasta
+grep -li shasta *
+fgr wald
+diff *aldo*
+tm *aldo*
+mv *aldo* ../1942\ Waldo.txt
+tm ../1942\ Waldo.txt
+fgr hoag
+find .. | grep -i hoag
+tm ../1942\ The\ Unpleasant\ Profession\ of\ Jonathan\ Hoag.txt 
+fgr gold
+mv *oldf* ../1942\ Goldfish\ Bowl.txt
+tm ../1942\ Goldfish\ Bowl.txt
+fgr pied
+fgr peid
+fgr pip
+tm *iper*
+mv *iper* ../1942\ Pied\ Piper.txt
+tm ../1942\ Pied\ Piper.txt
+fgr free
+mv *freeh* ../1965\ Farnham's Freehold.txt
+tm !$
+mv *freeh* ../1965\ Farnham\'s\ Freehold.txt
+tm ../1965\ Farnham\'s\ Freehold.txt
+stanza ../1965\ Farnham\'s\ Freehold.txt
+fgr fear
+
+tm !
+mv *ear*vil* ../1970\ I\ Will\ Fear\ No\ Evil.txt
+tm ../1970\ I\ Will\ Fear\ No\ Evil.txt
+tm *ove*
+diff -u Robert*ove*
+ls Robert*ove*
+diff -u Robert*ove.t*
+ls *ove*
+fgr love
+mv 'Heinlein, Robert A - Time Enough for Love(1).txt' ../1973\ Time\ Enough\ For\ Love.txt
+tm ../1973\ Time\ Enough\ For\ Love.txt
+fgr podk
+diff *odk*
+mv Robert\ A.\ Heinlein\ -\ Podkayne\ of\ Mars.txt ../1963\ Podkayne\ Of\ Mars.txt
+tm ../1963\ Podkayne\ Of\ Mars.txt
+fgr numb
+tm 1979\ The\ Number\ Of\ The\ Beast.txt 
+cd to-sort/
+fgr number
+tm *umber* ../*umber*
+ls *umber*
+rm *umber*
+fgr six
+fgr sixth
+tm ../*ixth* *ixth*
+rm *ixth*
+fgr farm
+mv *armer* ../1950\ Farmer\ In\ The\ Sky.txt
+t ../1950\ Farmer\ In\ The\ Sky.txt
+tm ../1950\ Farmer\ In\ The\ Sky.txt
+stanza ../1950\ Farmer\ In\ The\ Sky.txt
+cd ..
+stanza *txt
+ls
+ls | wc -l
+ls *arm*
+stanza *arm*
+psg stan
+kill 16948
+kill -9 16948
+tm 1939\ FH*
+stanza 1939\ FH*
+stanza 1940* 1941* 1942* 
+stanza 194[789]* 
+tm 193*
+stanza 193*
+stanza 195*
+stanza 196*
+stanza 197* 198* 
+tm *ootst*
+stanza *ootst*
+tm *uppet*
+stanza *uppet*
+top
+where spindump
+which spindump
+man spindump
+df -l
+ping dexter 
+telnet dexter 8080
+telnet dexter 2121
+df
+ssh thinkreal.london.corp.yahoo.com 
+top
+cd /Volumes/data/itunes/music/
+rs Nathan\ McCree chl:/files/music
+ping chl
+ping cackhanded.london.corp.yahoo.com 
+psg quicks
+kill 6257
+open /Applications/Quicksilver.app/
+cd /Applications/
+sudo mv Stage\ Manager.app Utilities
+open Utilities/Stage\ Manager.app/
+ping 192.168.1.65
+192.168.1.65
+backup itunes vault
+scp London.pcf thinkreal.london.corp.yahoo.com:.
+ssh thinkreal.london.corp.yahoo.com 
+ping dexter
+df /Volumes/dex*
+rs Library/Keychains /Volumes/dexter-2
+rs3 Library/Keychains /Volumes/dexter-2
+pwgen
+top
+cd Documents/Books/Ebooks/Science\ Fiction/Heinlein\,\ Robert\ A./
+tm 1973\ Time\ Enough\ For\ Love.txt 
+cp 1973\ Time\ Enough\ For\ Love.txt timeenough
+tm timeenough 
+stanza 1973\ Time\ Enough\ For\ Love.txt 
+stanza 1973\ Time\ Enough\ For\ Love.txt 
+tm bin/adhoc
+chod 700 bin/adhoc 
+chmod 700 bin/adhoc 
+adhoc
+man scselect
+tm bin/config-normal
+chmod 700 bin/config-normal 
+mv bin/adhoc bin/config-adhoc
+ssh mono.org
+192.168.1.65
+backup itunes vault
+scp London.pcf thinkreal.london.corp.yahoo.com:.
+ssh thinkreal.london.corp.yahoo.com 
+ping dexter
+df /Volumes/dex*
+rs Library/Keychains /Volumes/dexter-2
+rs3 Library/Keychains /Volumes/dexter-2
+pwgen
+cd Documents/Books/Ebooks/Science\ Fiction/Heinlein\,\ Robert\ A./
+tm 1973\ Time\ Enough\ For\ Love.txt 
+cp 1973\ Time\ Enough\ For\ Love.txt timeenough
+tm timeenough 
+stanza 1973\ Time\ Enough\ For\ Love.txt 
+open Documents/brain/today 
+top
+ssh southpaw
+df -l
+cd /Volumes/data/
+rm -rf BRITNEY_SPEARS P8920CDVD
+rs 'southpaw:/files/tv/Yes*Minister' .
+df .
+du -s Yes*
+cd /Volumes/scrappy/
+open .
+cd
+cd Documents/
+rmdir Documents/backups
+mkdir backups
+cd etc/
+tm rsnapshot-southpaw.conf 
+cd ..
+mv backups rsnapshots
+dc
+crontab -e
+tm etc/rsnapshot-often.conf 
+ls rsnapshots/hourly.0/cultured-code/
+rm -rf rsnapshots/hourly.*
+rsnap often hourly
+ls rsnapshots/hourly.0/
+du -s rsnapshots/
+ls rsnapshots/
+cd rsnapshots/
+crontab -l
+s
+ls
+du
+mdf2iso 
+mdf2iso Tomb\ Raider.mdf
+open Tomb\ Raider.iso 
+ls
+rs 'southpaw.cackhanded.net:/files/downloads/Tomb*' .
+psg quicks
+open /Applications/Quicksilver.app
+port search tidy
+cd /Volumes/data/incoming/
+echo "Darn you, Crash Bandicoot\!" | wc
+ssh thinkreal.london.corp.yahoo.com 
+fgr pcf
+cd /
+sudo find . | grep pcf
+locate cisco
+locate cisco|more
+cd /Library/Frameworks/cisco-vpnclient.framework/
+fgr pcf
+locate pcf
+locate pcf|more
+cd /private/etc/opt/cisco-vpnclient/Profiles
+ls
+scp London.pcf thinkreal.london.corp.yahoo.com:.
+ssh thinkreal.london.corp.yahoo.com 
+ping dexter
+nslookup normism.com
+nslookup 208.113.249.144
+nslookup 67.215.66.132
+whois normism.com
+pwgen
+nslookup normism.com ns1.dreamhost.com
+
+nslookup normism.com a.dns.gandi.net
+which location 
+ls -l bin/location 
+ls Library/Favorites/
+tm etc/location 
+tm bin/location 
+location
+rm -rf Desktop/Tomb\ Raider\ PSX
+backup home 
+backup home vault
+tm bin
+dc
+top
+diskimages
+locate diskimages
+ssh norm@sp
+ssh sp
+ping southpaw
+ssh southpaw
+du -s /Volumes/data/YeS*
+du -s /Volumes/data/Yes*
+du -shc /Volumes/data/Yes*
+uptime
+psg sync
+backup itunes pile
+itunes backup vault
+backup itunes vault
+backup home southpaw
+echo $MANPATH 
+export MANPATH=$MANPATH:/ports/man
+man rsnapshot
+tm etc/rsnapshot-often.conf 
+cat etc/rsnapshot-often.conf
+rsnap often hourly
+cat 1A9D3B3A-68C2-11DD-A9EF-DF9E3566A002.stint 
+tm vendor_perl/5.8.8/Class/Trigger.pm 
+rm *stint
+perldoc Class::Std
+perldoc Config::Std
+cat *stint
+\rm *stint
+cat stint.cfg 
+ssh bzr.cackhanded.net 
+cd Downloads/
+stanza *rtf
+tm bob.html 
+stanza bob.html 
+open *rtf
+cd /ports/lib/perl5/
+fgr trigg
+tm vendor_perl/5.8.8/Class/Trigger.pm 
+cd Desktop/
+rs 'southpaw:/files/downloads/Tomb*' .
+cd Tomb\ Raider\ PSX/
+cp Tomb\ Raider.mdf Tomb\ Raider.iso
+bg
+du -s *
+rm Tomb\ Raider.iso 
+mv Tomb\ Raider.mdf Tomb\ Raider.cdr
+open 
+open .
+mv Tomb\ Raider.cdr Tomb\ Raider.mdf
+port search mdf
+port search iat
+sudo port install mdf2iso
+mdf2iso 
+mdf2iso Tomb\ Raider.mdf
+open Tomb\ Raider.iso 
+rs 'southpaw.cackhanded.net:/files/downloads/Tomb*' .
+ssh sp
+ssh norm@sp
+psg quicks
+open /Applications/Quicksilver.app
+port search tidy
+cd /Volumes/data/incoming/
+ssh norm@southpaw
+echo 'Take off and nuke the site from orbit.' | wc 
+echo "this has fail.  lots and lots of fail" | wc 
+pwgen
+tm /Volumes/maple
+ssh beanglass.london.corp.yahoo.com 
+wget http://wiki//HomePage
+tm HomePage 
+cd Projects/
+tm .
+ssh southpaw
+port search twiki
+port search wiki
+cd /Users/work/
+wget http://sourceforge.net/project/downloading.php?group_id=3657&filename=TWiki-4.2.2.tgz
+wget 'http://sourceforge.net/project/downloading.php?group_id=3657&filename=TWiki-4.2.2.tgz'
+mv downloading.php\?group_id\=3657\&filename\=TWiki-4.2.2.tgz TWiki-4.2.2.tgz
+rm downloading.php\?group_id\=3657 
+file TWiki-4.2.2.tgz 
+rm TWiki-4.2.2.tgz 
+mv /Users/mfrancis/Downloads/TWiki-4.2.2.tgz .
+tar zxf TWiki-4.2.2.tgz 
+cd TW
+tar ztf TWiki-4.2.2.tgz 
+tar zxf ../TWiki-4.2.2.tgz 
+open INSTALL.html 
+cd /sites/htdocs
+mkdir twiki
+cd twiki
+tar zxf /Users/work/TWiki-4.2.2.tgz 
+tm /ports/etc/lighttpd
+tm /etc/hosts
+mkdir site
+mv * site
+grep mfrancis /etc/group 
+ls -la /sites/htdocs/
+ls -la /tmp/mnf-flourish.cache 
+pwd
+tm bin/*
+ls -la bin
+mv lib ..
+tm twiki_httpd_conf.txt 
+tail -f /var/log/lighttpd/error.log 
+tail -f /var/log/lighttpd/access.log 
+bin/configure 
+ls -l bin
+ls lib
+chmod 777 lib
+cd site
+ls -la
+ls working/
+chmod a+w working
+chmod -R a+w working
+webctl restart
+pwgen len12
+cd
+cd Documents/ar
+cd Documents/articles/
+tm web\ standards\ curriculum/
+cd ../Books/Ebooks/Science\ Fiction/Heinlein\,\ Robert\ A./
+diff -u *omedy*
+diff -u H*omedy*
+diff -u H*omedy*|more
+diff 'Heinlein, Robert A - Job - A Comedy of Justice(1).txt' Robert\ A\ Heinlein\ -\ Job\,\ A\ Comedy\ of\ Justice.txt 
+diff 'Heinlein, Robert A - Job - A Comedy of Justice(1).txt' Robert\ A\ Heinlein\ -\ Job\,\ A\ Comedy\ of\ Justice.txt |more
+diff -u 'Heinlein, Robert A - Job - A Comedy of Justice.txt' 'Robert A Heinlein - Job, A Comedy of Justice.txt'
+mv 'Heinlein, Robert A - Job - A Comedy of Justice(1).txt' '../1984 - A Comedy of Justice.txt'
+cd ..
+tm 1984\ -\ A\ Comedy\ of\ Justice.txt 
+cd to-sort/
+ls *omedy*
+rm *omedy*
+tm *oag*
+ls *rphan*
+tm *Orph*
+mv *Orph* '../1963 Orphans of the Sky.txt'
+tm '../1963 Orphans of the Sky.txt'
+ls ../
+ls *oag*
+mv *oag* '../1942 The Unpleasant Profession of Jonathan Hoag.txt'
+tm '../1942 The Unpleasant Profession of Jonathan Hoag.txt'
+ls *unset*
+fgr unset
+tm *unset*
+mv *unset* '../1987 To Sail Beyond The Sunset.txt'
+fgr wall
+mv '
+
+
+ls *alls*
+mv *alls* '../1985 The Cat Who Walks Through Walls.txt'
+tm '../1985 The Cat Who Walks Through Walls.txt'
+stanza '../1985 The Cat Who Walks Through Walls.txt'
+ls
+ls *range*
+ls -l *range*
+ls | more
+fgr stars
+diff -u *Stars*
+diff -u *Stars*|more
+ls *Stars*
+mv 'Robert A. Heinlein - Time For The Stars..txt' '../1956 Time For The Stars.txt'
+tm '../1956 Time For The Stars.txt'
+stanza '../1956 Time For The Stars.txt'
+stanza ../19*
+ls *eat*
+ls *east*
+fgr star | grep -i beast
+mv 'Robert A. Heinlein - The Star Beast.txt' '../1954 The Star Beast.txt'
+stanza '../1954 The Star Beast.txt'
+tm '../1954 The Star Beast.txt'
+stanza ../1*
+ssh sp
+ssh norm@sp
+top
+cd Desktop/
+cd /Volumes/data/incoming/
+ls
+rs 'chl:/files/backup/audio/Nathan*' .
+rs 'chl:/files/backup/audio/John\ Williams*' .
+pwd
+ssh southpaw
+backup itunes southpaw
+stanza bob.html 
+open *rtf
+cd /ports/lib/perl5/
+fgr trigg
+tm vendor_perl/5.8.8/Class/Trigger.pm 
+cd Desktop/
+rs 'southpaw:/files/downloads/Tomb*' .
+cd Tomb\ Raider\ PSX/
+cp Tomb\ Raider.mdf Tomb\ Raider.iso
+bg
+du -s *
+rm Tomb\ Raider.iso 
+mv Tomb\ Raider.mdf Tomb\ Raider.cdr
+open 
+open .
+mv Tomb\ Raider.cdr Tomb\ Raider.mdf
+port search mdf
+port search iat
+sudo port install mdf2iso
+mdf2iso 
+mdf2iso Tomb\ Raider.mdf
+open Tomb\ Raider.iso 
+rs 'southpaw.cackhanded.net:/files/downloads/Tomb*' .
+ssh sp
+ssh norm@sp
+crontab -l
+psg snap
+psg sync
+ssh thinkreal.london.corp.yahoo.com 
+ssh beanglass.london.corp.yahoo.com 
+rsnap pile daily
+find Desktop | grep \.key
+cd /Volumes/
+s
+ls
+cat /Users/mfrancis/bin/mounted-s3
+ls /Volumes/s3/license\ keys/
+cd
+find . -type d | grep '\.key$'
+open Desktop/tidy/move/browser\ and\ before/the\ browser\ and\ before.key
+tm etc/backup-exclude-home-southpaw.list 
+backup itunes vault
+find . -type d | grep '\.key$'
+open Desktop/tidy/move/browser\ and\ before/the\ browser\ and\ before.key
+backup itunes vault
+backup home southpaw
+backup itunes vault
+mdf2iso 
+mdf2iso Tomb\ Raider.mdf
+open Tomb\ Raider.iso 
+rs 'southpaw.cackhanded.net:/files/downloads/Tomb*' .
+ssh sp
+ssh norm@sp
+crontab -l
+psg snap
+psg sync
+ssh thinkreal.london.corp.yahoo.com 
+ssh beanglass.london.corp.yahoo.com 
+rsnap pile daily
+find Desktop | grep \.key
+cd /Volumes/
+s
+cat /Users/mfrancis/bin/mounted-s3
+ls /Volumes/s3/license\ keys/
+cd
+find . -type d | grep '\.key$'
+open Desktop/tidy/move/browser\ and\ before/the\ browser\ and\ before.key
+tm etc/backup-exclude-home-southpaw.list 
+backup itunes vault
+find . -type d | grep '\.key$'
+open Desktop/tidy/move/browser\ and\ before/the\ browser\ and\ before.key
+backup itunes vault
+cd /sites/htdocs/
+mkdir chyrp
+unzip /Users/mfrancis/Downloads/chyrp_2.0rc1.zip 
+rm -rf __MACOSX
+mv chyrp_2.0rc1/* .
+rmdir chyrp_2.0rc1/
+cd chyrp
+pwd
+cd chyrp_2.0rc1/
+ll
+rm .DS_Store 
+cd ..
+rmdir chyrp_2.0rc1
+php
+php -v
+tm /ports/etc/lighttpd
+tm /etc/hosts
+mkdir site
+mv * site
+cd site
+cp /sites/htdocs/marknormanfrancis/com/www/site/rewrite.lua .
+ls
+tm rewrite.lua 
+chmod -R go+w .
+ls -l
+ls -la .
+ll -d .
+webctl restart
+tm install.php 
+ls -la
+chmod 777 ..
+rm install.php 
+crontab -e
+psg silver
+kill 6144
+open /Applications/Quicksilver.app
+open /Applications/Quicksilver.app/
+psg silv
+kill -9 6144
+backup home southpaw
+backup home southpaw
+ssh atv
+nslookup wiki.cackhanded.net
+ssh cowpaw.cackhanded.net 
+psg sync
+ssh sp
+ssh norm"sp
+ssh norm@sp
+ssh cowpaw.cackhanded.net 
+psg sync
+ssh sp
+ssh norm"sp
+ssh norm@sp
+tm /sites/hackday
+cd /sites
+mkdir r3_demo
+cd r3_demo
+r3 setup setuphome /sites/r3_demo
+export R3HOME=/sites/r3_demo
+r3 setup installdb
+r3 setup dimension create intl
+r3 setup dimension create product
+r3 dimension intl create generic
+r3 dimension intl create -p generic fr
+r3 dimension intl create -p generic uk
+r3 dimension product create generic
+r3 dimension product create -p generic test
+r3 target create generic/generic/index.html
+tm .
+r3 template searchpath fr/generic/index.html title.ros
+r3 template specialize fr/generic/index.html title.ros 1
+r3 target create generic/generic/title_fragment.html
+r3 target 
+r3 target template generic/generic/title_fragment.html title.ros
+r3 generate -av
+r3 save 
+r3 setup save
+r3 setup save /tmp/r3demo.tgz
+file /tmp/r3demo.tgz
+tar ztf /tmp/r3demo.tgz 
+cd
+mv /tmp/r3demo.tgz Desktop
+file Desktop/r3demo.tgz 
+history
+backup itunes pile
+ls /Volumes/pile
+cd Projects/
+svn co svn+ssh://svn.corp.yahoo.com/yahoo/publishing/alexandria
+cd alexandria/
+ls
+find .
+ifconfig en0
+ifconfig en1
+crontab -e
+open /Applications/Quicksilver.app
+man sh
+tm bin/backup
+sshatb
+ssh atv
+export R3HOME=/sites/r3_demo
+r3 setup installdb
+r3 setup dimension create intl
+r3 setup dimension create product
+r3 dimension intl create generic
+r3 dimension intl create -p generic fr
+r3 dimension intl create -p generic uk
+r3 dimension product create generic
+r3 dimension product create -p generic test
+r3 target create generic/generic/index.html
+tm .
+r3 template searchpath fr/generic/index.html title.ros
+r3 template specialize fr/generic/index.html title.ros 1
+r3 target create generic/generic/title_fragment.html
+r3 target 
+r3 target template generic/generic/title_fragment.html title.ros
+r3 generate -av
+r3 save 
+r3 setup save
+r3 setup save /tmp/r3demo.tgz
+file /tmp/r3demo.tgz
+tar ztf /tmp/r3demo.tgz 
+cd
+mv /tmp/r3demo.tgz Desktop
+file Desktop/r3demo.tgz 
+history
+backup itunes pile
+ls /Volumes/pile
+cd Projects/
+svn co svn+ssh://svn.corp.yahoo.com/yahoo/publishing/alexandria
+cd alexandria/
+ifconfig en0
+ifconfig en1
+crontab -e
+open /Applications/Quicksilver.app
+man sh
+tm bin/backup
+sshatb
+ssh atv
+cd /sites/htdocs/marknormanfrancis/com/www/site
+cd ..
+export R3HOME=/tmp/r3
+r3 dimension list
+r3 dimension domain list -t template
+r3 dimension host list -t template
+r3 dimension host type -t template
+r3 dimension type list -t template
+r3 dimension type site -t template
+
+h
+ 
+cd site
+export R3HOME=/sites/r3
+r3 dimension domain list -t template ; r3 dimension host list -t template ; r3 dimension type list -t template ; r3 dimension type site -t template
+r3 dimension domain list -t template ; r3 dimension host list -t template ; r3 dimension type list -t template ; r3 dimension type list -t template
+r3 dimension site list -t template ; r3 dimension domain list -t template ; r3 dimension host list -t template ; r3 dimension type list -t template
+r3 target list
+find . |wc -l
+find . -type f | wc -l
+du
+du -s 
+du -s *
+ls
+r3 dimension site list -t template
+r3 dimension content list -t template
+cd /sites/r3/htdocs/
+pwd
+find .
+cd /Volumes/BUFFALO/
+ls
+rs 'southpaw:/files/watch/*avi' .
+cd
+hdiutil eject /Volumes/BUFFALO/
+ssh southpaw
+ssh southpaw
+ssh norm@southpaw
+crontab -l
+ssh cowpaw.cackhanded.net 
+ssh cowpaw.cackhanded.net 
+ 
+cd site
+export R3HOME=/sites/r3
+r3 dimension domain list -t template ; r3 dimension host list -t template ; r3 dimension type list -t template ; r3 dimension type site -t template
+r3 dimension domain list -t template ; r3 dimension host list -t template ; r3 dimension type list -t template ; r3 dimension type list -t template
+r3 dimension site list -t template ; r3 dimension domain list -t template ; r3 dimension host list -t template ; r3 dimension type list -t template
+r3 target list
+find . |wc -l
+find . -type f | wc -l
+du
+du -s 
+du -s *
+r3 dimension site list -t template
+r3 dimension content list -t template
+cd /sites/r3/htdocs/
+pwd
+find .
+backup 
+backup itunes vault
+backup itunes southpaw
+backup home southpaw
+ping southpaw
+ifconfig en0
+ifconfig en1
+cd /sites/htdocs/wedding.francis-palmer.com/
+cd /sites/old/htdocs/francis-palmer/com/wedding/content/
+ls
+tm ~/Projects/Flourish
+cd
+ssh co
+ssh cowpaw.cackhanded.net 
+ssh chl
+ping imap-emea.corp.yahoo.com
+telnet imap-emea.corp.yahoo.com 143
+r3 dimension type list -t template
+r3 dimension type site -t template
+h
+ 
+cd site
+export R3HOME=/sites/r3
+r3 dimension domain list -t template ; r3 dimension host list -t template ; r3 dimension type list -t template ; r3 dimension type site -t template
+r3 dimension domain list -t template ; r3 dimension host list -t template ; r3 dimension type list -t template ; r3 dimension type list -t template
+r3 dimension site list -t template ; r3 dimension domain list -t template ; r3 dimension host list -t template ; r3 dimension type list -t template
+find . |wc -l
+find . -type f | wc -l
+du
+du -s 
+du -s *
+r3 dimension site list -t template
+r3 dimension content list -t template
+cd /sites/r3/htdocs/
+find .
+cd /sites/r3/templates/all/all/all/generic/
+touch r3_template_article_sort.ros
+touch r3_template_date_formats.ros
+tm r3_template_date_formats.ros
+touch r3_data_fetch_modules.ros
+tm r3_data_fetch_modules.ros
+touch html_body_content.ros
+nslookup cowpaw.cackhanded.net
+nslookup usingr3.com
+nslookup usingrthree.com
+cat /sites/htdocs/usingr3.com/flourish/site/flourish.fcgi 
+tm ~/Projects/Flourish/lib
+find /sites/old/htdocs/francis-palmer/com/wedding/
+find /sites/old/htdocs/marknormanfrancis/com/www/content/
+touch html_body_pre_content.ros
+tm html_body_pre_content.ros
+touch html_body_{header,content,related,footer,post_content}.ros
+for f in [ html_body_{header,content,related,footer,post_content}.ros ]; echo $f
+for f in [ html_body_{header,content,related,footer,post_content}.ros ]; do echo $f; done
+for f in html_body_{header,content,related,footer,post_content}.ros; do tm $f; done
+tm html_body.ros
+touch html_body_header_modules.ros
+tm html_body_header_modules.ros
+touch html_body_navigation.ros
+touch html_body_address.ros
+tm html_body_address.ros 
+r3 target list
+r3 target list usingr3
+r3 target list usingr3.com
+r3 template searchpath usingr3.com/flourish/site/generic_files_template_article.html html_body_address.ros
+r3 template specialise usingr3.com/flourish/site/generic_files_template_article.html html_body_address.ros 7
+r3 generate usingr3.com
+touch html_body_masthead.ros
+tm html_body_masthead.ros
+r3 target list usingr3.com/
+r3 target create usingr3.com/flourish/site/files_template_article.html
+r3 target template usingr3.com/flourish/site/files_template_article.html r3_target_html.ros 
+r3 template specialise usingr3.com/flourish/site/generic_files_template_article.html html_body_masthead.ros 7
+cd /sites/r3
+bzr checkout bzr+ssh://bzr.cackhanded.net/bazaar/r3-templates/trunk/
+mv trunk/.bzr templates
+cd templates
+bzr add */*/*/*/*
+bzr status
+pwd
+cd all/all/all/generic/
+ls
+touch html_head_links_stylesheets.ros
+tm html_head_links_stylesheets.ros
+touch html_head_links_stylesheets_sitewide.ros
+tm html_head_links_stylesheets_sitewide.ros
+r3 generate -v usingr3.com/
+psg lightt
+webctl restart
+cd site
+r3 dimension domain list -t template ; r3 dimension host list -t template ; r3 dimension type list -t template ; r3 dimension type site -t template
+r3 dimension domain list -t template ; r3 dimension host list -t template ; r3 dimension type list -t template ; r3 dimension type list -t template
+r3 dimension site list -t template ; r3 dimension domain list -t template ; r3 dimension host list -t template ; r3 dimension type list -t template
+r3 target list
+find . |wc -l
+find . -type f | wc -l
+du
+du -s 
+du -s *
+r3 dimension site list -t template
+r3 dimension content list -t template
+cd /sites/r3/htdocs/
+find .
+cd /tmp
+rm -rf r3
+export R3HOME=/tmp/r3
+r3 setup setuphome /tmp/r3
+r3 setup installdb
+r3 setup domain create site
+r3 setup dimension create site
+r3 dimension site create all
+r3 target create all/test.html
+tm .
+tm r3
+cd r3/templates/all/generic/
+touch r3_internal.ros
+touch doctype.ros
+touch html.ros
+touch head.ros
+touch body.ros
+touch title.ros
+tm title.ros
+touch masthead.ros ; tm masthead.ros
+r3 generate -av
+r3 setup save ~/Desktop/r3_toomanylines.tgz
+cd /sites/old/htdocs/marknormanfrancis/com/www/site
+cat flourish.fcgi 
+cat flourish.conf 
+cat rewrite.lua 
+cd /sites/old/r3/templates/all/world/generic/
+cat r3_template_routines.ros 
+cat r3_template_article_sort.ros 
+cat r3_template_date_formats.ros 
+grep SEO *
+cat set_title_from_url.ros 
+cat r3_data_fetch_modules.ros 
+cd ../../..
+fgr data_fetch
+cat flourish/world/generic_files_template_article.html/r3_data_fetch_modules.ros
+cat flourish/world/generic_files_template_index.html/r3_data_fetch_modules.ros 
+fgr set_title
+more all/world/generic/set_title_from_*
+\more all/world/generic/set_title_from_*
+!
+/usr/bin/more all/world/generic/set_title_from_*
+cat all/world/generic/set_title_from_*
+cd all/world/generic/
+grep set_title *
+cat r3_data_fetch.ros 
+ls
+cat cat head_title.ros 
+cat body.ros
+cat body_content.ros 
+cat body_content_modules.ros 
+find ../../.. | grep content_modules
+cat ../../../flourish/world/generic_files_template_article.html/body_content_modules.ros 
+find ../../.. | grep files_article
+cat files_article_page.ros 
+echo $R3HOME 
+export R3HOME=/sites/r3
+r3 generate -v usingr3.com/
+tail -f /var/log/lighttpd/error.log 
+cat files_article_index.ros 
+pwd
+cat body.ros 
+cat body_pre_content.ros 
+cat body_header
+cat body_header.ros 
+cat head_links.ros 
+cat head_links_stylesheets.ros 
+cat head_links_stylesheets_global.ros 
+tm .
+r3 template searchpath fr/generic/index.html title.ros
+r3 template specialize fr/generic/index.html title.ros 1
+r3 target create generic/generic/title_fragment.html
+r3 target 
+r3 target template generic/generic/title_fragment.html title.ros
+r3 generate -av
+r3 save 
+r3 setup save
+r3 setup save /tmp/r3demo.tgz
+file /tmp/r3demo.tgz
+tar ztf /tmp/r3demo.tgz 
+cd
+mv /tmp/r3demo.tgz Desktop
+file Desktop/r3demo.tgz 
+history
+backup itunes pile
+ls /Volumes/pile
+cd Projects/
+svn co svn+ssh://svn.corp.yahoo.com/yahoo/publishing/alexandria
+cd alexandria/
+ifconfig en0
+ifconfig en1
+crontab -e
+open /Applications/Quicksilver.app
+man sh
+tm bin/backup
+sshatb
+ssh atv
+cd /sites/r3/templates
+find .
+cd /sites/old/r3/templates/all/world/generic/
+cat r3_global_html.ros 
+cat doctype.ros 
+cat html.ros
+touch html_head.ros
+touch html_body.ros
+tm html_head.ros 
+cat head.ros 
+mkdir htdocs
+cd htdocs/
+cd .
+cd ..
+rm htdocs
+cd /sites
+ls -l
+rm htdocs/
+rmdir htdocs
+cd r3
+mv htdocs ..
+ln -s ../htdocs
+ls -la
+cd /sites/htdocs/
+find usingr3.com/
+tm /etc/hosts
+chmod 755 usingr3.com/flourish/site/flourish.fcgi 
+perl usingr3.com/flourish/site/flourish.fcgi
+psg light
+cd usingr3.com/content
+mkdir usingr3.com/content
+touch usingr3.com/content/homepage.txt
+tm usingr3.com/content/homepage.txt
+cd usingr3.com/flourish/site/
+setenv CONTENT_ROOT /sites/htdocs/usingr3.com/content
+export CONTENT_ROOT=/sites/htdocs/usingr3.com/content
+export DOCUMENT_ROOT=/sites/htdocs/usingr3.com/flourish/site/
+export CONTENT_ROOT=/sites/htdocs/usingr3.com/content/
+vi flourish.conf 
+r3 template searchpath usingr3.com/flourish/flourish.conf
+r3 template searchpath usingr3.com/flourish/flourish.conf flourish.conf.ros
+r3 target list
+r3 template
+r3 template searchpath usingr3.com/flourish/site/flourish.conf
+r3 template specialise usingr3.com/flourish/site/flourish.conf flourish.conf.ros 0
+tm /sites/r3/templates/usingr3.com/flourish/site/flourish.conf/flourish.conf.ros 
+cat /sites/old/htdocs/marknormanfrancis/com/www/site/flourish.conf 
+r3 generate -v usingr3.com/
+cat flourish.conf 
+ls -l /tmp/usingr3.cache 
+sudo chmod 666 /tmp/usingr3.cache 
+tm /sites/old/htdocs/marknormanfrancis/com/www
+psg lightt
+tail /var/log/lighttpd/error.log 
+tm /ports/etc/lighttpd/virtual-hosts.conf 
+mv ../../content ..
+ls
+pwd
+perl flourish.
+export PATH_INFO=/homepage/
+echo $CONTENT_ROOT 
+export CONTENT_ROOT=/sites/htdocs/usingr3.com/flourish/content/
+perl flourish.fcgi 
+webctl restart
+ssh atv
+nslookup wiki.cackhanded.net
+ssh cowpaw.cackhanded.net 
+psg sync
+ssh sp
+ssh norm"sp
+ssh norm@sp
+ssh cowpaw.cackhanded.net 
+psg sync
+ssh sp
+ssh norm"sp
+ssh norm@sp
+tm /sites/hackday
+cd /sites
+mkdir r3_demo
+cd r3_demo
+r3 setup setuphome /sites/r3_demo
+export R3HOME=/sites/r3_demo
+r3 setup dimension create intl
+r3 setup dimension create product
+r3 dimension intl create generic
+r3 dimension intl create -p generic fr
+r3 dimension intl create -p generic uk
+r3 dimension product create generic
+r3 dimension product create -p generic test
+r3 target create generic/generic/index.html
+tm .
+r3 template searchpath fr/generic/index.html title.ros
+r3 template specialize fr/generic/index.html title.ros 1
+r3 target create generic/generic/title_fragment.html
+r3 target template generic/generic/title_fragment.html title.ros
+r3 save 
+r3 setup save
+r3 setup save /tmp/r3demo.tgz
+file /tmp/r3demo.tgz
+tar ztf /tmp/r3demo.tgz 
+mv /tmp/r3demo.tgz Desktop
+file Desktop/r3demo.tgz 
+backup itunes pile
+ls /Volumes/pile
+cd Projects/
+svn co svn+ssh://svn.corp.yahoo.com/yahoo/publishing/alexandria
+cd alexandria/
+ifconfig en0
+ifconfig en1
+crontab -e
+open /Applications/Quicksilver.app
+man sh
+tm bin/backup
+sshatb
+ssh atv
+cd Downloads/
+l *tgz
+ls *tgz
+sudo pear remove stickleack
+sudo pear delete stickleback
+sudo pear uninstall r3
+sudo pear uninstall stickleback
+sudo pear install stickleback-1.4.0.tgz 
+sudo pear install --alldeps r3-1.4.0.tgz 
+mkdir /tmp/r3
+export R3HOME=/tmp/r3
+r3 version
+r3 setup setuphome /tmp/r3
+r3 setup 
+r3 setup dimension
+r3 setup dimension create tld
+r3 setup dimension remove tld
+r3 setup dimension remove domain
+r3 setup dimension create domain
+r3 dimension site create marknormanfrancis
+r3 dimension site parent set -p all marknormanfrancis
+r3 dimension site parent 
+r3 dimension site parent set marknormanfrancis all
+r3 dimension site parent set marknormanfrancis -p all
+r3 dimension site 
+r3 dimension site  parent
+r3 dimension site  parent set
+r3 dimension site  parent marknormanfrancis set all
+r3 dimension domain create com
+r3 dimension domain create net
+r3 dimension domain create org
+r3 dimension domain create co.uk
+r3 dimension domain create all
+r3 dimension type create www
+r3 dimension type create content
+r3 dimension type parent content set all
+r3 dimension type parent www set all
+r3 dimension domain parent com set all
+r3 dimension domain parent co.uk set all
+r3 dimension domain parent org set all
+r3 dimension domain parent net set all
+history 50
+r3 dimension host create -p all www
+r3 dimension type create -p all site
+r3 dimension type remove www
+r3 dimension type delete www
+r3 dimension type site create -p all flourish
+r3 dimension site create -p all flourish
+r3 dimension site parent marknormanfrancis set flourish
+r3 dimension site create -p all flourish-based
+r3 dimension site create -p all __flourish
+r3 dimension site parent marknormanfrancis set __flourish
+r3 dimension site delete flourish
+r3 dimension site delete flourish-based
+r3 dimension site create -p __flourish __using
+r3 dimension site create -p __using usingr3
+r3 dimension site create -p _flourish _using
+r3 dimension site parent usingr3 set _using
+r3 dimension site parent marknormanfrancis set _flourish
+r3 dimension site delete __using
+r3 dimension site delete __flourish
+r3 target create _flourish/all/all/all/flourish.fcgi
+r3 target create _flourish/all/all/all/flourish.conf
+r3 target create _flourish/all/all/all/generic_files_template_article.html
+r3 target create _flourish/all/all/all/generic_files_template_index.html
+r3 target create _flourish/all/all/all/generic_files_template_index_atom.html
+r3 target create _flourish/all/all/all/rewrite.lua
+cd /sites/
+mkdir old
+mv * old
+mv /tmp/r3/* r3
+export R3HOME=/sites/r3
+r3 target list
+r3 target 
+r3 target list _flourish/all/all/all
+r3 target delete _flourish/all/all/all/flourish.fcgi
+r3 target delete _flourish/all/all/all/flourish.conf
+r3 target delete _flourish/all/all/all/generic_files_template_article.html
+r3 target delete _flourish/all/all/all/generic_files_template_index.html
+r3 target delete _flourish/all/all/all/generic_files_template_index_atom.html
+r3 target delete _flourish/all/all/all/rewrite.lua
+history |grep 'target create'
+r3 target create _flourish/all/all/site/flourish.fcgi
+r3 target create _flourish/all/all/site/flourish.conf
+r3 target create _flourish/all/all/site/generic_files_template_article.html
+r3 target create _flourish/all/all/site/generic_files_template_index.html
+r3 target create _flourish/all/all/site/generic_files_template_index_atomhtml
+r3 target delete _flourish/all/all/site/generic_files_template_index_atomhtml
+r3 target create _flourish/all/all/site/generic_files_template_index_atom.html
+r3 target create _flourish/all/all/site/rewrite.lua
+mv r3 r3x
+mkdir r3
+r3 setup dimension create host
+r3 dimension host create all
+r3 dimension site create -p wedding.francis-palmer.com stats.wedding.francis-palmer.com
+r3 dimension site create -p stats.wedding.francis-palmer.com something-more-really-long.stats.wedding.francis-palmer.com
+echo stats.wedding.francis-palmer.com | wc 
+r3 setup dimension create site
+history | grep 'dimension create'
+r3 dimension site create _all
+r3 dimension site create -p all _flourish
+r3 dimension site parent marknormanfrancis.com set _flourish
+r3 dimension site create -p _flourish francis-palmer.com
+r3 dimension content create all
+r3 dimension content create -p all site
+r3 target create _flourish/site/flourish.fcgi
+r3 target create _flourish/site/flourish.conf
+r3 target create _flourish/site/generic_files_template_article.html
+r3 target create _flourish/site/generic_files_template_index.html
+r3 target create _flourish/site/generic_files_template_index_atom.html
+r3 target create _flourish/site/rewrite.lua
+rm -rf r3
+r3 setup setuphome /sites/r3
+r3 setup installdb
+r3 setup dimension create site 
+r3 setup dimension create type
+r3 setup dimension create content
+r3 dimension site create all
+r3 dimension site create -p all francis-palmer.com
+r3 dimension site create -p francis-palmer.com wedding.francis-palmer.com
+r3 dimension site create -p all cackhanded.net
+r3 dimension site create -p all marknormanfrancis.com
+r3 dimension type create all
+r3 dimension type create -p all flourish
+r3 dimension type create -p all static
+r3 setup dimension delete content
+r3 setup dimension remove content
+r3 setup dimension create files
+r3 dimension files create all
+r3 dimension files create -p all site
+r3 target create all/flourish/site/flourish.fcgi
+r3 target create all/flourish/site/flourish.conf
+r3 target create all/flourish/site/generic_files_template_article.html
+r3 target create all/flourish/site/generic_files_template_index.html
+r3 target create all/flourish/site/generic_files_template_index_atom.html
+r3 target create all/flourish/site/rewrite.lua
+history | grep 'target create'
+r3 target template all/flourish/site/generic_files_template_article.html r3_global_html.ros
+r3 target template all/flourish/site/generic_files_template_index.html r3_global_html.ros
+r3 target template all/flourish/site/generic_files_template_index_atom.html r3_global_html.ros
+tm r3/templates/
+cd r3/templates/all/all/all/generic/
+touch r3_template_routines
+history | grep template
+r3 target template all/flourish/site/generic_files_template_article.html r3_target_html.ros
+r3 target template all/flourish/site/generic_files_template_index.html r3_target_html.ros
+r3 target template all/flourish/site/generic_files_template_index_atom.html r3_target_html.ros
+mv r3_global_html.ros r3_target_html.ros
+touch r3_init.ros
+mv r3_template_routines r3_template_routines.ros
+touch r3_data_fetch.ros
+touch r3_render_html.ros
+touch html_doctype.ros
+touch html_html.ros
+touch html_body.ros
+tm html_doctype.ros 
+touch html_doctype_html4.ros
+mv html_doctype_html4.ros html_doctype_html4_strict.ros
+mv html_doctype_html4_strict.ros html_doctype_html4strict.ros
+touch html_head.ros
+touch html_head_meta.ros
+touch html_head_title.ros
+touch html_head_links.ros
+touch html_head_icons.ros
+tm /sites/r3
+r3 dimension site list
+r3 dimension site create -p all _using
+r3 dimension site create usingr3.com -p _using
+r3 dimension site list -t template
+r3 generate -av
+tm /sites/r3/htdocs/usingr3.com/flourish/site/rewrite.lua 
+r3 generate -a
+history | grep 'target template'
+r3 target template all/flourish/site/generic_files_template_index_atom.html r3_target_atom.ros
+cp r3_target_html.ros r3_target_atom.ros
+ls -la
+r3 generate usingr3.com/
+cat r3_init.ros 
+ls -l
+cat html_doctype_html4strict.ros 
+ls -l /Users/mfrancis/Desktop/r3_toomanylines.tgz 
+tm /ports/etc/lighttpd/virtual-hosts.conf 
+h
+r3 template searchpath usingr3.com/all/all/generic_files_template_index.html r3_data_fetch_modules.ros
+r3 template searchpath usingr3.com/flourish/site/generic_files_template_index.html r3_data_fetch_modules.ros
+r3 template specialise usingr3.com/flourish/site/generic_files_template_index.html r3_data_fetch_modules.ros 16
+r3 template specialise usingr3.com/flourish/site/generic_files_template_article.html r3_data_fetch_modules.ros 16
+touch set_title_from_post.ros
+touch r3_data_set_title_from_url.ros
+touch r3_data_set_title_from_post.ros
+rm set_title_from_post.ros 
+tm r3_data_set_title_from_url.ros 
+tm r3_data_set_title_from_post.ros 
+r3 generate -v usingr3.com/
+h/Users/mfrancis/bin/mounted-s3
+history
+cd
+cd /sites/htdocs/usingr3.com/flourish
+mkdir content
+pwd
+ls
+cd ..
+find .
+cd flourish
+bzr-start usingr3.com
+mv usingr3.com/.bzr content
+rmdir usingr3.com
+ssh southpaw
+cd /tmp
+bzr checkout bzr+ssh://bzr.cackhanded.net/bazaar/r3-templates/
+cd r3-
+pwd
+bzr checkout bzr+ssh://bzr.cackhanded.net/bazaar/r3-templates/trunk/
+cd trunk
+ls
+find .
+ssh cowpaw.cackhanded.net 
+cd Desktop/
+rs 'southpaw:/files/downloads/Will*'.
+rs 'southpaw:/files/downloads/Will*' .
+ping cackhanded.london.corp.yahoo.com 
+ssh cackhanded.london.corp.yahoo.com 
+ssh beanglass.london.corp.yahoo.com 
+rs 'southpaw:/files/downloads/Will*' .
+cd Projects/msrs/
+bzr up
+cd ..
+bzr checkout sftp://fromclose.london.corp.yahoo.com/home/y/share/bazaar/msrs/trunk/
+cd trunk/
+ls
+bzr revno
+tm .
+df 
+r3 load
+cd Desktop ; wget http://famouslastnerds.com/videos/wassupholmes.mov
+wget http://famouslastnerds.com/videos/DrivingInstructor.mov
+open file:///Applications/Mail.app/Contents/Resources/note-window-right-corner-mask.tiff
+webctl restart
+tm /sites/r3
+r3 generate -v usingr3.com/
+backup itunes pile
+bzr-start usingr3.com
+mv usingr3.com/.bzr content
+rmdir usingr3.com
+ssh southpaw
+cd /tmp
+bzr checkout bzr+ssh://bzr.cackhanded.net/bazaar/r3-templates/
+cd r3-
+bzr checkout bzr+ssh://bzr.cackhanded.net/bazaar/r3-templates/trunk/
+cd trunk
+find .
+ssh cowpaw.cackhanded.net 
+cd Desktop/
+rs 'southpaw:/files/downloads/Will*'.
+rs 'southpaw:/files/downloads/Will*' .
+cd /Volumes/maple
+mv trunk/* .
+mv trunk/.bzr .
+pwd
+df .
+cd ..
+rm -rf maple
+bzr checkout sftp://fromclose.london.corp.yahoo.com/home/y/share/bazaar/msrs/trunk/
+mv trunk/* trunk/.bzr .
+rmdir trunk
+cd maple/
+cd classes/
+ls
+cd ../..
+tm .
+bzr up
+ssh southpaw
+ssh beanglass.london.corp.yahoo.com 
+bzr up
+ssh southpaw
+ssh beanglass.london.corp.yahoo.com 
+top
+psg 5215
+crontab -l
+tm Projects/msrs
+psg sync
+psg snap
+dc
+cd /Volumes/bar
+rs /Volumes/canhaz/TimboBackup .
+cd
+backup itunes vault
+pine
+rs /Volumes/canhaz/TimboBackup .
+cd
+backup itunes vault
+pine
+cd /sites/r3/templates/
+fgx article_
+fgx article_meta
+webctl restart
+r3 generate -v usingr3.com/
+backup home southpaw
+tm /sites/r3/
+cd /sites/old/htdocs/marknormanfrancis/com/www/content/
+cat about/me.meta 
+timestamp
+timestamp now
+cd ..
+ls
+tm site/generic_files_template_article.html site/generic_files_template_index
+tm site/generic_files_template_article.html site/generic_files_template_index.html 
+cd /sites/old/
+grep article_meta r3/templates/all/world/generic/*
+cat r3/templates/all/world/generic/set_title_from_post.ros
+grep set_title_from_post r3/templates/all/world/generic/*
+vi htdocs/marknormanfrancis/com/www/site/*html
+tm ~/Projects/Flourish
+ssh cackhanded.london.corp.yahoo.com 
+cd Projects/
+export CVSROOT=vault1.jake.ukl.yahoo.com:/CVSROOT
+cvs co eurosport/templates
+tm /sites/r3
+cd /sites/r3/htdocs/usingr3.com/flourish/site/assets/
+mv /Users/mfrancis/Desktop/syndication.gif .
+r3 generate -v usingr3.com/
+open syndication.gif 
+wget http://usingr3.dev/index.atom
+tm index.atom 
+rm index.atom 
+cd ../../content/
+ls
+mkdir about
+touch about/usingr3.txt
+touch about/usingr3.meta
+r3 target list usingr3.com/
+r3 template searchpath r3_data_fetch_modules.ros usingr3.com/flourish/site/generic_files_template_article.html
+r3 template searchpath usingr3.com/flourish/site/generic_files_template_article.html r3_data_fetch_modules.ros
+webctl restart
+ssh cowpaw
+ssh cowpaw.cackhanded.net 
+date
+ls -l /etc/localtime 
+touch about/usingr3.txt
+touch about/usingr3.meta
+r3 target list usingr3.com/
+r3 template searchpath r3_data_fetch_modules.ros usingr3.com/flourish/site/generic_files_template_article.html
+r3 template searchpath usingr3.com/flourish/site/generic_files_template_article.html r3_data_fetch_modules.ros
+ping southpaw
+ssh southpaw
+tm /etc/hosts
+dc
+r3 generate -v usingr3.com/
+webctl restart
+timestamp
+timestamp now
+alias timestamp
+perldoc Date::Manip
+ssh cowpaw.cackhanded.net 
+alias fgx
+ssh cowpaw.cackhanded.net 
+alias fgx
+cd Library/Keychains/
+ls
+mv 1Password.keychain 1Password.keychain.bak
+rs southpaw:Library/Keychains/1Password.keychain .
+mv 1Password.keychain.bak 1Password.keychain
+ssh southpaw
+ssh southpaw
+ssh southpaw
+cd /Volumes/CATHY/
+ls
+rm -rf *
+df .
+exit
+tm bin/backup
+ls /Volumes/itunes/
+man rsync
+cd /Volumes/CA
+cd /Volumes/CATHY/
+ls
+d
+du
+rm -rf .Trashes
+rm -rf My\ Documents
+rm -rf My\ Documents/*
+df .
+cd /Volumes/bar
+ls
+rm -rf TimboBackup
+fg
+rm -rf .Trashes
+rm -rf My\ Documents
+rm -rf My\ Documents/*
+df .
+cd Pictures/Aperture\ Library.aplibrary/
+fgr cathy
+cd Cathy\ Ma.approject/
+cd 2008-09-17\ @\ 04\:15\:38\ PM\ -\ 1.apimportgroup/
+du
+ls
+find . |more
+cp */*.JPG /Volumes/bar
+bg
+ls /Volumes/bar/
+fg
+cd /Volumes/data/itunes/support/
+ls
+fgr ipsw
+file iPhone\ Software\ Updates/iPhone1\,1_1.1.*
+fg
+cd Music/
+ls
+cd /Volumes/data/itunes/library/
+find .
+find | grep -i ipsw
+find . | grep -i ipsw
+cd
+cd Library
+fgr ipsw
+ls /Volumes/cruzer/
+cd /Volumes/cruzer/
+find .
+open .
+mkdir /Users/mfrancis/Desktop/from-cruzer
+mv * /Users/mfrancis/Desktop/from-cruzer
+df -l
+mv /Users/mfrancis/Downloads/iTunes8.dmg .
+bg
+mv /Users/mfrancis/Downloads/iPhone1,2_2.1_5F136_Restore.ipsw.zip .
+file iPhone1,2_2.1_5F136_Restore.ipsw.zip 
+mv iPhone1,2_2.1_5F136_Restore.ipsw.zip iPhone1,2_2.1_5F136_Restore.ipsw
+pine
+cd Projects/Flourish/
+fgr 'perl{'
+fgx 'perl{'
+webctl restart
+ssh cowpaw.cackhanded.net 
+cd /Volumes/bar/
+ls
+rm -rf * &
+cp /Users/mfrancis/Pictures/Aperture\ Library.aplibrary/2008/09\ -\ September/Wedding.approject/2008-09-20\ @\ 04\:50\:08\ PM\ -\ 1.apimportgroup/*/*JPG .
+vi /Users/mfrancis/.ssh/config 
+h
+h
+backup itunes vault
+h
+backup itunes southpaw
+tm /sites/lighttpd
+ssh cowpaw.cackhanded.net 
+cd /tmp
+wget http://cackhanded.net.dev/index.atom
+vi index.atom 
+wget http://cackhanded.net.dev/feed.rss
+wget http://cackhanded.net.dev/feed.rss
+sudo kill 55 236 237
+psg snitch
+nslookup cackhanded.net
+ssh beanglass.london.corp.yahoo.com 
+wget http://cackhanded.net.dev/feed.rss
+sudo kill 55 236 237
+psg snitch
+ssh beanglass.london.corp.yahoo.com 
+upfiles thinkreal.london.corp.yahoo.com
+ssh thinkreal.london.corp.yahoo.com 
+ssh fromclose.london.corp.yahoo.com 
+open /Volumes/data/Generation\ Kill/Generation.Kill.S01E01.HDTV.XviD-0TV.avi 
+df -l
+rs /Volumes/Steve\ Webster\'s\ Public\ Folder/Generation\ Kill /Volumes/data
+ssh fromclose.london.corp.yahoo.com 
+h
+backup itunes southpaw
+tm /sites/lighttpd
+ssh fromclose.london.corp.yahoo.com 
+cd cvs/yahoo-europe/fea/maple-training/
+cvs up -d -P
+tm .
+ssh fromclose.london.corp.yahoo.com 
+ssh fromclose.london.corp.yahoo.com
+tm /Volumes/ms/
+cd /tmp
+wget 'http://fromclose.london.corp.yahoo.com/comments/get.php?id=5'
+cat get.php\?id\=5 
+tm .
+ssh fromclose.london.corp.yahoo.com 
+tm /Volumes/fromclose
+tm /sites/old/htdocs/pubstandards
+fgr pubst
+tm code/pubstandards/
+ssh fromclose.london.corp.yahoo.com 
+ssh fromclose.london.corp.yahoo.com 
+ssh fromclose.london.corp.yahoo.com 
+ssh fromclose.london.corp.yahoo.com 
+cd /Volumes/tv
+rs Eureka/Season\ 3/3x0[78]* Criminal\ Minds/Season\ 4/4x01\ -\ Mayhem.avi Bones/Season\ 4/4x0[45]* NCIS/Season\ 6/6x01\ -\ Last\ Man\ Standing.avi Heroes/Season\ 3/3x0* .
+ssh southpaw
+tm /Volumes/maple
+ls /Volumes/BUFFALO/
+cd /Volumes/BUFFALO/
+ping southpaw
+ssh southpaw
+tm /Volumes/maple
+ls /Volumes/BUFFALO/
+cd /Volumes/BUFFALO/
+ping southpaw
+pwgen
+cd /Volumes/backup/
+cd Users
+df -l
+cd
+cd /Volumes/data
+cd /Volumes/data\ 1/
+du
+df .
+ls pics/
+du pics
+ls pics/Old\ Pictures/
+ls pics/New\ Pictures/
+ls
+du -s itunes
+du -s ilife/
+du -s movies/
+du -s old-mfrancis/
+du -s s3
+du -s sites/
+du -s sites/
+dc
+backup home vault
+vi bin/backup
+cd /Volumes/vault/
+du -s *
+df .
+df -l
+backup itunes vault
+cd /tmp
+wget http://api.flickr.com/services/rest/?method=flickr.photos.getInfo&api_key=91b8bd997f41fac03f4ca0f7f51834d9&photo_id=2886347429
+wget 'http://api.flickr.com/services/rest/?method=flickr.photos.getInfo&api_key=91b8bd997f41fac03f4ca0f7f51834d9&photo_id=2886347429'
+vi index.html\?method\=flickr.photos.getInfo\&api_key\=91b8bd997f41fac03f4ca0f7f51834d9\&photo_id\=2886347429 
+ssh cowpaw.cackhanded.net 
+backup home southpaw
+backup itunes southpaw
+ssh fromclose.london.corp.yahoo.com 
+cd cvs/yahoo-europe/fea/maple-training
+cvs up -d -P
+tm .
+backup itunes vault
+cd /tmp
+wget http://api.flickr.com/services/rest/?method=flickr.photos.getInfo&api_key=91b8bd997f41fac03f4ca0f7f51834d9&photo_id=2886347429
+wget 'http://api.flickr.com/services/rest/?method=flickr.photos.getInfo&api_key=91b8bd997f41fac03f4ca0f7f51834d9&photo_id=2886347429'
+vi index.html\?method\=flickr.photos.getInfo\&api_key\=91b8bd997f41fac03f4ca0f7f51834d9\&photo_id\=2886347429 
+ssh cowpaw.cackhanded.net 
+backup home southpaw
+backup itunes southpaw
+ssh fromclose.london.corp.yahoo.com 
+cd cvs/yahoo-europe/fea/maple-training
+cvs up -d -P
+tm .
+module-starter 
+cat .module-starter/config 
+df -l
+rm frontrow@atv 
+rm ATVFiles-1.1.0.run 
+du Movies Music Perl\ Programming\ Books\ 2007 05
+cd Perl\ Programming\ Books\ 2007/
+ll
+rm .Advanced\ Perl\ Programming\ -\ O\'Reilly\ 1999.pdf.jFuvkP 
+cd ..
+rmdir Perl\ Programming\ Books\ 2007
+du -sh Movies Music Perl\ Programming\ Books\ 2007 05
+ls
+ls 05/
+rmdir 05
+rm exim.tgz 
+du *.*
+df .
+df -l /
+df
+cd cvs/yahoo-europe/fea/maple-training/
+cvs up -d -P
+ssh fromclose.london.corp.yahoo.com 
+tm /Volumes/maple
+tm /Volumes/ms
+webctl restart
+telnet localhost 80
+cd /sites/r3
+tm .
+cd
+cd /sites/r3/
+psg quicks
+df -l .
+df 
+df 
+cd Documents/Books/Ebooks/Science\ Fiction/
+cd Heinlein\,\ Robert\ A./
+ls
+tm 1982\ Friday.txt 
+tm
+vi 1982\ Friday.txt 
+stanza 1982\ Friday.txt 
+cd /Volumes/Untitled/
+rs /Volumes/canhaz/tv/Babylon\ 5* .
+df .
+df /Volumes/canhaz/
+rm exim.tgz 
+du *.*
+df .
+df -l /
+df
+cd cvs/yahoo-europe/fea/maple-training/
+cvs up -d -P
+ssh fromclose.london.corp.yahoo.com 
+tm /Volumes/maple
+tm /Volumes/ms
+webctl restart
+telnet localhost 80
+cd /sites/r3
+tm .
+cd
+cd /sites/r3/
+psg quicks
+df -l .
+df 
+df 
+cd Documents/Books/Ebooks/Science\ Fiction/
+cd Heinlein\,\ Robert\ A./
+tm 1982\ Friday.txt 
+tm
+vi 1982\ Friday.txt 
+cd Documents/Books/Ebooks/Science\ Fiction/Heinlein\,\ Robert\ A./
+date
+stanza 1982\ Friday.txt 
+cd ../Niven\,\ Larry/
+find .
+ls | wc 
+ls *ream*
+tm *ream*
+stanza *ream*
+mkdir to-sort
+mv * to-sort
+mv to-sort/Niven\,\ Larry\ and\ Steven\ Barnes\ -\ Dream\ Park\ UC.txt 1981\ Dream\ Park.txt
+tm 1981\ Dream\ Park.txt
+mv Niven\,\ Larry\ and\ Steven\ Barnes\ -\ Dream\ Park\ UC.txt 1981\ Dream\ Park.txt 
+stanza 1981\ Dream\ Park.txt
+fgr bars
+cp to-sort/*arsoo* .
+diff -u *arsoo*
+tm Larry\ Niven\ and\ Steven\ Barnes\ -\ The\ Barsoom\ Project\ UC.txt 
+stanza Larry\ Niven\ and\ Steven\ Barnes\ -\ The\ Barsoom\ Project\ UC.txt
+tm 1989\ The\ Barsoom\ Project.txt 
+stanza 1989\ The\ Barsoom\ Project.txt 
+rm Larry\ Niven\ and\ Steven\ Barnes\ -\ The\ Barsoom\ Project\ UC.txt Niven\,\ Larry\ \&\ Steven\ Barnes\ -\ The\ Barsoom\ Project.txt 
+tm to-sort/Larry\ Niven\ \&\ Steven\ Barnes\ -\ Achilles\'\ Choice.txt 
+fgx 'dream park'
+alias fgx
+fgx -l 'dream park'
+tm to-sort/Larry\ Niven\ -\ The\ Burning\ City.txt 
+find . | more
+cd .
+cd Harrison\,\ Harry/
+cd ../Reynolds\,\ Alastair/
+cd ..
+fgx zomb
+fgx -l zomb
+fgr hammer
+fgx -l voodoo
+grep voodoo Niven\,\ Larry/198*
+grep -i voodoo Niven\,\ Larry/198*
+fgx zombie
+fgx -l zombie
+tm Niven\,\ Larry/to-sort/*nansi*
+fgr ringw
+cd Niven\,\ Larry/
+cp to-sort/*ingw* .
+tm *ingw*
+ls *ingw*
+diff -u *ingworld.txt
+stanza 1970\ Ringworld.txt 
+stanza 1981\ Dream\ Park.txt 
+ls
+tm 1*ing*
+stanza 1980\ The\ Ringworld\ Engineers.txt 
+tm 1981\ Dream\ Park.txt 
+fgr dream
+fgr barnes
+hibernate 
+cd /Volumes/backup/
+ls
+ls
+dc
+h
+stanza 1980\ The\ Ringworld\ Engineers.txt 
+tm 1981\ Dream\ Park.txt 
+fgr dream
+fgr barnes
+hibernate 
+cd /Volumes/backup/
+cd /Volumes/data/itunes/music/Barenaked\ Ladies/
+mkdir /Volumes/CANHAZ/music/Barenaked\ Ladies
+rs Barenaked\ Ladies* Born\ On\ A\ Pirate\ Ship Gordon Maroon Maybe\ You\ Should\ Drive Rock\ Spectacle Stunt /Volumes/CANHAZ/music/Barenaked\ Ladies
+rs The\ Blues\ Brothers /Volumes/CANHAZ/music
+rs The\ Beloved The\ Blessing /Volumes/CANHAZ/music
+rs Cherry\ Poppin\'\ Daddies Frankie\ Goes\ To\ Hollywood Goldie\ Lookin\ 
+du Kaiser\ Ch*
+mv Kaiser\ Cheifs/Employment/cover.jpg Kaiser\ Chiefs/Employment
+mv Kaiser\ Cheifs/Yours\ Truly\,\ Angry\ Mob/cover.jpg Kaiser\ Chiefs/Yours\ Truly\,\ Angry\ Mob/
+rmdir Kaiser\ Cheifs/*
+rmdir Kaiser\ Cheifs
+rs Cherry\ Poppin\'\ Daddies Frankie\ Goes\ To\ Hollywood Goldie\ Lookin\ Chain Kaiser\ Chiefs /Volumes/CANHAZ/music
+rs Cherry\ Poppin\'\ Daddies Frankie\ Goes\ To\ Hollywood Goldie\ Lookin\ Chain Kaiser\ Chiefs Lacuna\ Coil Madness Mika Orchestral\ Manoeuvres\ In\ The\ Dark Placebo The\ Police Portishead Queen The\ Smiths Space Tripod The\ Ukulele\ Orchestra\ Of\ Great\ Britain XTC /Volumes/CANHAZ/music
+cd /Volumes/CANHAZ/music
+ls Barenaked\ Ladies/
+ls -d */*
+ls Cherry\ Poppin\'\ Daddies/
+ls Frankie\ Goes\ To\ Hollywood/
+ls Goldie\ Lookin\ Chain/
+ls Kaiser\ Chiefs/
+rm -rf Kaiser\ Chiefs/Employment
+ls Lacuna\ Coil/
+ls Madness/
+rm -rf Madness/Utter\ Madness
+ls Orchestral\ Manoeuvres\ In\ The\ Dark/
+ls Placebo/
+rmdir Placebo/Sleeping\ With\ Ghosts\ \[Bonus\ Cd\]/
+du Placebo/*
+ls Placebo/Covers/
+rm -rf Placebo/Sleeping\ With\ Ghosts\ \[Bonus\ Cd\]
+rm Placebo/Velvet\ Goldmine/03\ 20th\ Century\ Boy.mp3 
+rmdir Placebo/Velvet\ Goldmine
+ls Portishead/
+rm Portishead/Various\ Artists\ For\ The\ Masses/Waiting\ For\ The\ Night.mp3 
+rmdir Portishead/Various\ Artists\ For\ The\ Masses
+ls qu
+ls Queen/
+ls Space/
+ls The\ Beloved/
+ls The\ Blessing/
+ls The\ Blues\ Brothers/
+ls The\ Police/
+ls The\ Smiths/
+ls The\ Ukulele\ Orchestra\ Of\ Great\ Britain/
+ls Tripod/
+ls XTC/
+fgr m4a
+fgr m4p
+find . -type f
+find . -type f|grep -v m4a
+find . -type f|egrep -v "m4a$|mp3$"
+find . -type f|egrep -v "m4a$|mp3$|jpg$"
+rm Goldie\ Lookin\ Chain/Greatest\ Hits/Guns\ Don\'t\ Kill\ People\,\ Rappers\ Do.m4v 
+find Goldie\ Lookin\ Chain/
+du
+cd ..
+rm p-evan.avi 
+ls
+cd /Volumes/backup/
+cd /Volumes/Untitled/
+cd music
+cd My\ Music/
+ls
+fgr kaiser
+fgr feeler
+fgr lacuna
+fgr madness
+fgr mika
+fgr nails
+fgr placebo
+fgr police
+fgr portis
+fgr queen
+fgr mercy
+fgr smiths
+fgr space
+h
+fgr suede
+fgr tripod
+fgr xtc
+df -l
+fgr dream
+fgr barnes
+cd /Volumes/backup/
+cd /Volumes
+open /Applications/Utilities/Disk\ Utility.app/
+cd stuff
+df .
+rs /Volumes/canhaz/tv .
+ls
+cd tv
+rs . /Volumes/CANHAZ
+rs3 . /Volumes/CANHAZ
+rm p-evan.avi 
+pwd
+cd
+hibernate 
+open /Applications/Aperture.app
+pen /Applications/Aper
+df -l
+hibernate 
+df -l
+hibernate 
+backup itunes
+backup itunes southpaw
+backup itunes vault
+backup itunes 
+ssh southpaw.cackhanded.net 
+ssh mono.org
+backup itunes 
+ssh southpaw.cackhanded.net 
+pwgen
+grep 'ad$' /usr/share/dict/words 
+pwgen
+grep 'ad$' /usr/share/dict/words 
+ssh atv
+cd Pictures
+dus
+ls
+du -s iPhoto\ Library Desktops
+du
+du -s *
+rs Aperture\ Library.aplibrary /Volumes/vault
+rs3 Aperture\ Library.aplibrary /Volumes/vault
+rm -rf Aperture\ Library.aplibrary
+backup home southpaw
+cd
+du
+du -s Desktop
+ifconfig en0
+dus
+du -s iPhoto\ Library Desktops
+du -s *
+rs Aperture\ Library.aplibrary /Volumes/vault
+rs3 Aperture\ Library.aplibrary /Volumes/vault
+rm -rf Aperture\ Library.aplibrary
+backup home southpaw
+cd
+du -s Desktop
+ifconfig en0
+ssh southpaw.cackhanded.net 
+ping southpaw
+ping southpaw.cackhanded.net 
+cd /Volumes/downloads/
+cd Doctor\ 
+cd Doctor\ Who/
+du
+cd William\ Hartnell/
+cd ..
+ls Sylvester\ McCoy/
+ls /Volumes/tv/Doctor\ Who/
+cd William\ Hartnell
+ls
+find .
+nslookup www.google.com
+grep AAAAB3NzaC1yc /Users/mfrancis/.ssh/known_hosts 
+grep cowpaw /Users/mfrancis/.ssh/known_hosts 
+grep i5mvk= /Users/mfrancis/.ssh/known_hosts 
+ssh 166.84.7.34
+ssh atv
+ssh southpaw
+ssh norm@southpaw
+pwgen
+grep 'ad$' /usr/share/dict/words 
+pwgen
+grep 'ad$' /usr/share/dict/words 
+cd Pictures
+dus
+du -s iPhoto\ Library Desktops
+du
+du -s *
+rs Aperture\ Library.aplibrary /Volumes/vault
+rs3 Aperture\ Library.aplibrary /Volumes/vault
+rm -rf Aperture\ Library.aplibrary
+backup home southpaw
+cd
+du
+du -s Desktop
+ifconfig en0
+ssh frontrow
+ssh atv
+ssh cowpaw.cackhanded.net 
+ssh 192.168.1.254
+telnet 192.168.1.254
+nslookup www.google.com 87.194.0.52
+nslookup www.google.com 208.67.222.222
+nslookup www.google.com 208.67.220.220
+nslookup www.google.com
+cd /Volumes/downloads/
+cd Doctor\ Who/
+find William\ Hartnell/
+cd William\ Hartnell/
+ls s01e01\ An\ Unearthly\ Child\ \(aka\ 100\,000\ BC\,\ The\ Tribe\ Of\ Gum\)/
+ls s01e02\ The\ Mutants\ \(aka\ The\ Daleks\)\(remasterd\)/
+find .  > import
+cat s02e01\ Planet\ of\ Giants/s02e01\ episodes.txt 
+tm Patrick\ Troughton/import 
+cd Patrick\ Troughton/
+open s04e03n030\ The\ Power\ of\ the\ Daleks/s04e03p01\ The\ Power\ of\ the\ Daleks.avi 
+tm Jon\ Pertwee/import 
+tm Tom\ Baker/import 
+tm Peter\ Davison/Doctor\ Who\ -\ Peter\ Davison/import 
+fgr twin
+tm Colin\ Baker/Doctor_Who_-_Colin_Baker/import 
+fgr trial
+find /files/tv/Doctor\ Who | grep -i trial
+tm Sylvester\ McCoy/import 
+tm Doctor\ who\ Season\ 4\ episodes\ 1-13\ plus\ time\ crash\ and\ voyage\ of\ the\ damned/import 
+cd Supernatural\ -\ Complete\ First\ Season/
+ls
+cd ../Supernatural\ Complete\ Season\ 2\ \(KSFX2000\)/
+cd ..
+tv import 
+tm import 
+du -s Desktop
+ssh southpaw.cackhanded.net 
+ifconfig en0
+ifconfig en1
+cd /Volumes/BUFFALO/
+df .
+ls
+ls The\ Big\ Bang\ Theory/
+cd /Volumes/tv
+rs The\ Big\ Bang\ Theory NCIS/Season\ 6/* House/Season\ 5/* American\ Dad_ Boston\ Legal/Season\ 5/* Chuck/Season\ 2/* Supernatural/Season\ 1 Supernatural/Season\ 2 /Volumes/BUFFALO
+ls /Volumes/BUFFALO/The\ Big\ Bang\ Theory/
+ls /Volumes/BUFFALO/The\ Big\ Bang\ Theory/Season\ 1
+rs3 The\ Big\ Bang\ Theory NCIS/Season\ 6/* House/Season\ 5/* American\ Dad_ Boston\ Legal/Season\ 5/* Chuck/Season\ 2/* Supernatural/Season\ 1 Supernatural/Season\ 2 /Volumes/BUFFALO
+df -l
+ls /Volumes/tv
+ls /Volumes/BUFFALO/
+cd /Volumes/tv
+ls
+ls |more
+df -l
+cd /Volumes/BUFFALO/
+rs /Volumes/tv/Heroes/Season\ 3/3x0* .
+rs3 /Volumes/tv/Heroes/Season\ 3/3x0* .
+port search digest
+sudo port install p5-digest-hmac
+sudo port install p5-digest-hmac
+crontab -l
+rsnap pile daily
+rs3 /Volumes/tv/Heroes/Season\ 3/3x0* .
+cd Desktop/
+touch uas
+tm uas
+perl uas
+pwgen
+rm uas 
+psg snap
+crontab -l
+backup
+backup home
+backup itunes
+df -l
+du -s Desktop
+ifconfig en0
+dc
+pwgen
+cd Desktop/
+wget http://www.cis.udel.edu/~silber/470STUFF/article.pdf 
+open article.pdf 
+look carcin
+backup itunes pile
+ssh norm@southpaw.cackhanded.net 
+ssh southpaw.cackhanded.net 
+ping southpaw.cackhanded.net 
+man lockfile
+man rs
+rs3 Aperture\ Library.aplibrary /Volumes/vault
+rm -rf Aperture\ Library.aplibrary
+backup home southpaw
+du
+du -s Desktop
+ifconfig en0
+pine
+crontab -l
+cat etc/rsnapshot-often.conf 
+ls /usr/bin/
+man cpio
+ls /usr/bin/|more
+cvs -d vault.yahoo.com:/CVSROOT co yahoo/global/properties/finance/applications/currency/l10n/generic_intl/all/maple/renderer/php
+cvs up -p -r 1.1 
+cvs up -p -r 1.1.2.2 fin_currency
+cvs up -p -r 1.1 fin_currency
+cd
+cd cvs
+cvs -d vault.yahoo.com:/CVSROOT co -b fin_currency yahoo/global/properties/finance/applications/currency/l10n/generic_intl/all/maple/renderer/php
+cvs -d vault.yahoo.com:/CVSROOT co -r fin_currency yahoo/global/properties/finance/applications/currency/l10n/generic_intl/all/maple/renderer/php
+cd yahoo/global/properties/finance/applications/currency/l10n/generic_intl/all/maple/renderer/php/
+ls
+which cvs
+file /usr/bin/cvs
+cp /usr/bin/cvs /Volumes/PRETEC/
+ls -l /usr/bin/cvs
+pax
+man pax
+man pax
+ssh southpaw
+ssh southpaw.cackhanded.net 
+ssh norm@southpaw.cackhanded.net 
+cd /Volumes/data
+ls
+cd
+df -l
+df -l
+cd /Volumes/data\ 1/
+ls
+ls Podcasts/
+du -s *
+psg Find
+kill 290
+ls Podcasts/
+du -s *
+fgr '.key$'
+find . -type d | grep '.key$'
+find . -type d | grep '\.key$'
+open Desktop/from-cruzer/Documents/yahoo/Y\!Template.key
+open Desktop/from-cruzer/Documents/yahoo/Yahoo\!\ Keynote\ template.key/
+cd Desktop/
+mv ../Downloads/Y\!.kth.zip 
+mv ../Downloads/Y\!.kth.zip  .
+unzip Y\!.kth.zip 
+open Y\!.kth
+du Y\!.kth/*
+open Y\!.kth/wood_finegrain*
+rm Y\!.kth/wood_finegrain*
+\rm Y\!.kth/wood_finegrain*
+du Y\!.kth
+open Y\!.kth/tile_blackboard_*
+cd Downloads/
+ls *mov
+mkdir /Users/mfrancis/Desktop/innovation
+mv *mov /Users/mfrancis/Desktop/innovation
+dc
+  
+look sad
+grep 'sad$' /usr/share/dict/words 
+grep 'sad$' /usr/share/dict/words 
+cd bin
+cp /Volumes/isightcapture1_1/isightcapture .
+./isightcapture 
+./isightcapture /tmp/norm.jpg
+rm isightcapture 
+  
+cd /Volumes/data\ 1/
+ls
+rm -rf jungledisk-usb/
+df .
+du -s *
+ls itunes/
+ls itunes/music/
+ls itunes/music/Tiamat/
+mkdir /Volumes/dump/lacie
+rs . /Volumes/dump/lacie
+ping southpaw
+cd /Volumes/data\ 1/
+ls
+ls Podcasts/
+du -s *
+hdiutil eject /Volumes/data\ 1
+hdiutil eject /Volumes/pile
+dc
+cd /Volumes/dump/
+df .
+cd dump
+rs cackhanded.london.corp.yahoo.com:/files .
+cd ..
+pax
+man pax
+ssh southpaw
+cd /Volumes/downloads/
+ls Star\ Trek\ Deep\ Space\ Nine\ -\ Season\ 1/
+cd ls
+cd Star\ Trek\ Deep\ Space\ Nine\ -\ Season\ 1/
+ls
+ls > import
+tm import 
+df -l
+ls -l /usr/bin/cvs
+pax
+man pax
+tm /tmp/x
+php /tmp/x
+php /tmp/x
+cd /Volumes/tv/
+rm -rf Season\ 4
+ls
+ls *avi
+rm *avi
+df -l
+cd /Volumes/tv
+ls 30\ Rock/
+find 30\ Rock/
+rs 30\ Rock/Season\ 3/3x01\ -\ Do-Over.avi /Volumes/BUFFALO/
+find American\ Dad_
+find American\ Dad
+find Bones
+find Chuck/
+rs Chuck/Season\ 2/2x05\ -\ Chuck\ Versus\ Tom\ Sawyer.avi /Volumes/BUFFALO
+find Criminal\ Minds/
+rs Criminal\ Minds/Season\ 4 .
+rs Criminal\ Minds/Season\ 4 /Volumes/BUFFALO
+rs Eureka/Season\ 3/3x0[78]* /Volumes/BUFFALO
+rs Stargate\ Atlantis/Season\ 5/5x09\ -\ Tracker.avi Stargate\ Atlantis/Season\ 5/5x1* /Volumes/BUFFALO
+rs Fringe /Volumes/BUFFALO
+php /tmp/x
+cd /Volumes/BUFFALO/
+mkdir Chuck/Season\ 2
+mv 2x05\ -\ Chuck\ Versus\ Tom\ Sawyer.avi Chuck/Season\ 2/
+mkdir Bones/Season\ 4
+mv 4x* Bones/Season\ 4
+mkdir Criminal\ Minds
+mv Season\ 4 Criminal\ Minds ; mkdir Dexter
+mv Season\ 3 Dexter ; mkdir Eureka/Season\ 3
+cp TV\ i\ have.xls /Users/mfrancis/Desktop
+mv 3x0[78] Eureka/Season\ 3/
+mv 3x0[78]* Eureka/Season\ 3/
+mkdir NCIS/Season\ 6
+mv 6x* NCIS/Season\ 6/
+mkdir Stargate\ Atlantis/Season\ 5
+mv 5x* Stargate\ Atlantis/Season\ 5
+mkdir How\ I\ Met\ Your\ Mother
+mv Season\ 4 How\ I\ Met\ Your\ Mother
+ls
+mkdir Kitchen\ Nightmares/Season\ 2
+rs /Volumes/tv/The\ Big\ Bang\ Theory/Season\ 2
+rs /Volumes/tv/Numb3rs/Season\ 5 .
+exit
+cd /Volumes/BU
+cd /Volumes/BUFFALO/
+mkdir 30\ Rock/Season\ 3
+mv 3x01\ -\ Do-Over.avi 30\ Rock/
+mv 30\ Rock/3x01\ -\ Do-Over.avi 30\ Rock/Season\ 3/
+rs /Volumes/tv/Bones/Season\ 4/4x0[4-7]* .
+rs /Volumes/tv/Dexter/Season\ 3 .
+rs /Volumes/tv/NCIS/Season\ 6/6x06\ -\ Murder\ 2.0.avi .
+rs /Volumes/tv/How\ I\ Met\ Your\ Mother/Season\ 4 .
+mkdir Kitchen\ Nightmares
+cd Kitchen\ Nightmares/
+rs /Volumes/tv/Kitchen\ Nightmares/Season\ 2/2x0[2345]* .
+mv 2x0* Season\ 2
+cd ..
+mkdir Numb3rs
+mv Season\ 5 Numb3rs
+find . > /Users/mfrancis/Desktop/vicky_latest.txt
+tm /Users/mfrancis/Desktop/vicky_latest.txt
+cd
+cd /System/Library/QuickTime
+ls
+cd /System/Library/QuickTime
+cd /Volumes/stuff/
+ls tv
+rm -rf tv
+df .
+du 
+ls
+rs . southpaw:/Volumes/lacie/to-sort/from-theo
+ssh southpaw
+ls Applications/
+sudo mv /Applications/Prism.app Applications
+sudo chown -R mfrancis Applications
+open Applications/Prism.app
+rm -rf Desktop/Google\ Reader.app
+open /Applications/Google\ Reader\ \(m.n.francis\).app/
+rm -rf /Applications/Google\ Reader\ \(m.n.francis\).app
+sudo rm -rf /Applications/Google\ Reader\ \(m.n.francis\).app
+cd Desktop/
+open Google\ Reader\ \(m.n.francis\).app/
+open ~/Applications/Google\ Reader.app
+ls
+pwgen
+du Library/Keychains/
+du Library/Keychains/*
+du 
+ssh southpaw
+cd /Volumes/stuff/
+ls
+du
+rs . southpaw:/Volumes/lacie/to-sort/from-theo
+cd
+ls
+ssh
+cat .ssh/id_rsa.pub 
+cat .ssh/id_rsa.pub | pbcopy
+ssh-rsa AAAAB3NzaC1yc2EAAAABIwAAAQEA0D6pS3pY+fXcL/vbAcExqTnFUIMYLjlR+MkQOUUqWtlcPSWjKmmUfLDh4nqfu18aiTvdgCW/IPRMhIOnK782x6Hn2KtRBCBSLh7cCdC2cZOt6gl7tjN5/b1s/tNMCf+3fxl2cm8pUVwSz7GXec85OU0mxPQW6KMjPJC7a88RbiU4jrCHKWMj+27GWHhtT+WOWr0R1+w7SyVejyhFajuFuV4r4Kwovon6/ysfEzSza7rbOSa2El/aGDj7RIE91bxoC2JMYKBSXm6rdjGcTEsD0D9HVqKBxzyKQIUlbNOFAFJefj1/kmocKC0bTcu0zRgS/O2kxLeIXWIgjesLxjoITw== norm@cackhanded.net
+backup itunes southpaw
+sudo port selfupdate
+port outdated 
+port search git
+sudo port install git-core
+ssh southpaw
+git config --global github.user norm
+git config --global github.token a3c1326966bf73e0b309860add76912f
+cat .gitconfig 
+echo $EDITOR
+echo $VISUAL
+ssh southpaw
+ssh southpaw
+ssh southpaw
+git config --global github.user norm
+git config --global github.token a3c1326966bf73e0b309860add76912f
+cat .gitconfig 
+echo $EDITOR
+echo $VISUAL
+df /
+df -l
+ls -l /Volumes
+cd /Volumes/data/
+rm 182a_A_CELEBRATION.ISO 
+ls
+rm -rf itunes
+du -s *
+rs . southpaw:/Volumes/canhaz/from-sinister
+df .
+du
+du -s *
+rs . southpaw:/Volumes/canhaz/from-sinister
+du
+cd /Volumes/data/
+df .
+cd itunes
+rsd southpaw:/Volumes/data/itunes/. .
+df
+df -
+df -l
+cd ..
+ls
+ssh norm@southpaw
+ssh southpaw
+ssh norm@southpaw
+ssh norm@southpaw
+ssh southpaw
+ssh norm@southpaw
+cd /Users/work/
+wget http://search.cpan.org/CPAN/authors/id/S/SB/SBURKE/XML-TreeBuilder-3.09.tar.gz
+tar zxf XML-TreeBuilder-3.09.tar.gz 
+cd XML-TreeBuilder-3.09/
+ls
+port search html
+port search html|grep -i tree
+sudo port install p5-html-tree
+port search parser
+sudo port install p5-xml-parser
+pm
+sudo make install
+ssh norm@southpaw
+cd /Users/work/
+wget http://search.cpan.org/CPAN/authors/id/K/KG/KGRENNAN/Text-Microformat-0.04.tar.gz
+tar zxf Text-Microformat-0.04.tar.gz 
+cd Text-Microformat-0.04/
+port search xml
+port search xml|grep -i tree
+pm
+sudo make install
+tm /tmp/x
+perl /tmp/x
+perl /tmp/x | tm
+cd ..
+wget http://hkit.googlecode.com/files/hkit-v0.5.tgz
+tar zxf hkit-v0.5.tgz 
+file hkit
+file hkit-v0.5.tgz 
+gunzip hkit-v0.5.tgz | tar tf -
+gunzip hkit-v0.5.tgz 
+ls -l
+file hkit-v0.5.tar 
+tar tf hkit-v0.5.tar 
+vi hkit.class.php 
+ls
+uptime
+ssh cowpaw.cackhanded.net 
+grep cowpaw .ssh/known_hosts 
+grep AAAAB3NzaC1yc2EAAAABIwAAAIEAzAUoA8TxNe1B6OE2p0fi7s5LGBpTmfPe .ssh/known_hosts 
+ssh 166.84.7.34
+df -l
+ssh cackhanded.london.corp.yahoo.com 
+ssh 166.84.7.34
+cd /Volumes/dump/files/video/
+cd ..
+cd music/
+ls
+du -s _videos_
+cd Desktop/
+svn checkout http://typogrify.googlecode.com/svn/trunk/ typogrify
+tm typogrify
+ssh cowpaw.cackhanded.net 
+cd /Volumes/dump/
+rs cackhanded.london.corp.yahoo.com:/files .
+cd ..
+ifconfig en0
+ifconfig en1
+ping mono.org
+cd dump ; rs cackhanded.london.corp.yahoo.com:/files .
+cd
+cd /Volumes/dump/
+du -s files/music/_videos_
+du -s files/software files/video files/vmware
+ssh cackhanded.london.corp.yahoo.com 
+du -s files/music/_videos_
+du -s files/software files/video files/vmware
+ssh cackhanded.london.corp.yahoo.com 
+cd /Volumes/dump/
+ls
+ls lacie/
+rs cackhanded.london.corp.yahoo.com:/files .
+ifconfig en1
+ping mono.org
+cd dump ; rs cackhanded.london.corp.yahoo.com:/files .
+cd
+cd /Volumes/dump/
+du -s files/music/_videos_
+du -s files/software files/video files/vmware
+ssh cackhanded.london.corp.yahoo.com 
+cd /Volumes/safetynet/
+ls
+ls /
+cd ..
+ls data/
+ls Untitled/
+ls data
+df -l
+rs data dump
+ls lacie/
+rs cackhanded.london.corp.yahoo.com:/files .
+cd /Volumes/
+du -s data/*
+du -s dump/data/*
+du -s dump/data/* ; echo '' ; du -s data/*
+df -l
+cd Docc
+fgr gridds
+fgr grids
+cd /Volumes/
+du -s data/*
+du -s dump/data/*
+du -s dump/data/* ; echo '' ; du -s data/*
+cd Docc
+fgr gridds
+fgr grids
+cd /Volumes/data/
+rm -rf *
+bg
+ls
+ls .*
+fg
+sudo rm -rf *
+sudo rm -rf .Trashes
+find
+find .
+sudo rm -rf .Spotlight-V100 .fseventsd
+ls -la
+du
+df .
+df 
+df -l
+ls -la
+du
+df 
+df -l
+open Desktop/vicky_latest.txt 
+open Desktop/TV\ i\ have.xls 
+cd /Volumes/bar/
+mkdir 30\ Rock/Season 3
+mkdir The\ Big\ Bang\ Theory/Season\ 2
+mv 2x06\ -\ The\ Cooper-Nowitzki\ Theorem.avi The\ Big\ Bang\ Theory/Season\ 2
+mkdir 30\ Rock/Season\ 3
+rmdir 30\ Rock/Season
+rmdir 3
+mv 3x* 30\ Rock/Season\ 3
+mkdir Criminal\ Minds/Season\ 4
+mv 4x* Criminal\ Minds/Season\ 4
+mkdir Bones/Season\ 4 Supernatural/Season\ 4 How\ I\ Met\ Your\ Mother/Season\ 4 Numb3rs/Season\ 5
+rmdir Supernatural/Season\ 4
+mv Season\ 4 Supernatural/
+mv 4x08\ -\ The\ Skull\ In\ the\ Sculpture.avi Bones/Season\ 4/
+mv 4x06\ -\ Happily\ Ever\ After.avi How\ I\ Met\ Your\ Mother/Season\ 4/
+mv 5x05\ -\ Scan\ Man.avi Numb3rs/Season\ 5/
+df .
+find . > /Users/mfrancis/Desktop/vicky_more_latest.txt
+ls
+cd
+cd /Volumes/tv/
+rs The\ Big\ Bang\ Theory/Season\ 2/2x06\ -\ The\ Cooper-Nowitzki\ Theorem.avi /Volumes/bar
+rs 30\ Rock/Season\ 3/3x02\ -\ Believe\ in\ the\ Stars.avi /Volumes/bar/
+rs Criminal\ Minds/Season\ 4/4x06\ -\ The\ Instincts.avi /Volumes/bar
+rs True\ Blood /Volumes/bar
+cd 
+rm -rf .git
+git init
+cd
+cd Desktop/
+curl http://github.com/defunkt/gist/tree/master%2Fgist.rb?raw=true > gist
+tm gist
+curl -i http://github.com/api/v1/json/norm
+rs True\ Blood /Volumes/bar
+cd 
+rm -rf .git
+git init
+cd
+tm .bashrc 
+tm .bash/arch/Darwin 
+echo $VISUAL 
+grep VIS .bash* .bash/* .bash/*/*
+tm .bash/host/sinister 
+cd Projects/homedir/
+mkdir .bash
+git add .bash
+vi /Users/mfrancis/.bash_profile 
+cp /Users/mfrancis/.bash_profile .
+tm .bash_profile 
+git commit -m 'correct hint at top of bash_profile'
+git diff
+git add .bash_profile 
+git commit
+git push
+mkdir The\ Big\ Bang\ Theory/Season\ 2
+mv 2x06\ -\ The\ Cooper-Nowitzki\ Theorem.avi The\ Big\ Bang\ Theory/Season\ 2
+mkdir 30\ Rock/Season\ 3
+rmdir 30\ Rock/Season
+rmdir 3
+mv 3x* 30\ Rock/Season\ 3
+mkdir Criminal\ Minds/Season\ 4
+mv 4x* Criminal\ Minds/Season\ 4
+mkdir Bones/Season\ 4 Supernatural/Season\ 4 How\ I\ Met\ Your\ Mother/Season\ 4 Numb3rs/Season\ 5
+rmdir Supernatural/Season\ 4
+mv Season\ 4 Supernatural/
+mv 4x08\ -\ The\ Skull\ In\ the\ Sculpture.avi Bones/Season\ 4/
+mv 4x06\ -\ Happily\ Ever\ After.avi How\ I\ Met\ Your\ Mother/Season\ 4/
+mv 5x05\ -\ Scan\ Man.avi Numb3rs/Season\ 5/
+df .
+find . > /Users/mfrancis/Desktop/vicky_more_latest.txt
+cd
+cd /Volumes/tv/
+rs The\ Big\ Bang\ Theory/Season\ 2/2x06\ -\ The\ Cooper-Nowitzki\ Theorem.avi /Volumes/bar
+rs 30\ Rock/Season\ 3/3x02\ -\ Believe\ in\ the\ Stars.avi /Volumes/bar/
+rs Criminal\ Minds/Season\ 4/4x06\ -\ The\ Instincts.avi /Volumes/bar
+rs True\ Blood /Volumes/bar
+pine
+git
+git config 
+git config --global
+git config --global user.email
+  git config --global user.email norm@cackhanded.net
+cat .gitconfig 
+touch README.markdown
+git remote add origin git@github.com:norm/homedir.git
+git remote
+git remote origin
+git config --global github.user norm
+git config --global github.token a9b9c22b2711f6e29c054118a869d436
+cd Projects/
+mkdir homedir
+cd homedir
+mv /Users/mfrancis/README.markdown .
+git init
+  git remote add origin git@github.com:norm/homedir.git
+mkdir   mkdir logorrhoea
+  cd logorrhoea
+rmdir ../mkdir/
+  git remote add origin git@github.com:norm/logorrhoea.git
+  git push origin master
+tm README.markdown 
+git commit -m 'Add quote from Wikipedia'
+git push
+cd ..
+ls
+  mkdir pubstandards
+  cd pubstandards
+  git init
+tm README.markdown
+git add RE
+git add README.markdown 
+git commit -m 'started project'
+  git remote add origin git@github.com:norm/pubstandards.git
+git push origin master
+mv Season\ 4 Supernatural/
+mv 4x08\ -\ The\ Skull\ In\ the\ Sculpture.avi Bones/Season\ 4/
+mv 4x06\ -\ Happily\ Ever\ After.avi How\ I\ Met\ Your\ Mother/Season\ 4/
+mv 5x05\ -\ Scan\ Man.avi Numb3rs/Season\ 5/
+df .
+find . > /Users/mfrancis/Desktop/vicky_more_latest.txt
+cd
+cd /Volumes/tv/
+rs The\ Big\ Bang\ Theory/Season\ 2/2x06\ -\ The\ Cooper-Nowitzki\ Theorem.avi /Volumes/bar
+rs 30\ Rock/Season\ 3/3x02\ -\ Believe\ in\ the\ Stars.avi /Volumes/bar/
+rs Criminal\ Minds/Season\ 4/4x06\ -\ The\ Instincts.avi /Volumes/bar
+rs True\ Blood /Volumes/bar
+cd Projects/
+mv Flourish Flourish.old
+  mkdir flourish
+  cd flourish
+  git remote add origin git@github.com:norm/flourish.git
+cat stint/notes.txt 
+ls
+  mkdir textframe
+  cd textframe
+  git init
+touch README.markdown
+tm README.markdown 
+  git remote add origin git@github.com:norm/textframe.git
+git push origin master
+cd ..
+mkdir loadstone
+cd loadstone/
+git init
+tm README.markdown
+git add README.markdown 
+git commit -m 'started project'
+  git remote add origin git@github.com:norm/loadstone.git
+  git push origin master
+  git push origin master
+cd /Volumes/mfrancis/Library/
+fgr mail 
+fgr mail |grep -v '^\./Mail' | tm
+rs Caches/com.apple.mail ~/Library/Caches
+rs Preferences/com.apple.mail.* ~/Library/Preferences
+rs Preferences/*indev* ~/Library/Preferences
+mkdir x
+cd x
+git clone git@github.com:norm/homedir.git
+find .
+diff -u homedir/.bash_profile /Users/mfrancis/.bash_profile 
+mv homedir/.bash_profile ~
+cd
+rm -rf .git
+mv x/homedir/.git .
+mv x/homedir/README.markdown .
+rmdir x/homedir/
+rmdir x
+git diff
+ls .bash/
+find .bash/
+tm .bash/ansi 
+tm .bash_profile 
+git add .bash/ansi 
+git commit -m 'add ansi colour codes file'
+git push
+cd Library/Mail
+ls
+du -s IMAP*
+cd Library/
+cd ..
+fgr newsfire | tm
+rm Library/Application\ Support/Growl/Tickets/NewsFire.growlTicket 
+rm Library/Application\ Support/Inquisitor/IconsA/www.newsfire*
+  git push origin master
+cat /var/mail/mfrancis 
+fgr watan|tm
+dc
+ssh norm@southpaw
+ssh norm@southpaw.cackhanded.net 
+rm -rf .git
+git init
+cd
+cd /Volumes/safetynet/
+ls
+cd Users/
+sudo du -s mf*
+open mfrancis/mfrancis.sparsebundle
+cd /Volumes/mfrancis/
+du -s Library/Mail
+rs Library/Mail ~/Library
+crontab -l
+crontab -e
+df -l
+open mfrancis/mfrancis.sparsebundle
+cd /Volumes/mfrancis/
+du -s Library/Mail
+rs Library/Mail ~/Library
+crontab -l
+crontab -e
+df -l
+cd Downloads/
+mkdir cw
+cd cw
+mv ../Col* .
+mv ../opusbeta.zip .
+mv Colemak* ..
+unzip *
+for f in *;  unzip $f
+man bash
+open -a iTunes *mp3
+open .
+cd ../wipeout/
+for f in * ; do unzip $f ; done
+rm *zip
+\rm *zip
+ls
+cd ..
+mkdir wipeout2097
+cd wipeout2097
+mv ../wipeout/* .
+cd ../wipeout
+mv ../wipeout2097/CoLD\ SToRAGE\ -\ Cairodrome.mp3 .
+mv ../wipeout2097/CoLD\ SToRAGE\ -\ Cardinal\ Dancer.mp3 .
+mv ../wipeout2097/CoLD\ SToRAGE\ -\ Cold\ Comfort.mp3 .
+mv ../wipeout2097/CoLD\ SToRAGE\ -\ Doh\ T.mp3 .
+mv ../wipeout2097/CoLD\ SToRAGE\ -\ Messij.mp3 .
+mv ../wipeout2097/CoLD\ SToRAGE\ -\ Operatique.mp3 .
+mv ../wipeout2097/CoLD\ SToRAGE\ -\ Transvaal.mp3 .
+mv ../wipeout2097/CoLD\ SToRAGE\ -\ Wipeout\ Intro.mp3 .
+mv ../wipeout2097/Philes.mp3 .
+ssh norm@southpaw.cackhanded.net 
+mkdir cw
+cd cw
+mv ../Col* .
+mv ../opusbeta.zip .
+mv Colemak* ..
+unzip *
+for f in *;  unzip $f
+man bash
+open -a iTunes *mp3
+open .
+cd ../wipeout/
+for f in * ; do unzip $f ; done
+rm *zip
+\rm *zip
+ls
+cd ..
+mkdir wipeout2097
+cd wipeout2097
+mv ../wipeout/* .
+cd ../wipeout
+mv ../wipeout2097/CoLD\ SToRAGE\ -\ Cairodrome.mp3 .
+mv ../wipeout2097/CoLD\ SToRAGE\ -\ Cardinal\ Dancer.mp3 .
+mv ../wipeout2097/CoLD\ SToRAGE\ -\ Cold\ Comfort.mp3 .
+mv ../wipeout2097/CoLD\ SToRAGE\ -\ Doh\ T.mp3 .
+mv ../wipeout2097/CoLD\ SToRAGE\ -\ Messij.mp3 .
+mv ../wipeout2097/CoLD\ SToRAGE\ -\ Operatique.mp3 .
+mv ../wipeout2097/CoLD\ SToRAGE\ -\ Transvaal.mp3 .
+mv ../wipeout2097/CoLD\ SToRAGE\ -\ Wipeout\ Intro.mp3 .
+mv ../wipeout2097/Philes.mp3 .
+cd Projects/
+mv stint stint.prev
+  mkdir stint
+  cd stint
+  git init
+tm README.markdown
+git add README.markdown 
+git commit -m 'started project'
+git push
+  git remote add origin git@github.com:norm/stint.git
+git push origin master
+tm ../Flourish.old
+psg silver
+kill 264
+kill -9 264
+man perl
+man perlfaq
+git add README.markdown 
+git commit -m 'started project'
+  git remote add origin git@github.com:norm/loadstone.git
+  git push origin master
+tm Desktop/grids
+cd Desktop/grids
+touch gen
+touch 970-lrec.conf
+perl gen 970-lrec.conf
+hdiutil eject /Volumes/safetynet/
+ls /Volumes/mfrancis 
+ssh cowpaw.cackhanded.net 
+cd /Volumes/dump/
+rs cackhanded.london.corp.yahoo.com:/files .
+ifconfig en0
+ifconfig en1
+ping mono.org
+cd dump ; rs cackhanded.london.corp.yahoo.com:/files .
+cd /Volumes/dump/
+du -s files/music/_videos_
+du -s files/software files/video files/vmware
+ssh cackhanded.london.corp.yahoo.com 
+du -s files/music/_videos_
+du -s files/software files/video files/vmware
+ssh cackhanded.london.corp.yahoo.com 
+cd /Volumes/dump/
+ls lacie/
+rs cackhanded.london.corp.yahoo.com:/files .
+ifconfig en1
+ping mono.org
+cd dump ; rs cackhanded.london.corp.yahoo.com:/files .
+cd /Volumes/dump/
+du -s files/music/_videos_
+du -s files/software files/video files/vmware
+ssh cackhanded.london.corp.yahoo.com 
+cd /Volumes/safetynet/
+ls /
+ls data/
+ls Untitled/
+ls data
+df -l
+rs data dump
+ls lacie/
+rs cackhanded.london.corp.yahoo.com:/files .
+cd /Volumes/
+du -s data/*
+du -s dump/data/*
+du -s dump/data/* ; echo '' ; du -s data/*
+df -l
+cd Docc
+fgr gridds
+fgr grids
+cd /Volumes/
+du -s data/*
+du -s dump/data/*
+du -s dump/data/* ; echo '' ; du -s data/*
+cd Docc
+fgr gridds
+fgr grids
+cd /Volumes/data/
+rm -rf *
+bg
+ls .*
+fg
+sudo rm -rf *
+sudo rm -rf .Trashes
+find
+find .
+sudo rm -rf .Spotlight-V100 .fseventsd
+ls -la
+df .
+df 
+df -l
+cd /Volumes/tv/
+rs Supernatural/Season\ 4 Bones/Season\ 4/4x08\ -\ The\ Skull\ In\ the\ Sculpture.avi How\ I\ Met\ Your\ Mother/Season\ 4/4x06\ -\ Happily\ Ever\ After.avi Numb3rs/Season\ 5/5x05\ -\ Scan\ Man.avi  /Volumes/bar
+cd Library/Mail
+rsd southpaw:Library/Mail/. .
+du -s .
+cd ..
+mv Mail Mail.bak
+cd Mail.bak/
+ls
+rm -rf IMAP-*
+du
+cd Library/
+find Mail.bak/
+cd Mail
+cd ../Mail.bak
+dus
+cd
+pine
+cd Desktop/grids/
+man perlre
+ping drunkscot.london.corp.yahoo.com
+hdiutil eject /Volumes/mfrancis 
+dc
+perl gen 970*
+ 
+ifconfig en0
+cat etc/rsnapshot-often.conf 
+cd rsnapshots/
+du
+du -s .
+ssh cowpaw.cackhanded.net 
