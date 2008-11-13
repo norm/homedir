@@ -1,0 +1,20 @@
+# ~/.inputrc
+# 
+# control the readline library functions
+
+
+# tab lists all matches immediately
+set         show-all-if-ambiguous           on
+
+
+# search partial matches in history using [Esc]+[P], +[N] and arrow keys
+"\ep":      history-search-backward
+"\en":      history-search-forward
+"\e[A":     history-search-backward
+"\e[B":     history-search-forward
+
+
+$if Bash
+    # do history expansion when [Space] entered
+    Space:  magic-space
+$endif
