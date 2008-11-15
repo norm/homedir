@@ -2,9 +2,18 @@
 #
 # working with perl
 
+# location for personal modules not properly installed
 export PERL5LIB="${HOME}/lib/perl"
 
 unixdate='print UnixDate( shift, "%s\n" );'
 
 alias   stamp="perl -MDate::Manip -e '${unixdate}'"
 alias      pm='perl Makefile.PL ; make ; make test'
+
+# module starter
+export MODULE_STARTER_DIR="${HOME}/etc/perl/module-starter"
+function newmod {
+    module=$1
+    shift
+    module-starter --module=$module "$@"
+}
