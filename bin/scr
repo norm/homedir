@@ -1,0 +1,310 @@
+#!/ports/bin/perl
+#
+# Start or resume a GNU screen session, allowing for different configurations.
+# Run `perldoc scr` or `scr help` for documentation.
+
+use strict;
+use warnings;
+
+use FileHandle;
+use Pod::Usage;
+use Readonly;
+use Switch;
+
+
+Readonly my $SETTINGS_DIRECTORY => "$ENV{'HOME'}/etc/screen";
+Readonly my $SCREEN_COMMAND     => 'screen -A -O';
+Readonly my $ENVIRONMENT_HINT   => 'SCREEN_RC_FILE';
+
+my $command = shift;
+   $command = 'resume' unless defined $command;
+
+switch ( $command ) {
+    case 'new'      { new_session(); }
+    case 'resume'   { resume_session(); }
+    case [0..9]     { restart_session_window( $command ); }
+    case '-h'       { print_help_and_exit(); }
+    case 'help'     { print_help_and_exit(); }
+    else            { die "Unknown command: $command"; }
+}
+
+exit;
+
+
+
+sub new_session {
+    my $file = shift @ARGV;
+    
+    if ( !defined $file ) {
+        $file = determine_rc_file()
+            or die "No rc file in ${SETTINGS_DIRECTORY}";
+    }
+    
+    $ENV{$ENVIRONMENT_HINT} = $file;
+    system "${SCREEN_COMMAND} -c ${file}";
+}
+sub resume_session {
+    my $choice  = shift @ARGV;
+    my $session = determine_default_session( $choice );
+
+    if ( defined $session ) {
+        system "${SCREEN_COMMAND} -R -d ${session}";
+    }
+    else {
+        new_session();
+    }
+}
+sub restart_session_window {
+    my $window = shift;
+    my $file   = determine_session_file()
+        or die "No session file!";
+    my $handle = FileHandle->new( $file )
+        or die "$file: $!";
+
+    # find the 'screen X blah' command for the given argument
+    my $match_window = qr{
+        ^ 
+        \s*
+        screen      # match a window command
+        .*          # optional arguments
+        \b
+        $window     # _this_ window
+        \b
+    }x;
+    
+    while ( my $line = <$handle> ) {
+        if ( $line =~ $match_window ) {
+            system $line;
+        }
+    }
+}
+sub print_help_and_exit {
+    pod2usage( {
+        '-verbose' => 3,
+        '-exitval' => 0,
+    } );
+}
+
+sub determine_rc_file {
+    my( @try, $file );
+    
+    chomp( my $hostname = `hostname -s` );  # unix hostname value
+    
+    # suppress warnings if any of the environment variables are not set
+    # (it can't ever pass the -f test as it then resolves to the directory)
+    {   no warnings;
+        @try = (
+            "${SETTINGS_DIRECTORY}/$ENV{'HOST'}",
+            "${SETTINGS_DIRECTORY}/$ENV{'HOSTNAME'}",
+            "${SETTINGS_DIRECTORY}/${hostname}",
+            "${SETTINGS_DIRECTORY}/$ENV{'HOSTOS'}",
+            "${SETTINGS_DIRECTORY}/default",
+            "$ENV{'HOME'}/.screenrc",
+        );
+    }
+    
+    # return the first existing file
+    foreach my $file ( @try ) {
+        return $file if ( -f $file );
+    }
+    
+    return;
+}
+sub determine_default_session {
+    my $choice = shift || 0;    # invalid default--so no accidental resumes
+    
+    # the format of each existing screen session is PID.TTY.HOSTNAME
+    # (STATUS) -- eg: "926.ttys003.chancebed-lm	(Detached)" -- or
+    # PID.NAME (STATUS) -- eg: "926.my-awesome-screen (Attached)"
+    my $regexp = qr{
+        ^ 
+        \s+
+        ( \d+ )         # capture the process id
+        [.]
+        ( [\w.-]+ )     # capture the tty and hostname
+        \s+ 
+        [(]
+        ( \w+ )         # capture the status
+        [)] 
+        \s*
+        $
+    }x;
+
+    # parse the list of current screen sessions
+    my %sessions;
+    my $count = 0;
+    my $list;
+    my $read_list = FileHandle->new( 'screen -list |' )
+        or die "Cannot list: $!";
+    
+    LINE:
+    while ( my $line = <$read_list> ) {
+        if ( $line =~ $regexp ) {
+            $sessions{$1}{'title'}  = $2;
+            $sessions{$1}{'status'} = $3;
+
+            $line =~ s{^ \s+ (\d+) \. }{scr resume $1 -- }x;
+            $list .= $line;
+            $count++;
+        }
+    }
+    undef $read_list;
+    
+    # no ability to resume if there are no active sessions
+    return unless $count;
+    
+    # choose the given choice, if valid
+    return $choice if defined $sessions{$choice};
+    
+    # choose the first detached session
+    foreach my $session ( keys %sessions ) {
+        no warnings;
+        return $session if $sessions{$session}{'status'} eq 'Detached';
+    }
+    
+    # choose the attached session, if it is the only one
+    if ( 1 == $count ) {
+        my( $key, $value ) = each %sessions;
+        return $key;
+    }
+    
+    # otherwise prompt with the full list and exit
+    print "Choose from the following:\n" . $list;
+    exit 1;
+}
+sub determine_session_file {
+    # no STY, not running under screen
+    return unless $ENV{'STY'};
+    
+    # this script sets a hint as to which file is used
+    if ( defined $ENV{$ENVIRONMENT_HINT} ) {
+        return $ENV{$ENVIRONMENT_HINT};
+    }
+    
+    # otherwise guess...
+    return determine_rc_file();
+}
+
+=pod
+
+=head1 NAME
+
+B<scr> - easy screen resumer
+
+=head1 ARGUMENTS
+
+=over 
+
+=item B<scr new [config_file]>
+
+Start a new screen session. The configuration file to use is an optional 
+parameter. If this is not passed, B<scr> will try to find one as described 
+in B<CONFIGURATION FILES> below.
+
+=item B<scr [resume] [pid]>
+
+Resume an existing screen session. The session to resume is chosen somewhat
+rationally, as follows:
+
+=over
+
+=item * 
+
+If there are no active sessions, create a new one.
+
+=item *
+
+If a I<pid> argument is given, choose that if it is an extant session.
+
+=item *
+
+If there is at least one detached session, resume the first one found.
+
+=item *
+
+If there is an attached session, but it is the only one, forcibly 
+resume that (disconnecting it from the other controlling terminal).
+
+=item *
+
+Otherwise, present the list of active sessions, formatted for easy 
+copy and pasting to allow the user to select which session to resume.
+
+=back
+
+This is the default operation if no arguments are given. 
+
+=item B<scr (0 | 1 | 2 .. 9)>
+
+Restart the given window number from the configuration file of the current
+session.
+
+For example, a configuration file could include:
+
+    screen 0 pine -d0 -i
+    screen 1 lynx 
+    screen 2 bash
+    
+Issuing the command C<scr 0> within a screen session using that configuration
+would cause the C<pine> command to be started in a new window (this window
+will be at position 0 only if that does not already exist).
+
+This command is most useful for restarting programs with multiple arguments after they are exited or crash.
+
+=item B<scr help> (or B<scr -h>)
+
+Outputs this help reference.
+
+=back
+
+=head1 CONFIGURATION FILES
+
+When starting a new session without a specified configuration to use, B<scr>
+will look in the F<~/etc/screen> directory for one of various files. They are,
+in preferential order:
+
+=over
+
+=item B<$HOST>
+
+A file named after the contents of the C<HOST> environment variable (e.g. 'mac-laptop'). This is not a common setting, and is one I personally use
+sometimes to set to a value different from the output of C<hostname>.
+
+=item B<$HOSTNAME>
+
+A file named after the contents of the C<HOSTNAME> environment variable. This
+is normally set by the shell.
+
+=item B<hostname -s>
+
+A file named after the output of the C<hostname> command when given the short 
+flag (which trims off any domain names). This is normally identical to the
+C<HOSTNAME> environment variable, but is used incase it has not been set.
+
+=item B<$HOSTOS>
+
+A file named after the contents of the C<HOSTOS> environment variable 
+(which I always set to the Operating System type of the current host -- eg.
+C<Darwin> on Mac OS X machines).
+
+=item B<default>
+
+A file named F<default>.
+
+=item B<~/.screenrc>
+
+The final resort is the F<.screenrc> file in the home directory (this is
+where screen normally looks anyway).
+
+=back
+
+=head1 HISTORY
+
+Originally a simple shell script written by David Brownlee. Rewritten in the
+mid-1990s as a perl script that was vastly more complex and had a lot of
+clever but ultimately unnecessary and unused options. Simplified down to
+this rational core functionality in 2008.
+
+=head1 AUTHOR
+
+Mark Norman Francis L<http://marknormanfrancis.com/>
