@@ -1,0 +1,27 @@
+# ~/etc/screen/common
+# 
+# screen settings used in all sessions
+
+# never use ^A as the command key -- it clashes with 'start of line', and
+# has caused me to kill windows so many times when doing ^A^K to delete 
+# the current line in the shell or micro-emacs/pico like editors; ^Z has 
+# few side-effects (other than occasionally accidentally pausing a program)
+escape              ^Zz      
+
+autodetach          on
+defutf8             on
+nonblock            on
+defscrollback       1024
+startup_message     off
+
+# always alert to activity
+activity            "%n - %t"
+defmonitor          on
+msgminwait          2
+msgwait             5
+
+# only use the status line for bells
+bell_msg            ' -bing!- (%n - %t)'
+vbell               on
+vbell_msg           ' -bing!- '
+vbellwait           5

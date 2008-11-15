@@ -1,0 +1,14 @@
+# ~/etc/screen/southpaw
+
+source common
+
+screen      -t 'hella'      0
+
+chdir       /files/downloads/
+screen      -t 'down'       1
+
+chdir       /files/watch/
+screen      -t 'watch'      2
+
+chdir       /files/tv/
+screen      -t 'tv'         3

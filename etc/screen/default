@@ -1,0 +1,5 @@
+# ~/etc/screen/default
+# 
+# default screen settings
+
+source common
