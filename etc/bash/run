@@ -37,6 +37,8 @@ if [ -n "$is_yahoo" ]; then
     source ~/etc/bash/host/yahoo.com
 fi
 
+
+export HOST="${hostname}"
 export PATH
 
 source ~/etc/bash/prompt
