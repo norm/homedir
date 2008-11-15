@@ -7,7 +7,7 @@
 
 
 # useful flags
-hosttype=`uname`
+hostos=`uname`
 hostname=`hostname -s`
 
 
@@ -18,12 +18,15 @@ do
     source $rc_file
 done
 
-
-# type-specific settings
-if [ -f ~/etc/bash/arch/${hosttype} ]; then
-    source ~/etc/bash/arch/${hosttype}
+# os-specific settings
+if [ -f ~/etc/bash/os/${hostos} ]; then
+    source ~/etc/bash/os/${hostos}
 fi
 
+# type-specific settings
+if [ -f ~/etc/bash/arch/${HOSTTYPE} ]; then
+    source ~/etc/bash/arch/${HOSTTYPE}
+fi
 
 # host-specific settings
 if [ -f ~/etc/bash/host/${hostname} ]; then
@@ -38,7 +41,7 @@ if [ -n "$is_yahoo" ]; then
 fi
 
 
-export HOSTTYPE="${hosttype}"
+export HOSTOS="${hostos}"
 export HOST="${hostname}"
 export PATH
 
