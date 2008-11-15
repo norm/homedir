@@ -1,0 +1,7 @@
+# ~/etc/perl/module-starter/config
+
+author:         Mark Norman Francis
+email:          norm@cackhanded.net
+
+plugins:        Module::Starter::PBP
+template_dir:   /Users/mfrancis/etc/perl/module-starter/templates
