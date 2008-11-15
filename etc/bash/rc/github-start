@@ -1,0 +1,25 @@
+# ~/etc/bash/rc/github-start
+#
+# initialise a new github-hosted repository
+
+function github-start {
+    repo="$1"
+
+    if [ -n "$repo" ]; then
+        local_repo="${HOME}/Projects/${repo}"
+            readme="README.markdown"
+          git_user=`git config github.user`
+          git_repo="git@github.com:${git_user}/${repo}.git"
+         
+        # chained so any failure stops the whole operation
+        mkdir ${repo_base}                              \
+            && cd ${local_repo}                         \
+            && git init                                 \
+            && touch ${readme}                          \
+            && ${VISUAL} ${readme}                      \
+            && git add ${readme}                        \
+            && git commit -m 'started project'          \
+            && git remote add origin ${git_repo}        \
+            && git push origin master
+    fi
+}
