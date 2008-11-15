@@ -38,6 +38,7 @@ if [ -n "$is_yahoo" ]; then
 fi
 
 
+export HOSTTYPE="${hosttype}"
 export HOST="${hostname}"
 export PATH
 
