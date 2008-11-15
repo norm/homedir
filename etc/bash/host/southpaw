@@ -1,0 +1,3 @@
+# ~/etc/bash/host/southpaw
+
+alias   hella="hellanzb.py -c ~/etc/hellanzb.conf"

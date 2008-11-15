@@ -2,7 +2,7 @@
 
 source common
 
-screen      -t 'hella'      0
+screen      -t 'hella'      0   bash -ic hella
 
 chdir       /files/downloads/
 screen      -t 'down'       1
