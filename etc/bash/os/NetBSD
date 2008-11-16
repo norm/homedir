@@ -1,0 +1,11 @@
+# ~/etc/bash/arch/NetBSD
+#
+# bash startup commands specifically for NetBSD boxes
+
+# setup things installed via pkgsrc
+if [ -x /ports/bin ]; then
+       PATH="/ports/bin:${PATH}"
+    MANPATH="/ports/man:${MANPATH}"
+    
+    [ -f /ports/etc/bash_completion ]   && source /ports/etc/bash_completion
+fi
