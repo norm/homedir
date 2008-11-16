@@ -26,7 +26,8 @@ function eject {
 
 # setup things installed via MacPorts
 if [ -x /ports/bin ]; then
-    PATH="/ports/bin:${PATH}"
+       PATH="/ports/bin:${PATH}"
+    MANPATH="/ports/man:${MANPATH}"
     daemons='/ports/etc/LaunchDaemons'
     
     [ -f /ports/etc/bash_completion ]   && source /ports/etc/bash_completion
