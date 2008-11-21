@@ -1,3 +1,7 @@
 # ~/etc/bash/host/sinister
 
 [ -x ${HOME}/bin/textmate ]     && export VISUAL="${HOME}/bin/textmate"
+
+function pdtm {
+    perldoc -t $1 | tm
+}
