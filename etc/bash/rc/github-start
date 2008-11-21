@@ -12,7 +12,7 @@ function github-start {
           git_repo="git@github.com:${git_user}/${repo}.git"
          
         # chained so any failure stops the whole operation
-        mkdir ${repo_base}                              \
+        mkdir ${local_repo}                             \
             && cd ${local_repo}                         \
             && git init                                 \
             && touch ${readme}                          \
