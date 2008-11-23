@@ -24,7 +24,7 @@ sub copy_progress {
     my $src_handle = new FileHandle $source;
     my $tgt_handle = new FileHandle $target, q(w);
     my $bar        = Text::ProgressBar->new( 
-                         { 'width' => 20, 'percentage' => 0 } 
+                         { 'width' => 30, 'percentage' => 'inside' } 
                      );
         
     die "$source: $!" unless defined $src_handle;

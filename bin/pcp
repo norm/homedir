@@ -38,7 +38,7 @@ foreach my $source ( @ARGV ) {
     }
     
     if ( $can_copy ) {
-        status_line( "copy_progress( $source, $destination );" );
+        copy_progress( $source, $destination );
     }
 }
 

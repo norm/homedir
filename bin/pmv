@@ -38,7 +38,7 @@ foreach my $source ( @ARGV ) {
     }
     
     if ( $can_move ) {
-        status_line( "move_progress( $source, $destination );" );
+        move_progress( $source, $destination );
     }
 }
 

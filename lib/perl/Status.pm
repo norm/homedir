@@ -14,6 +14,9 @@ our @EXPORT = qw( status  status_line  print_line );
 Readonly my $MAX_LINE_LENGTH => 77;     # 80 -indent -right-margin
 
 
+# make sure output is sent immediately
+$| = 1;
+
 
 sub status {
     my $text   = pad_text( shift );
