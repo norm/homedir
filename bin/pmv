@@ -1,0 +1,64 @@
+#!/ports/bin/perl
+
+use strict;
+use warnings;
+
+use Copy::Progress  qw( move_progress );
+use File::Basename;
+use Getopt::Std;
+use Pod::Usage;
+use Status;
+
+
+my %opt;
+getopts( 'f', \%opt );
+
+
+my $target = pop @ARGV
+             or pod2usage( 1 );
+
+SOURCE:
+foreach my $source ( @ARGV ) {
+    my $destination = $target;
+    
+    # move into target directory, not over
+    if ( -d $target ) {
+        my $basename = basename( $source );
+        $destination = "${target}/${basename}";
+    }
+    
+    my $can_move = 1;
+    
+    # if destination exists, check we can still move file over it
+    if ( -f $destination ) {
+        if ( $opt{'n'}  ||  !$opt{'f'} ) {
+            status_line( "${destination} exists", 'bold red' );
+            $can_move = 0;
+        }
+    }
+    
+    if ( $can_move ) {
+        status_line( "move_progress( $source, $destination );" );
+    }
+}
+
+
+__END__
+
+=head1 NAME
+
+B<pmv> - move files with a progress bar
+
+=head1 SYNOPSIS
+
+B<mvp> [B<-f>] I<source> I<target>
+
+B<mvp> [B<-f>] I<source> I<...> I<target>
+
+=head1 DESCRIPTION
+
+...
+
+=head1 AUTHOR
+
+Mark Norman Francis L<http://marknormanfrancis.com/>
