@@ -185,6 +185,8 @@ sub determine_session_file {
     return determine_rc_file();
 }
 
+__END__
+
 =pod
 
 =head1 NAME
