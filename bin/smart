@@ -1,0 +1,156 @@
+#!/ports/bin/perl
+# -*- Mode: Perl; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 2 -*-
+
+# TODO
+#   *   create symlinks rather than hard links on request
+#   *   eliminate deleted files fron the store
+
+use strict;
+use warnings;
+
+use Data::Dumper;
+use File::Find;
+use Getopt::Std;
+use Switch;
+use Storable;
+use Readonly;
+
+Readonly my $DATA_FILE => '.smart_data';
+
+my %opt;
+getopts( 'd:psR', \%opt );
+chdir $opt{'d'} if ( $opt{'d'} );
+
+
+# update the file data
+my $data = load_data();
+find( {
+        'no_chdir' => 1,
+        'wanted'   => \&stat_file,
+    }, '.' );
+
+
+my $command = shift;
+switch ( $command ) {
+    case 'new'      { create_new_files_directory(); }
+    case 'recent'   { create_recent_files_directory(); }
+    case 'unread'   { create_unread_files_directory(); }
+    else            { die "Unknown option: ${command}"; }
+}
+
+save_data( $data );
+exit;
+
+
+
+sub create_new_files_directory {
+    my $destination = shift @ARGV;
+    my $timestamp   = shift @ARGV || 'default';
+    
+    foreach my $file ( keys %{$data} ) {
+        # TODO: code this
+    }
+    
+}
+
+sub create_recent_files_directory {
+    my $destination = shift @ARGV;
+    my $timestamp   = shift @ARGV || 'default';
+    
+    # TODO: code this
+}
+
+
+sub create_unread_files_directory {
+    my $destination = shift @ARGV;
+    
+    chdir $destination;
+    
+    foreach my $file ( keys %{$data} ) {
+        my $timestamp  = $data->{$file}{'last_read'};
+        my $original   = $data->{$file}{'original'};
+        
+        if ( $original == $timestamp ) {
+            create_link( $file, $destination );
+        }
+
+    }
+    
+}
+
+
+sub create_link {
+    my $original    = shift;
+    my $destination = shift;
+    
+    print "$original (${destination})\n";
+    
+    # TODO: code this
+    
+}
+
+sub stat_file {
+    my $file = $_;
+       $file =~ s{^ \./ }{}x;
+       
+    return if ( -d $file );
+    return if $DATA_FILE eq $file;
+    
+    my @stat             = stat $file;
+    my $this_read_stamp  = $stat[8];
+    my $this_write_stamp = $stat[9];
+    
+    if ( !defined $data->{$file} ) {
+        $data->{$file}{'original'}   = $this_write_stamp;
+        $data->{$file}{'last_read'}  = $this_read_stamp;
+        $data->{$file}{'last_write'} = $this_write_stamp;
+    }
+    
+    my $prev_read_stamp  = $data->{$file}{'last_read'};
+    my $prev_write_stamp = $data->{$file}{'last_write'};
+    
+    if ( $prev_read_stamp < $this_read_stamp ) {
+        $data->{$file}{'last_read'} = $this_read_stamp;
+        $data->{$file}{'read_count'}++;
+    }
+    if ( $prev_write_stamp < $this_write_stamp ) {
+        $data->{$file}{'last_write'} = $this_write_stamp;
+        $data->{$file}{'write_count'}++;
+    }
+}
+
+
+sub load_data {
+    if ( -f $DATA_FILE ) {
+        return retrieve( $DATA_FILE );
+    }
+    else {
+        my %data;
+        return \%data;
+    }
+}
+sub save_data {
+    my $data = shift;
+    
+    store( $data, $DATA_FILE );
+    # print Dumper $data;
+}
+
+
+__END__
+
+=head1 NAME
+
+B<smart> - create "smart" folders using links
+
+=head1 SYNOPSIS
+
+B<smart> ...
+
+=head1 DESCRIPTION
+
+...
+
+=head1 AUTHOR
+
+Mark Norman Francis L<http://marknormanfrancis.com/>
