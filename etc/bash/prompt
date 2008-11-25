@@ -10,6 +10,6 @@ PS1="${hostname} ${current_path})\$"
 # optional prefixes to the basic prompt
 [ $USER != 'mfrancis' ]     && PS1="${USER}@${PS1}"
 [ -n "$prompt_prefix" ]     && PS1="${prompt_prefix} ${PS1}"
-[ -n "$WINDOW" ]            && PS1="${blue}scr-${WINDOW}${reset} ${PS1}"
+[ -n "$WINDOW" ]            && PS1="${cyan}scr-${WINDOW}${reset} ${PS1}"
 
 PS1="($PS1 "
