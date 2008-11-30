@@ -9,8 +9,11 @@ use strict;
 use warnings;
 
 use Data::Dumper;
+use File::Basename;
 use File::Find;
+use File::Path;
 use Getopt::Std;
+use Path::Create    qw( create_directory  destroy_directory );
 use Switch;
 use Storable;
 use Readonly;
@@ -18,7 +21,7 @@ use Readonly;
 Readonly my $DATA_FILE => '.smart_data';
 
 my %opt;
-getopts( 'd:psR', \%opt );
+getopts( 'd:fpsR', \%opt );
 chdir $opt{'d'} if ( $opt{'d'} );
 
 
@@ -32,9 +35,10 @@ find( {
 
 my $command = shift;
 switch ( $command ) {
-    case 'new'      { create_new_files_directory(); }
-    case 'recent'   { create_recent_files_directory(); }
-    case 'unread'   { create_unread_files_directory(); }
+    case 'new'      { create_new_files_directory();     }
+    case 'stamp'    { update_timestamp();               }
+    case 'recent'   { create_recent_files_directory();  }
+    case 'unread'   { create_unread_files_directory();  }
     else            { die "Unknown option: ${command}"; }
 }
 
@@ -47,11 +51,28 @@ sub create_new_files_directory {
     my $destination = shift @ARGV;
     my $timestamp   = shift @ARGV || 'default';
     
-    foreach my $file ( keys %{$data} ) {
+    my $stamp = $data->{'timestamps'}{$timestamp} || 0;
+    
+    foreach my $file ( keys %{ $data->{'files'} } ) {
+        my $file_stamp = $data->{'files'}{$file}{'original'};
+        
+        if ( $file_stamp >= $stamp ) {
+            print "yes $file\n";
+        }
+        else {
+            print "no  $file\n";
+        }
         # TODO: code this
     }
     
 }
+
+sub update_timestamp {
+    my $timestamp = shift @ARGV || 'default';
+    
+    $data->{'timestamps'}{$timestamp} = time();
+}
+
 
 sub create_recent_files_directory {
     my $destination = shift @ARGV;
@@ -64,16 +85,16 @@ sub create_recent_files_directory {
 sub create_unread_files_directory {
     my $destination = shift @ARGV;
     
-    chdir $destination;
+    rmtree( $destination );
+    create_directory( $destination );
     
     foreach my $file ( keys %{$data} ) {
-        my $timestamp  = $data->{$file}{'last_read'};
-        my $original   = $data->{$file}{'original'};
+        my $timestamp  = $data->{'files'}{$file}{'last_read'};
+        my $original   = $data->{'files'}{$file}{'original'};
         
         if ( $original == $timestamp ) {
             create_link( $file, $destination );
         }
-
     }
     
 }
@@ -83,10 +104,19 @@ sub create_link {
     my $original    = shift;
     my $destination = shift;
     
-    print "$original (${destination})\n";
+    my( $filename, $directory, undef ) = fileparse( $original );
     
-    # TODO: code this
+    if ( ! $opt{'f'} ) {
+        $destination = "${destination}/${directory}";
+    }
     
+    my $target = "${destination}/${filename}";
+    if ( $opt{'s'} ) {
+        symlink $original, $target;
+    }
+    else {
+        link $original, $target;
+    }
 }
 
 sub stat_file {
@@ -101,21 +131,21 @@ sub stat_file {
     my $this_write_stamp = $stat[9];
     
     if ( !defined $data->{$file} ) {
-        $data->{$file}{'original'}   = $this_write_stamp;
-        $data->{$file}{'last_read'}  = $this_read_stamp;
-        $data->{$file}{'last_write'} = $this_write_stamp;
+        $data->{'files'}{$file}{'original'}   = $this_write_stamp;
+        $data->{'files'}{$file}{'last_read'}  = $this_read_stamp;
+        $data->{'files'}{$file}{'last_write'} = $this_write_stamp;
     }
     
-    my $prev_read_stamp  = $data->{$file}{'last_read'};
-    my $prev_write_stamp = $data->{$file}{'last_write'};
+    my $prev_read_stamp  = $data->{'files'}{$file}{'last_read'};
+    my $prev_write_stamp = $data->{'files'}{$file}{'last_write'};
     
     if ( $prev_read_stamp < $this_read_stamp ) {
-        $data->{$file}{'last_read'} = $this_read_stamp;
-        $data->{$file}{'read_count'}++;
+        $data->{'files'}{$file}{'last_read'} = $this_read_stamp;
+        $data->{'files'}{$file}{'read_count'}++;
     }
     if ( $prev_write_stamp < $this_write_stamp ) {
-        $data->{$file}{'last_write'} = $this_write_stamp;
-        $data->{$file}{'write_count'}++;
+        $data->{'files'}{$file}{'last_write'} = $this_write_stamp;
+        $data->{'files'}{$file}{'write_count'}++;
     }
 }
 
@@ -146,6 +176,16 @@ B<smart> - create "smart" folders using links
 =head1 SYNOPSIS
 
 B<smart> ...
+
+=head1 ARGUMENTS
+
+=over
+
+=item -f
+
+flat file hierarchy (do not create subdirectories)
+
+=back
 
 =head1 DESCRIPTION
 
