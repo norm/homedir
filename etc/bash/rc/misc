@@ -3,10 +3,8 @@
 # 
 # miscellaneous settings
 
-export  CVS_RSH='/usr/bin/ssh'
-
-export  EXINIT="set sh=/bin/sh sw=4 ai redraw report=2"
-
-export  LC_CTYPE='en_GB.UTF-8'
-
+export    CVS_RSH='/usr/bin/ssh'
+export     EXINIT="set sh=/bin/sh sw=4 ai redraw report=2"
+export   LC_CTYPE='en_GB.UTF-8'
 export  PYTHONLIB="${HOME}/lib/python"
+export     VISUAL='vi'
