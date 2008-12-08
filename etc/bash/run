@@ -35,13 +35,6 @@ if [ -f ~/etc/bash/host/${hostname} ]; then
 fi
 
 
-# yahoo-specific settings
-is_yahoo=`hostname | grep yahoo.com`
-if [ -n "$is_yahoo" ]; then
-    source ~/etc/bash/host/yahoo.com
-fi
-
-
 export HOSTOS="${hostos}"
 export HOST="${hostname}"
 export PATH
