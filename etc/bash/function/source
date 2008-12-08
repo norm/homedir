@@ -9,7 +9,7 @@ function source_or_warn {
     if [ -f ${file} ]; then
         source ${file}
     else
-        [ ${interactive} ]  && echo "${file} does not exist"
+        [ ${interactive} ]  && print "${bold}${red}${file} does not exist${reset}"
     fi
 }
 
