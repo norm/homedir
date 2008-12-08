@@ -3,41 +3,38 @@
 # 
 # anything in this file gets applied to every bash shell, login or otherwise
 
-# exit if not interactive
-# [[ $- != *i* ]]     &&  return
-
-
 # useful flags
 hostos=`uname`
 hostname=`hostname -s`
+interactive=1
+[[ $- != *i* ]] && interactive=0
 
+
+# functions could be required at any time, so are included first
+for rc_file in $( echo ~/etc/bash/function/* )
+do
+    source $rc_file
+done
 
 # most common bash settings kept in separate rc files
-files=$( echo ~/etc/bash/rc/* )
-for rc_file in $files
+for rc_file in $( echo ~/etc/bash/rc/* )
 do
     source $rc_file
 done
 
 # os-specific settings
-if [ -f ~/etc/bash/os/${hostos} ]; then
-    source ~/etc/bash/os/${hostos}
-fi
+source_if_exists ~/etc/bash/os/${hostos}
 
 # type-specific settings
-if [ -f ~/etc/bash/arch/${HOSTTYPE} ]; then
-    source ~/etc/bash/arch/${HOSTTYPE}
-fi
+source_if_exists ~/etc/bash/arch/${HOSTTYPE}
 
 # host-specific settings
-if [ -f ~/etc/bash/host/${hostname} ]; then
-    source ~/etc/bash/host/${hostname}
-fi
+source_if_exists ~/etc/bash/host/${hostname}
 
 
 export HOSTOS="${hostos}"
 export HOST="${hostname}"
 export PATH
 
-source ~/etc/bash/prompt
+source_or_warn ~/etc/bash/prompt
 export PS1

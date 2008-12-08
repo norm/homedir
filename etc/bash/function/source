@@ -1,0 +1,23 @@
+# ~/etc/bash/function/source_or_warn
+# -*- Mode: Bash; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 2 -*-
+#
+# source a file, echoing a warning if it doesn't exist
+
+function source_or_warn {
+    file=${1}
+    
+    if [ -f ${file} ]; then
+        source ${file}
+    else
+        [ ${interactive} ]  && echo "${file} does not exist"
+    fi
+}
+
+
+function source_if_exists {
+    file=${1}
+    
+    if [ -f ${file} ]; then
+        source ${file}
+    fi
+}

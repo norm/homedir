@@ -8,5 +8,5 @@ if [ -x /ports/bin ]; then
        PATH="/ports/bin:${PATH}"
     MANPATH="/ports/man:${MANPATH}"
     
-    [ -f /ports/etc/bash_completion ]   && source /ports/etc/bash_completion
+    source_or_warn  /ports/etc/bash_completion
 fi

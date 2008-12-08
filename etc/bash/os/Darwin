@@ -31,9 +31,10 @@ if [ -x /ports/bin ]; then
     MANPATH="/ports/man:${MANPATH}"
     daemons='/ports/etc/LaunchDaemons'
     
-    [ -f /ports/etc/bash_completion ]   && source /ports/etc/bash_completion
-    [ -x /ports/bin/nvi ]               && alias vi='nvi'
-
+    source_or_warn  /ports/etc/bash_completion
+    
+    [ -x /ports/bin/nvi ]   && alias vi='nvi'
+    
     # easier control of lighttpd
     if [ -d /ports/etc/lighttpd ]; then
               lighttpd="${daemons}/org.macports.lighttpd/lighttpd.wrapper"
