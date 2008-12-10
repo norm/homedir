@@ -3,8 +3,8 @@
 #
 # process manipulation
 
-ps_title='"  PID  PPID CPU NI STAT COMMAND"'
-ps_flags='pid,ppid,cpu,nice,state,command'
+ps_title='"USER       PID  PPID CPU NI STAT COMMAND"'
+ps_flags='user,pid,ppid,cpu,nice,state,command'
 
 alias     ps="ps wwwax -o ${ps_flags}"
 alias    psg="echo ${ps_title}; ps | egrep -i"
