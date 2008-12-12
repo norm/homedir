@@ -1,0 +1,67 @@
+#!/ports/bin/perl
+# -*- Mode: Perl; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 2 -*-
+
+use strict;
+use warnings;
+
+my $length = 16;
+my %types = (
+    'braces'      => 0,
+    'hyphen'      => 0,
+    'lower'       => 1,
+    'num'         => 1,
+    'punctuation' => 0,
+    'quotes'      => 0,
+    'under'       => 0,
+    'upper'       => 1,
+);
+my %character_type = (
+    'braces'      => [  qw# ( ) [ ] { } #  ],
+    'hyphen'      => [  q(-)  ],
+    'lower'       => [  q(a) .. q(z)  ],
+    'num'         => [  q(0) .. q(9)  ],
+    'punctuation' => [  qw( ! $ % ^ & * = + ; : ), q(#)  ] ,
+    'quotes'      => [  qw( ' " )  ],
+    'under'       => [  q(_)  ],
+    'upper'       => [  q(A) .. q(Z)  ],
+);
+my @generate_from;
+my $password;
+
+
+
+foreach my $arg ( @ARGV ) {
+    my $option = 1;
+    
+    if ( $arg =~ s/^no// ) {
+        $option = 0;
+    }
+    if ( defined $types{ $arg } ) {
+        $types{$arg} = $option;
+    }
+    else {
+        if ( $arg =~ s/^len(gth)?(\d+)$/$2/ ) {
+            $length = $arg;
+        }
+        else {
+            die "unknown option: $arg";
+        }
+    }
+}
+
+# assemble array of chars available for use generating password
+foreach my $type ( keys %character_type ) {
+    if ( $types{ $type } ) {
+        foreach my $char ( @{ $character_type{ $type } } ) {
+            push @generate_from, $char;
+        }
+    }
+}
+
+# generate
+foreach my $part ( 1 .. $length ) {
+    my $which  = int rand $#generate_from;
+    $password .= $generate_from[ $which ];
+}
+
+print "$password";
