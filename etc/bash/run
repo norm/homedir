@@ -10,17 +10,12 @@ interactive=1
 [[ $- != *i* ]] && interactive=0
 
 
-# functions could be required at any time, so are included first
-for rc_file in $( echo ~/etc/bash/function/* )
+# early - functions could be required at any time, so are included first
+for rc_file in $( echo ~/etc/bash/early/* )
 do
     source $rc_file
 done
 
-# most common bash settings kept in separate rc files
-for rc_file in $( echo ~/etc/bash/rc/* )
-do
-    source $rc_file
-done
 
 # os-specific settings
 source_if_exists ~/etc/bash/os/${hostos}
@@ -30,6 +25,13 @@ source_if_exists ~/etc/bash/arch/${HOSTTYPE}
 
 # host-specific settings
 source_if_exists ~/etc/bash/host/${hostname}
+
+
+# most common bash settings kept in separate rc files
+for rc_file in $( echo ~/etc/bash/rc/* )
+do
+    source $rc_file
+done
 
 
 export HOSTOS="${hostos}"

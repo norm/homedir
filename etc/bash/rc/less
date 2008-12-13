@@ -8,6 +8,10 @@ alias    more='less'
 
 
 # add colour highlighting where possible
-export LESSCOLORIZER='pygmentize'
-export      LESSOPEN='| lesspipe.sh %s'
-export          LESS='-R'
+need lesspipe.sh <<end
+    export  LESSOPEN='| lesspipe.sh %s';
+    export      LESS='-R';
+end
+need pygmentize <<end
+    export LESSCOLORIZER='pygmentize';
+end

@@ -1,0 +1,22 @@
+# ~/etc/bash/function/source_or_warn
+# -*- Mode: Bash; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 2 -*-
+#
+# perform actions if a needed program is in the $PATH, 
+# echoing a warning if it doesn't exist
+
+function need {
+    local file=${1}
+    local have=0
+    
+    type $1 &> /dev/null    && have=1
+    
+    if [ 0 = ${have} ]; then
+        print "${bold}${red}${file} is not installed${reset}"
+    else
+        # perform what was passed as stdin (BEWARE: this is not quite normal
+        # bash syntax, so semi-colons are almost certainly required)
+        eval `cat`
+    fi
+    
+    return ${have}
+}
