@@ -12,9 +12,11 @@ alias   stamp="perl -MDate::Manip -e '${unixdate}'"
 alias      pm='perl Makefile.PL ; make ; make test'
 
 # module starter
-export MODULE_STARTER_DIR="${HOME}/etc/perl/module-starter"
+need module-starter <<end
+export MODULE_STARTER_DIR="${HOME}/etc/perl/module-starter";
 function newmod {
-    module=$1
-    shift
-    module-starter --module=$module "$@"
+    module="\$1";
+    shift;
+    module-starter --module=\$module "\$@";
 }
+end
