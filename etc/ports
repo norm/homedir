@@ -1,0 +1,32 @@
+# ~/etc/ports
+
+LAPTOPS=sinister,kittaghy
+
+# essentials
+*               bash-completion
+*               wget
+
+# basics
+*               fortune
+*               rsync               # no-variants
+*               perl5.8             # no-variants
+*               p5-version
+*               p5-readonly
+
+# shell enhancements
+*               lesspipe
+*               py-pygments
+
+# source control
+*               p5-module-starter
+*               curl                # no-variants (pre-req of git-core)
+*               expat               # no-variants (pre-req of git-core)
+*               libiconv            # no-variants (pre-req of git-core)
+*               git-core
+
+# web development
+*               lighttpd            +davprops
+*               libxslt             # no-variants (pre-req of php5)
+*               bzip2               # no-variants (pre-req of php5)
+*               freetype            +macosx
+*               php5                +macosx +fastcgi +pear +sqlite
