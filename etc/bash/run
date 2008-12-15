@@ -4,8 +4,12 @@
 # anything in this file gets applied to every bash shell, login or otherwise
 
 # useful flags
-hostos=`uname`
+  hostos=`uname`
 hostname=`hostname -s`
+
+export  HOSTOS="${hostos}"
+export    HOST="${hostname}"
+
 interactive=1
 [[ $- != *i* ]] && interactive=0
 
@@ -34,9 +38,7 @@ do
 done
 
 
-export HOSTOS="${hostos}"
-export HOST="${hostname}"
-export PATH
-
+# prompt comes last
 source_or_warn ~/etc/bash/prompt
 export PS1
+export PATH
