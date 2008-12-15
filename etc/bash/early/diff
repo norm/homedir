@@ -1,0 +1,28 @@
+# ~/etc/bash/function/source_or_warn
+# -*- Mode: Bash; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 2 -*-
+#
+# source a file, echoing a warning if it doesn't exist
+
+function diff_or_warn {
+    local  file_a=${1}
+    local  file_b=${2}
+    local warning=${3:-${file_a} and ${file_b} are not different}
+    
+    diff ${file_a} ${file_b} &> /dev/null
+    
+    if [ 0 = $? ]; then
+        print "${bold}${red}${warning}${reset}"
+    fi
+}
+
+function diff_and_warn {
+    local  file_a=${1}
+    local  file_b=${2}
+    local warning=${3:-${file_a} and ${file_b} are different}
+    
+    diff ${file_a} ${file_b} &> /dev/null
+    
+    if [ 1 = $? ]; then
+        print "${bold}${red}${warning}${reset}"
+    fi
+}
