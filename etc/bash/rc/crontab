@@ -4,21 +4,32 @@
 # keep the master copy of the crontab file in ~/etc, not /var/cron
 
 export REAL_CRONTAB=`which crontab`
+export CRONTAB_FILE=${HOME}/etc/crontabs/${HOST}
 
 function crontab {
-    arg=$1
-    tab_file=${HOME}/etc/crontabs/${HOST}
-    
-    case "${arg}" in
+    case "${1}" in
         -l)
-            cat ${tab_file}
+            cat ${CRONTAB_FILE}
         ;;
         -e|"")
-            ${VISUAL} ${tab_file}
-            ${REAL_CRONTAB} ${tab_file}
+            ${VISUAL} ${CRONTAB_FILE}
+            ${REAL_CRONTAB} ${CRONTAB_FILE}
         ;;
         *)
             echo "Usage: crontab { [-e] | -l }"
         ;;
     esac
 }
+
+function check_crontab {
+    local tmp_real_crontab=/tmp/crontab.real.$$
+    
+    ${REAL_CRONTAB} -l > ${tmp_real_crontab} 2>/dev/null
+    
+    diff_and_warn ${tmp_real_crontab} ${CRONTAB_FILE} \
+                  "crontab file not properly installed"
+    
+    rm -f ${tmp_real_crontab}
+}
+
+check_crontab
