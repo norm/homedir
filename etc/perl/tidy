@@ -1,0 +1,19 @@
+# ~/etc/perl/tidy
+
+-st         # output to STDOUT
+-se         # errors to STDERR
+
+-l=78       # max line width
+-i=4        # indent
+-ci=4       # continuation indent
+
+-vt=2       # maximal vertical tightness
+-cti=0      # (no) extra indendation for closing parens
+-pt=1       # medium paren tightness
+-bt=1       # medium brace tightness
+-sbt=1      # medium square brace tightness
+-bbt=1      # medium block brace tightness
+-nsfs       # no space before semicolons
+
+# break before all operators
+-wbb="% + - * / x != == >= <= =~ !~ < > | & >= < = **= += *= &= <<= &&= -= /= |= >>= ||= .= %= ^= x="
