@@ -19,6 +19,7 @@ LAPTOPS=sinister,kittaghy
 
 # source control
 *               p5-module-starter
+*               p5-perl-tidy
 *               curl                # no-variants (pre-req of git-core)
 *               expat               # no-variants (pre-req of git-core)
 *               libiconv            # no-variants (pre-req of git-core)
