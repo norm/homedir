@@ -3,6 +3,7 @@
 .ssh
 .MacOSX
 .junglediskinstance
+.subversion
 
 etc/bash/saved_history
 etc/less_history
