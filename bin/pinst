@@ -220,7 +220,8 @@ sub get_default_ports {
     
     my $assignment_regexp = qr{
         ^
-            ( [A-Z]+ )      # key
+            \s*
+            ( [A-Z0-9_]+ )  # key
             \s* = \s*
             (.*)?           # value
             \s*
@@ -273,7 +274,7 @@ sub get_default_ports {
             }
         }
         else {
-            die "File format error: $line";
+            die "File format error:\n$line";
         }
     }
     
@@ -393,7 +394,11 @@ an optional list of variants
 
 =head3 Assignments
 
-An assigment is a line that has an uppercase word, an equals sign and then
-a commaa-delimited list of hostnames. This word can then be used in the 
-package declarations instead of repeating the same hostnames over and over.
+An assigment is a line that has an uppercase word (which can also include
+numerals and underscores), an equals sign and then a commaa-delimited list of
+hostnames. This word can then be used in the package declarations instead of
+repeating the same hostnames over and over.
 
+=head1 AUTHOR
+
+Mark Norman Francis <norm@cackhanded.net>

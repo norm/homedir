@@ -1,6 +1,12 @@
 # ~/etc/ports
 
-LAPTOPS=sinister,kittaghy
+   DEV=sinister
+ STORE=southpaw
+ MUSIC=sinister,southpaw
+LAPTOP=kittaghy,sinister
+    R3=cowpaw,sinister,southpaw
+   WEB=cowpaw,sinister
+
 
 # essentials
 *               bash-completion
@@ -18,16 +24,24 @@ LAPTOPS=sinister,kittaghy
 *               py-pygments
 
 # source control
-*               p5-module-starter
-*               p5-perl-tidy
+DEV             p5-module-starter
+DEV             p5-perl-tidy
 *               curl                # no-variants (pre-req of git-core)
 *               expat               # no-variants (pre-req of git-core)
 *               libiconv            # no-variants (pre-req of git-core)
 *               git-core
 
 # web development
-*               lighttpd            +davprops
-*               libxslt             # no-variants (pre-req of php5)
-*               bzip2               # no-variants (pre-req of php5)
-*               freetype            +macosx
-*               php5                +macosx +fastcgi +pear +sqlite
+WEB             lighttpd            +davprops
+WEB             libxslt             # no-variants (pre-req of php5)
+WEB             bzip2               # no-variants (pre-req of php5)
+WEB             freetype            +macosx
+WEB             php5                +macosx +fastcgi +pear +sqlite
+
+# file storage
+STORE           hellanzb
+STORE           par2
+STORE           unrar
+
+# itunes
+MUSIC           id3lib
