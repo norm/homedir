@@ -6,7 +6,9 @@ use warnings;
 use FileHandle;
 use Readonly;
 use Status;
-use Text::ProgressBar;
+# use Term::ProgressBar::Quiet;
+use Term::Progress;
+use Text::Trim;
 
 use Exporter;
 our @ISA    = qw( Exporter );
@@ -17,20 +19,24 @@ Readonly my $BLOCK_SIZE      => 1024 * 1024 * 10;  # 10mb blocks
 
 # filesystem operations
 sub copy_progress {
-    my $source   = shift;
-    my $target   = shift;
-    my $progress = shift || "Copying ${target} %s";
-
+    my $source  = shift;
+    my $target  = shift;
+    my $message = shift || "  copy: ${target}";
+       # $message = trim_text( $message, 30 ); 
+    
     my $src_handle = new FileHandle $source;
+    my $file_size = ( stat($source) )[7];
+    
+    
     my $tgt_handle = new FileHandle $target, q(w);
-    my $bar        = Text::ProgressBar->new( 
-                         { 'width' => 30, 'percentage' => 'inside' } 
+    my $progress   = Term::Progress->new( 
+                         'count'  => $file_size,
+                         'format' => "$message {bar} {remaining}"
                      );
-        
+    
     die "$source: $!" unless defined $src_handle;
     die "$target: $!" unless defined $tgt_handle;
     
-    my $file_size = ( stat($source) )[7];
     my $buffer;
     my $total_written;
     
@@ -44,41 +50,41 @@ sub copy_progress {
         while ( $bytes_read ) {
             my $bytes_written 
                 = $tgt_handle->syswrite( $buffer, $bytes_read, $offset );
-
+            
             return undef unless defined $bytes_written;  # undef means error
-
+            
             $bytes_read    -= $bytes_written;
             $offset        += $bytes_written;
             $total_written += $bytes_written;
-
+            
             my $percentage = int( ($total_written / $file_size) * 100 );
-            my $text       = $bar->report( $percentage );
-            status( sprintf( $progress, $text ), q(yellow) );
+            
+            $progress->now( $total_written );
         }
     }
-    status_line( $target, q(green) );
-    
+    print_line( $target, q(green) );
     return 1;
 }
 
 
 sub move_progress {
-    my $source   = shift;
-    my $target   = shift;
-    my $progress = shift || "Moving ${target} %s";
+    my $source  = shift;
+    my $target  = shift;
+    my $message = shift || "  move: ${target}";
+       $message = trim_text( $message, 30 ); 
     
     # either rename
     my $worked = rename $source, $target;
     
     # ...or copy/delete
     if ( !$worked ) {
-        if ( !defined copy_progress( $source, $target, $progress ) ) {
+        if ( !defined copy_progress( $source, $target, $message ) ) {
             return undef;
         }
         return unlink $source;
     }
     else {
-        status_line( $target, q(green) );
+        print_line( $target, q(green) );
     }
     
     return 1;
