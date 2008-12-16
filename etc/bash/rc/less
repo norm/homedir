@@ -6,7 +6,7 @@
 export  PAGER='less'
 alias    more='less'
 
-export  LESSHISTFILE="${HOME}/etc/less.history"
+export  LESSHISTFILE="${HOME}/etc/less_history"
 
 # add colour highlighting where possible
 need lesspipe.sh <<end

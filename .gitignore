@@ -5,6 +5,7 @@
 .junglediskinstance
 
 etc/bash/saved_history
+etc/less_history
 
 Applications/
 Desktop/
