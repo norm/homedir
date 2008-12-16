@@ -6,28 +6,11 @@
 
 etc/bash/saved_history
 
-Library/Keychains
-Library/Caches
-Library/Calendars
-Library/Cookies/
-Library/Favorites/
-Library/FontCollections/
-Library/Fonts/
-Library/Input Methods/
-Library/LaunchAgents/
-Library/Logs/
-Library/Mail/
-Library/PDF Services/
-Library/PubSub/
-Library/Recent Servers/
-Library/Safari/
-Library/StickiesDatabase
-Library/Workflows/
-
 Applications/
 Desktop/
 Documents/
 Downloads/
+Library/
 Movies/
 Music/
 Pictures/
