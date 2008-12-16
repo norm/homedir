@@ -1,0 +1,6 @@
+# ~/etc/bash/early/misc
+# -*- Mode: Bash; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 2 -*-
+# 
+# miscellaneous settings
+
+export     VISUAL='vi'
