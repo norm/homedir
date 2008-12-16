@@ -1,0 +1,20 @@
+[github]
+	user = norm
+	token = REPLACE_ME_WITH_TOKEN
+[user]
+	email = norm@cackhanded.net
+	name = Mark Norman Francis
+[color]
+	status = auto
+	diff = auto
+	branch = auto
+[merge]
+	tool = opendiff
+[alias]
+	co = checkout
+	br = branch
+	ci = commit
+	s  = status
+	d  = diff
+[core]
+	excludesfile = /Users/norm/.gitignore
