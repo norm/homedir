@@ -24,3 +24,11 @@ function github-start {
             && git push origin master
     fi
 }
+
+function github-clone {
+    repo="$1"
+    git_user=`git config github.user`
+    git_repo="git@github.com:${git_user}/${repo}.git"
+
+    git clone ${git_repo}
+}
