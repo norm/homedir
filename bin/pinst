@@ -421,8 +421,6 @@ sub status {
 __END__
 
 # TODO
-#   *   examine installed ports and list those that aren't covered by
-#       the default installation file
 #   *   tag support to be able to install a subset of the default file
 
 
