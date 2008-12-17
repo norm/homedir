@@ -18,6 +18,8 @@ LAPTOP=kittaghy,sinister
 *               perl5.8             # no-variants
 *               p5-version
 *               p5-readonly
+*               p5-moose
+*               p5-moose-policy
 
 # shell enhancements
 *               lesspipe
