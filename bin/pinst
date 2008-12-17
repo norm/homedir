@@ -20,7 +20,7 @@ memoize( 'get_port_dependents'   );
 
    $|                  = 1;     # output immediately
 my %opt;
-my $ok_opts            = getopts( 'ac:dfhns', \%opt );
+my $ok_opts            = getopts( 'ac:fhns', \%opt );
 my $DEFAULTS_FILE      =    $opt{'c'}
                          || $ENV{'PINST_DEFAULTS'} 
                          || "$ENV{'HOME'}/etc/ports";
@@ -48,8 +48,8 @@ if ( defined $opt{'a'} ) {
     list_additional_ports();
 }
 else {
-
-    if ( defined $opt{'d'} ) {
+    
+    if ( -1 == $#ports ) {
         @ports = @ports_order;
     }
 
@@ -430,9 +430,9 @@ B<pinst> - MacPorts install helper
 
 =head1 SYNOPSIS
 
-B<pinst> [B<-c> I<file>] [B<-fns>] {B<-d> | I<port> [I<...>]}
+B<pinst> [B<-c> I<file>] [B<-fns>] [I<port> I<...>]
 
-B<pinst> B<-a>
+B<pinst> [B<-c> I<file>] B<-a>
 
 B<pinst> B<-h>
 
@@ -445,8 +445,8 @@ wrapper program? Two reasons:
 
 =item 1.
 
-sometimes MacPorts installs dependencies a little too aggressively L<mdash> 
-for example, C<php5> requires C<gd> which, by default, installs C<XFree86>. 
+sometimes MacPorts installs dependencies a little too aggressively. For 
+example, C<php5> requires C<gd> which, by default, installs C<XFree86>. 
 I don't want all of X11 rebuilt just to get PHP.
 
 =item 2.
@@ -475,15 +475,11 @@ installed as a dependency of something else
 
 use I<file> as the defaults file
 
-=item B<-d>
-
-install the ports as specified in the defaults file
-
 =item B<-f>
 
 force dependencies even if it has variants
 
-=item <B-s>
+=item B<-s>
 
 print status during operations that are likely to take some time
 
