@@ -16,7 +16,7 @@ use Term::ANSIColor;
 # caching
 memoize( 'get_port_variants'     );
 memoize( 'get_port_dependencies' );
-# memoize( 'get_port_dependents'   );
+memoize( 'get_port_dependents'   );
 
    $|                  = 1;     # output immediately
 my %opt;
@@ -141,16 +141,10 @@ sub get_port_dependents_tree {
 }
 sub get_full_dependencies {
     my $port  = shift;
-    # my $level = shift || 0;
     my %dependencies;
     
-    # my $indent = q(  ) x $level;
-    
-    # print "${indent}${port}:\n";
-    
     foreach my $dep ( get_port_dependencies( $port ) ) {
-        my %sub_deps = get_full_dependencies( $dep #, $level+1 
-            );
+        my %sub_deps = get_full_dependencies( $dep );
         $dependencies{$dep} = 1;
         foreach my $sub_dep ( keys %sub_deps ) {
             $dependencies{$sub_dep} = 1;
