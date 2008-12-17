@@ -8,17 +8,24 @@ use Data::Dumper;
 
 use FileHandle;
 use Getopt::Std;
+use Memoize;
 use Pod::Usage;
 use Sys::Hostname;
 use Term::ANSIColor;
 
-   
+# caching
+memoize( 'get_port_variants'     );
+memoize( 'get_port_dependencies' );
+# memoize( 'get_port_dependents'   );
+
+   $|                  = 1;     # output immediately
 my %opt;
-my $ok_opts            = getopts( 'c:dfhn', \%opt );
+my $ok_opts            = getopts( 'ac:dfhns', \%opt );
 my $DEFAULTS_FILE      =    $opt{'c'}
                          || $ENV{'PINST_DEFAULTS'} 
                          || "$ENV{'HOME'}/etc/ports";
 my $DEPENDENCIES_CMD   = 'port deps';
+my $DEPENDENTS_CMD     = 'port dependents';
 my $INSTALLED_CMD      = 'port installed';
 my $VARIANTS_CMD       = 'port variants';
 my $INSTALL_CMD        = 'port install';
@@ -37,17 +44,122 @@ if ( !$ok_opts  or  defined $opt{'h'} ) {
     pod2usage();
 }
 
-if ( defined $opt{'d'} ) {
-    @ports = @ports_order;
+if ( defined $opt{'a'} ) {
+    list_additional_ports();
 }
+else {
 
-foreach my $port ( @ports ) {
-    install_port( $port );
+    if ( defined $opt{'d'} ) {
+        @ports = @ports_order;
+    }
+
+    foreach my $port ( @ports ) {
+        install_port( $port );
+    }
+
 }
 exit;
 
 
+sub list_additional_ports {
+    my %justified_ports;
+    my %unjustified_ports;
+    
+    status( 'Calculating dependencies: ' );
+    foreach my $port ( @ports_order ) {
+        my %dependencies = get_full_dependencies( $port );
+        foreach my $dependency ( keys %dependencies ) {
+            $justified_ports{$dependency} = 1;
+        }
+        $justified_ports{$port} = 1;
+    }
+    status( "\n\n" );
+    
+    foreach my $port ( keys %installed_ports ) {
+        if ( !defined $justified_ports{$port} ) {
+            $unjustified_ports{$port} = 1;
+        }
+    }
+    
+    my %depth;
+    my $highest = 1;
+    my %tree = get_port_dependents_tree( %unjustified_ports );
+    foreach my $port ( keys %unjustified_ports ) {
+        my $depth = get_dependency_depth( $port, \%tree );
+        
+        $depth{$port} = $depth;
+        if ( $depth > $highest ) {
+            $highest = $depth;
+        }
+    }
+    
+    foreach my $port ( keys %depth ) {
+        if ( $highest == $depth{$port} ) {
+            describe_dependency_tree( $port, \%tree );
+        }
+    }
+}
+sub describe_dependency_tree {
+    my $port  = shift;
+    my $tree  = shift;
+    my $depth = shift || 0;
+    
+    my $indent    = q(    ) x ( $depth - 1 );
+    my $indicator = $depth ? q( -> ) : q();
+    print "${indent}${indicator}${port}\n";
+    foreach my $dep ( keys %{ $tree->{$port} } ) {
+        describe_dependency_tree( $dep, $tree, $depth+1 );
+    }
+}
+sub get_dependency_depth {
+    my $port  = shift;
+    my $tree  = shift;
+    
+    my $children   = 0;
+    my @dependents = keys %{ $tree->{$port} };
+    foreach my $dep ( @dependents ) {
+        my $value = get_dependency_depth( $dep, $tree );
+        
+        if ( $value > $children ) {
+            $children = $value;
+        }
+    }
+    
+    return $children + 1;
+}
+sub get_port_dependents_tree {
+    my %ports = @_;
+    my %tree;
+    
+    foreach my $port ( keys %ports ) {
+        foreach my $dep ( get_port_dependents( $port ) ) {
+            $tree{$dep}{$port} = 1;
+        }
+    }
 
+    return %tree;
+}
+sub get_full_dependencies {
+    my $port  = shift;
+    # my $level = shift || 0;
+    my %dependencies;
+    
+    # my $indent = q(  ) x $level;
+    
+    # print "${indent}${port}:\n";
+    
+    foreach my $dep ( get_port_dependencies( $port ) ) {
+        my %sub_deps = get_full_dependencies( $dep #, $level+1 
+            );
+        $dependencies{$dep} = 1;
+        foreach my $sub_dep ( keys %sub_deps ) {
+            $dependencies{$sub_dep} = 1;
+        }
+    }
+    status( q(.) );
+
+    return %dependencies;
+}
 sub install_port {
     my $port      = shift;
     my $dependent = shift;
@@ -104,7 +216,7 @@ sub get_port_dependencies {
     my $port     = shift;
     my $variants = '';
     my @dependencies;
-
+    
     if ( defined $default_ports->{$port} ) {
         $variants = join ' ', keys %{ $default_ports->{$port}{'variants'} };
     }
@@ -126,6 +238,28 @@ sub get_port_dependencies {
     }
     
     return @dependencies;
+}
+sub get_port_dependents {
+    my $port = shift;
+    my @dependents;
+    
+    my $handle = FileHandle->new( "${DEPENDENTS_CMD} ${port} | " )
+                 or die "$!";
+    
+    LINE: 
+    while ( my $line = <$handle> ) {
+        if ( $line =~ m{ ^ ( [^\s]+ ) \s depends \s on \s $port }x ) {
+            push @dependents, $1;
+        }
+        elsif( $line =~ m{ has \s no\s dep }x ) {
+            # do nothing
+        }
+        else {
+            die "Dependents error: $line";
+        }
+    }
+    
+    return @dependents;
 }
 sub get_installed_ports {
     my %ports;
@@ -149,6 +283,7 @@ sub get_installed_ports {
     my $handle = FileHandle->new( "${INSTALLED_CMD} |" )
                  or die "$!";
 
+    status( 'Getting installed ports: ' );
     # skip the first line - always an intro line
     <$handle>;
     
@@ -168,11 +303,13 @@ sub get_installed_ports {
                     $ports{$port}{'variants'}{$variant}= 1;
                 }
             }
+            status( q(.) );
         }
         else {
             die "UNMATCHED: $line";
         }
     }
+    status( "\n" );
     
     return %ports;
 }
@@ -280,7 +417,11 @@ sub get_default_ports {
     
     return \%ports, @order;
 }
-
+sub status {
+    my $text = shift;
+    
+    print $text if defined $opt{'s'};
+}
 
 
 __END__
@@ -297,9 +438,11 @@ B<pinst> - MacPorts install helper
 
 =head1 SYNOPSIS
 
-B<pinst> [B<-c> I<file>] [B<-fn>] {B<-d> | I<port> [I<...>]}
+B<pinst> [B<-c> I<file>] [B<-fns>] {B<-d> | I<port> [I<...>]}
 
-B<pinst> -h
+B<pinst> B<-a>
+
+B<pinst> B<-h>
 
 =head1 DESCRIPTION
 
@@ -330,6 +473,12 @@ what they are.
 
 display the synopsis and exit
 
+=item B<-a>
+
+list ports added to the machine that aren't specified in the defaults file, 
+or a dependency of one; output is in tree form to illustrate what was 
+installed as a dependency of something else
+
 =item B<-c> I<file>
 
 use I<file> as the defaults file
@@ -341,6 +490,10 @@ install the ports as specified in the defaults file
 =item B<-f>
 
 force dependencies even if it has variants
+
+=item <B-s>
+
+print status during operations that are likely to take some time
 
 =back
 
