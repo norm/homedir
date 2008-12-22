@@ -15,9 +15,11 @@ LAPTOP=kittaghy,sinister
 # basics
 *               fortune
 *               rsync               # no-variants
-*               perl5.8             # no-variants
+*               perl5               # no-variants
 *               p5-version
 *               p5-readonly
+*               p5-class-trigger
+*               p5-text-autoformat
 *               p5-moose
 *               p5-moose-policy
 
@@ -28,6 +30,7 @@ LAPTOP=kittaghy,sinister
 # source control
 DEV             p5-module-starter
 DEV             p5-perl-tidy
+DEV             p5-test-perl-critic
 *               curl                # no-variants (pre-req of git-core)
 *               expat               # no-variants (pre-req of git-core)
 *               libiconv            # no-variants (pre-req of git-core)
