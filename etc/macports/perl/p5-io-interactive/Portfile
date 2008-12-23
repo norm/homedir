@@ -1,0 +1,10 @@
+# $Id$
+PortSystem 1.0
+PortGroup perl5 1.0
+
+perl5.setup		IO-Interactive 0.0.4
+maintainers		nomaintainer
+description		Utilities for interactive I/O
+long_description	${description}
+checksums		md5 408bfc1bfd0d13ce73099cdc716b6b90
+platforms		darwin

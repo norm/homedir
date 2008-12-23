@@ -1,0 +1,10 @@
+# $Id$
+PortSystem 1.0
+PortGroup perl5 1.0
+
+perl5.setup		Class-Std 0.0.9
+maintainers		nomaintainer
+description		Support for creating standard "inside-out" classes
+long_description	${description}
+checksums		md5 376e009ce786d7f1887b212d6582e63f
+platforms		darwin
