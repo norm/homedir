@@ -33,6 +33,7 @@ LAPTOP=kittaghy,sinister
 # source control
 DEV             p5-module-starter
 DEV             p5-module-starter-pbp
+# DEV             p5-smart-comments
 DEV             p5-perl-tidy
 DEV             p5-test-perl-critic
 *               curl                # no-variants (pre-req of git-core)
@@ -54,3 +55,6 @@ STORE           unrar
 
 # itunes
 MUSIC           id3lib
+
+# fun things
+LAPTOP          isightcapture
