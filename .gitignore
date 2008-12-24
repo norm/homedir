@@ -5,8 +5,7 @@
 .junglediskinstance
 .subversion
 
-etc/bash/saved_history
-etc/less_history
+var
 
 Applications/
 Desktop/
