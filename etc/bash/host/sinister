@@ -3,7 +3,10 @@
 #
 # commands specific to host sinister
 
-[ -x ${HOME}/bin/textmate ]     && export VISUAL="${HOME}/bin/textmate"
+need tm <<end
+    export VISUAL="${HOME}/bin/textmate";
+    alias commit='git diff --cached | tm ; git commit';
+end
 
 function pdtm {
     perldoc -t $1 | tm
