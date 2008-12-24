@@ -1,0 +1,17 @@
+#!/bin/sh
+# -*- Mode: Bash; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 2 -*-
+
+CAPTURE_BASE="${HOME}/Documents/captures"
+   DIRECTORY="${CAPTURE_BASE}/"`date +%Y/%m/%d`
+        FILE=`date +%H-%M-%S.jpg`
+
+mkdir -p ${DIRECTORY}
+
+  CAPTURE_TYPE='jpg'
+ CAPTURE_WIDTH='1600'
+CAPTURE_HEIGHT='1200'
+
+isightcapture -t ${CAPTURE_TYPE}    \
+              -w ${CAPTURE_WIDTH}   \
+              -h ${CAPTURE_HEIGHT}  \
+              "${DIRECTORY}/${FILE}"
