@@ -1,0 +1,11 @@
+# ~/etc/rsnapshot/rsync_disk
+# -*- Mode: Ini; tab-width: 8; indent-tabs-mode: tab; c-basic-offset: 2 -*- 
+# (rsnapshot requires tabs and trailing slashes on directories)
+#
+# rsync options when archiving to a local disk
+
+cmd_rsync		/ports/bin/rsync
+rsync_short_args	-av
+rsync_long_args		--delete --inplace --size-only
+verbose			1
+use_lazy_deletes	1
