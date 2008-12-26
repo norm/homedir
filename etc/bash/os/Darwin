@@ -33,7 +33,20 @@ if [ -x /ports/bin ]; then
     
     source_or_warn  /ports/etc/bash_completion
     
-    [ -x /ports/bin/nvi ]   && alias vi='nvi'
+    need nvi <<end
+        alias vi='nvi'
+end
+    
+    # if we have local ports, check that they are being used
+    if [ -d "$HOME/etc/macports" ]; then
+        local_macports=`grep $HOME /ports/etc/macports/sources.conf`
+        if [ -z "$local_macports" ]; then
+            print "${bold}${red}Local ports not defined${reset}"
+            echo  "Add the following line to /ports/etc/macports/sources.conf:"
+            echo  "    file://${HOME}/etc/macports [nosync]"
+            echo  'above the macports.org release line.'
+        fi
+    fi
     
     # easier control of lighttpd
     if [ -d /ports/etc/lighttpd ]; then
