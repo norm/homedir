@@ -14,6 +14,7 @@ LAPTOP=kittaghy,sinister
 
 # basics
 *               fortune
+*               growlnotify
 *               rsync               # no-variants
 *               perl5               # no-variants
 *               p5-version
