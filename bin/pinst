@@ -20,7 +20,7 @@ memoize( 'get_port_dependents'   );
 
    $|                  = 1;     # output immediately
 my %opt;
-my $ok_opts            = getopts( 'ac:fhns', \%opt );
+my $ok_opts            = getopts( 'ac:fhnsu', \%opt );
 my $DEFAULTS_FILE      =    $opt{'c'}
                          || $ENV{'PINST_DEFAULTS'} 
                          || "$ENV{'HOME'}/etc/ports";
@@ -29,6 +29,7 @@ my $DEPENDENTS_CMD     = 'port dependents';
 my $INSTALLED_CMD      = 'port installed';
 my $VARIANTS_CMD       = 'port variants';
 my $INSTALL_CMD        = 'port install';
+my $UNINSTALL_CMD      = 'port uninstall';
 my $hostname           = defined $ENV{'HOST'} 
                            ? $ENV{'HOST'}
                            : hostname();
@@ -54,7 +55,12 @@ else {
     }
 
     foreach my $port ( @ports ) {
-        install_port( $port );
+        if ( defined $opt{'u'} ) {
+            uninstall_port( $port );
+        }
+        else {
+            install_port( $port );
+        }
     }
 
 }
@@ -205,6 +211,41 @@ sub install_port {
     
     $installed_ports{$port}{'version'} = 'unknown';
     print "\n";
+}
+sub uninstall_port {
+    my $port       = shift;
+    my $dependency = shift;
+    
+    return unless defined $installed_ports{$port};
+
+    foreach my $dependent ( get_port_dependents( $port ) ) {
+        uninstall_port( $dependent, $port );
+    }
+    
+    my $colour       = 'green';
+    my $install_text = defined $opt{'d'} 
+                           ? 'deactivate '
+                           : 'uninstall ';
+    if ( defined $dependency ) {
+        $install_text .= "$dependency dependent $port";
+        $colour        = 'yellow';
+    }
+    else {
+        $install_text .= "$port";
+    }
+        
+    print colored "About to ${install_text}:\n", "bold ${colour}";
+
+    my $command = "${UNINSTALL_CMD} $port";
+    if ( defined $opt{'n'} ) {
+        print "**  $command\n";
+    }
+    else {
+        my $return  = system( $command );
+        die if $return;
+    }
+    
+    delete $installed_ports{$port};
 }
 sub get_port_dependencies {
     my $port     = shift;
