@@ -27,7 +27,19 @@ livecheck.check     none
 master_sites
 depends_lib port:perl5.10
 post-destroot {
-    ln -s perl${version} ${destroot}${prefix}/bin/$name
+    set make_symlinks {
+            a2p c2ph config_data corelist cpan cpan2dist cpanp cpanp-run-perl
+            dprofpp enc2xs find2perl h2ph h2xs instmodsh libnetcfg perlbug
+            perldoc perlivp piconv pl2pm pod2html pod2latex pod2man pod2text
+            pod2usage podchecker podselect prove psed pstruct ptar ptardiff
+            s2p shasum splain xsubpp
+        }
+
+    foreach file ${make_symlinks} {
+        ln -s ${file}-${version}  ${destroot}${prefix}/bin/${file}
+    }
+
     ln -s perl${version} ${destroot}${prefix}/bin/perl
+    ln -s perl${version} ${destroot}${prefix}/bin/$name
 }
 universal_variant   no
