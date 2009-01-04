@@ -32,6 +32,8 @@ if [ -x /ports/bin ]; then
     PORTBASE='/ports/var/macports/sources/rsync.macports.org/release/ports'
      daemons='/ports/etc/LaunchDaemons'
     
+    alias   reindex='sh -c "cd $HOME/etc/macports && portindex"'
+    
     source_or_warn  /ports/etc/bash_completion
     
     need nvi <<end
