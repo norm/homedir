@@ -11,3 +11,7 @@ end
 function pdtm {
     perldoc -t $1 | tm
 }
+
+function gd {
+    git diff "$@" | tm
+}
