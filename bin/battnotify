@@ -1,0 +1,119 @@
+#!/ports/bin/perl
+
+use strict;
+use warnings;
+
+use Mac::Growl      qw( :all );
+use Readonly;
+
+Readonly my $IOREG_COMMAND => 'ioreg -r -c AppleSmartBattery -l -w0';
+Readonly my $GROWL_NAME    => 'Battery Notifier';
+Readonly my $GROWL_APPICON => 'Activity Monitor';
+Readonly my $GROWL_TYPES   => [ 'update', 'low update' ];
+
+
+my $details;
+my $pipe;
+
+RegisterNotifications( 
+        $GROWL_NAME, 
+        $GROWL_TYPES, 
+        $GROWL_TYPES, 
+        $GROWL_APPICON 
+    );
+
+open $pipe, "$IOREG_COMMAND |"
+    or die;
+    
+while ( my $line = <$pipe> ) {
+    my $find_item_regexp = qr{
+            ^
+            \s+
+        
+            "(\w+)"
+        
+            [ ][=][ ]
+        
+            (.*)
+        
+            \s*
+            $
+        }x;
+    
+    if ( $line =~ $find_item_regexp ) {
+        my $item  = $1;
+        my $value = $2;
+        
+        if ( 'ExternalConnected' eq $item ) {
+            $details->{'on_mains'} = ( 'Yes' eq $value );
+        }
+        
+        if ( 'TimeRemaining' eq $item ) {
+            $details->{'remaining'} = $value;
+            $details->{'hours'    } = int( $value / 60 );
+            $details->{'minutes'  } = int( $value % 60 );
+        }
+    }
+}
+
+if ( !$details->{'on_mains'} ) {
+    my %alert = ( 45 => 1, 30 => 1, 15 => 1, 0 => 1 );
+
+    if ( $details->{'hours'} < 1 ) {
+        $alert{'20'} = 1;
+        $alert{'10'} = 1;
+        $alert{'5'} = 1;
+    }
+    
+    alert() if defined $alert{ $details->{'minutes'} };
+}
+exit;
+
+
+sub alert {
+    my $update_type = 'update';
+    my $priority    = 0;
+    my $sticky      = 0;
+    my $time_left   = sprintf '%d:%02d',
+                              $details->{'hours'},
+                              $details->{'minutes'};
+    
+    if ( $details->{'hours'} < 1 ) {
+        $update_type = 'low update';
+        $priority    = 2;
+        $sticky      = 1;
+    }
+
+    PostNotification(
+            $GROWL_NAME, 
+            $update_type, 
+            'Battery Notification',
+            "The battery has $time_left remaining.",
+            $sticky,
+            $priority
+        );
+}
+
+__END__
+
+=pod
+
+=head1 NAME
+
+B<battnotify> - intermittent growl notifications of remaining battery life
+
+=head1 DESCRIPTION
+
+B<battnotify> sends a growl notification of the remaining battery life 
+at certain intervals. 
+
+If there is more than an hour of battery life left, it will trigger growl
+every 15 minutes.
+
+In the last hour of battery life, growl notifications will be set to B<high>
+priority and trigger extra notifications when there are only 20, 10 and 5
+minutes remaining.
+
+=head1 AUTHOR
+
+Mark Norman Francis L<http://marknormanfrancis.com/>
