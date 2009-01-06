@@ -5,8 +5,30 @@
 
 export BLOCKSIZE='1k'
 
-alias   df='df -h'
+alias   dff=`which df`
 alias   du='du -h'
 
 # current directory usage (sorted least-to-most) with total
 alias   dus='\du -s * | sort -n ; du -s .'
+
+function df {
+    /bin/df -h 2>/dev/null | perl -e '
+$prefix     = <>;
+$longest_fs = 20;
+
+while ( <> ) {
+    m{^ ( [\S+\s]+ ) \s+ (\S+) \s+ (\S+) \s+ (\S+) \s+ (\S+) \s+ (\S+) $}x;
+
+    push @fs, [ $6, $5, $4, $3, $2 ];
+    $longest_mount = length( $1 ) if length $1 > $longest_mount;
+    $longest_fs    = length( $6 ) if length $6 > $longest_fs;
+}
+
+$tmpl = "%-${longest_fs}s      %5s %10s %10s %10s\n";
+
+printf $tmpl, "Mounted on", qw( Size Used Avail Capacity );
+foreach my $fs ( @fs ) {
+    printf $tmpl, @{ $fs };
+}'
+
+}
