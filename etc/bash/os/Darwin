@@ -25,6 +25,23 @@ function eject {
 }
 
 
+# open new tab in Terminal at current or given directory
+function nt {
+    local dir="${1:-$PWD}"
+
+    osascript >/dev/null <<APPLESCRIPT
+        tell application "System Events" 
+            tell process "Terminal"
+                keystroke "t" using command down
+            end tell
+        end tell
+        tell application "Terminal"
+            do script "cd ${dir}" in window 1
+        end tell
+APPLESCRIPT
+}
+
+
 # setup things installed via MacPorts
 if [ -x /ports/bin ]; then
         PATH="/ports/bin:${PATH}"
