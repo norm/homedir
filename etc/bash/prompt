@@ -5,11 +5,13 @@
 
 # most basic prompt
 current_path="${pbold}\$(pwdn 2)${preset}"
-PS1="${hostname} ${current_path})\$"
+PS1="${hostname}"
 
 # optional prefixes to the basic prompt
 [ $USER != 'norm' ]         && PS1="${USER}@${PS1}"
 [ -n "$prompt_prefix" ]     && PS1="${prompt_prefix} ${PS1}"
 [ -n "$WINDOW" ]            && PS1="${pcyan}scr-${WINDOW}${preset} ${PS1}"
+[ -n "$GIT_STATUS" ]        && \
+            current_path="${current_path}${pyellow}${GIT_STATUS}${preset}"
 
-PS1="($PS1 "
+PS1="(${PS1} ${current_path})\$ "
