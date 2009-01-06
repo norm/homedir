@@ -8,6 +8,6 @@ export  HISTFILESIZE=10000
 export      HISTFILE="${HOME}/var/bash_history"
 
 alias    h='history 20'
-alias   hg='history | grep'
+alias   hg='history | egrep'
 
 shopt -s histappend

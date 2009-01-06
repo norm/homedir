@@ -11,11 +11,14 @@ LAPTOP=kittaghy,sinister
 # essentials
 *               bash-completion
 *               wget
+*               nvi
 
 # basics
 *               fortune
 *               growlnotify
+*               openssh             # no-variants
 *               rsync               # no-variants
+*               rsnapshot
 *               perl5               # no-variants
 *               p5-version
 *               p5-readonly
@@ -37,6 +40,7 @@ DEV             p5-module-starter-pbp
 # DEV             p5-smart-comments
 DEV             p5-perl-tidy
 DEV             p5-test-perl-critic
+DEV             p5-mac-carbon
 *               curl                # no-variants (pre-req of git-core)
 *               expat               # no-variants (pre-req of git-core)
 *               libiconv            # no-variants (pre-req of git-core)

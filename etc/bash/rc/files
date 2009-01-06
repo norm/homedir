@@ -6,8 +6,8 @@
 alias   diff='diff -u'
 
 alias    f.='find .'
-alias   fgr='find . | grep -i'
-alias   fgx='find . -print0 | xargs -0 grep -i'
+alias   fgr='find . | egrep -i'
+alias   fgx='find . -print0 | xargs -0 egrep -i'
 
 alias   ll='ls -la'
 alias   ls='ls -F'
