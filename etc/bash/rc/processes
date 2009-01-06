@@ -11,3 +11,13 @@ alias    psg="echo ${ps_title}; ps | egrep -i"
 alias   stop='sudo kill -STOP'
 alias   cont='sudo kill -CONT'
 alias    top='top -s5 -ocpu'
+
+
+# show the top n memory hogs (default 10)
+function mem {
+    local number=$[ $1 + 1 ]
+    
+    [ "$number" -lt 2 ]     && number=11
+
+    \ps acmxo user,pid,%mem,rss,comm | head -n ${number}
+}
