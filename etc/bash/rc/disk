@@ -17,7 +17,7 @@ $prefix     = <>;
 $longest_fs = 20;
 
 while ( <> ) {
-    m{^ ( [\S+\s]+ ) \s+ (\S+) \s+ (\S+) \s+ (\S+) \s+ (\S+) \s+ (\S+) $}x;
+    m{^ ( [\S+\s]+? ) \s+ (\S+) \s+ (\S+) \s+ (\S+) \s+ (\S+) \s+ (/.*) $}x;
 
     push @fs, [ $6, $5, $4, $3, $2 ];
     $longest_mount = length( $1 ) if length $1 > $longest_mount;
