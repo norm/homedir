@@ -47,7 +47,10 @@ DEV             p5-mac-carbon
 *               git-core
 
 # web development
-WEB             lighttpd            +davprops
+WEB             p5-text-template
+WEB             p5-uri
+WEB             p5-fcgi
+WEB             lighttpd            +davprops +cml
 WEB             libxslt             # no-variants (pre-req of php5)
 WEB             bzip2               # no-variants (pre-req of php5)
 WEB             freetype            +macosx
