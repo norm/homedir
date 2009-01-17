@@ -2,9 +2,58 @@
 
 require "fileinto";
 
-# test sieve is working
-if address :is "from" "norm@southpaw.cackhanded.net" {
-    fileinto "from-southpaw";
+if header :contains ["Sender"] "ydn-javascript@yahoogroups.com" {
+    fileinto ".lists.ydn-javascript";
+    stop;
+}
+
+if header :contains ["Sender"] "newtontalk-bounce@newtontalk.net" {
+    fileinto ".lists.newtontalk";
+    stop;
+}
+
+if header :contains ["Sender"] "sqlite-users-bounces@sqlite.org" {
+    fileinto ".lists.sqlite";
+    stop;
+}
+
+if header :contains ["Sender"] "macports-users-bounces@lists.macosforge.org" {
+    fileinto ".lists.macports";
+    stop;
+}
+
+if header :contains ["Sender"] "beanstalk-talk@googlegroups.com" {
+    fileinto ".lists.beanstalk";
+    stop;
+}
+
+if header :contains ["Sender"] "lists@webstandardsgroup.org" {
+    fileinto ".lists.webstandardsgroup";
+    stop;
+}
+
+if header :contains ["Sender"] "www-style-request@w3.org" {
+    fileinto ".lists.www-style";
+    stop;
+}
+
+if header :contains ["Sender"] "css-d-bounces@lists.css-discuss.org" {
+    fileinto ".lists.css-d";
+    stop;
+}
+
+if header :contains ["Sender"] "microformats-discuss-bounces@microformats.org" {
+    fileinto ".lists.microformats-discuss";
+    stop;
+}
+
+if header :contains ["Sender"] "london.pm-bounces@london.pm.org" {
+    fileinto ".lists.london-pm";
+    stop;
+}
+
+if header :contains ["Sender"] "twitter-development-talk@googlegroups.com" {
+    fileinto ".lists.twitter-development";
     stop;
 }
 
