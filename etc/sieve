@@ -1,0 +1,13 @@
+# -*- Mode: Perl; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 2 -*-
+
+require "fileinto";
+
+# test sieve is working
+if address :is "from" "norm@southpaw.cackhanded.net" {
+    fileinto "from-southpaw";
+    stop;
+}
+
+
+# default is implicit keep, but do it explictly anyway
+keep;
