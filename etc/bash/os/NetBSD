@@ -8,5 +8,5 @@ if [ -x /ports/bin ]; then
        PATH="/ports/bin:${PATH}:/usr/games"
     MANPATH="/ports/man:${MANPATH}"
     
-    source_or_warn  /ports/etc/bash_completion
+    source_or_warn  /ports/share/bash-completion/bash_completion
 fi
