@@ -1,11 +1,11 @@
-# ~/etc/bash/arch/NetBSD
+# ~/etc/bash/os/NetBSD
 # -*- Mode: Bash; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 2 -*-
 #
 # bash startup commands specifically for NetBSD boxes
 
 # setup things installed via pkgsrc
 if [ -x /ports/bin ]; then
-       PATH="/ports/bin:${PATH}"
+       PATH="/ports/bin:${PATH}:/usr/games"
     MANPATH="/ports/man:${MANPATH}"
     
     source_or_warn  /ports/etc/bash_completion
