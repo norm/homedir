@@ -1,11 +1,17 @@
+# ignore common files not needed under revision control
+var
+
+
+# ignore sensitive files
+.ssh
+
+
+# ignore OS X stuff
 .DS_Store
 .Trash
-.ssh
 .MacOSX
 .junglediskinstance
 .subversion
-
-var
 
 Applications/
 Desktop/
@@ -19,3 +25,8 @@ Projects/
 Public/
 Sites/
 Sources/
+
+
+# ignore server stuff
+Maildir/
+etc/sievec
