@@ -3,57 +3,67 @@
 require "fileinto";
 
 if header :contains ["Sender"] "ydn-javascript@yahoogroups.com" {
-    fileinto ".lists.ydn-javascript";
+    fileinto "lists.ydn-javascript";
     stop;
 }
 
 if header :contains ["Sender"] "newtontalk-bounce@newtontalk.net" {
-    fileinto ".lists.newtontalk";
+    fileinto "lists.newtontalk";
     stop;
 }
 
 if header :contains ["Sender"] "sqlite-users-bounces@sqlite.org" {
-    fileinto ".lists.sqlite";
+    fileinto "lists.sqlite";
     stop;
 }
 
 if header :contains ["Sender"] "macports-users-bounces@lists.macosforge.org" {
-    fileinto ".lists.macports";
+    fileinto "lists.macports";
     stop;
 }
 
 if header :contains ["Sender"] "beanstalk-talk@googlegroups.com" {
-    fileinto ".lists.beanstalk";
+    fileinto "lists.beanstalk";
     stop;
 }
 
 if header :contains ["Sender"] "lists@webstandardsgroup.org" {
-    fileinto ".lists.webstandardsgroup";
+    fileinto "lists.webstandardsgroup";
     stop;
 }
 
 if header :contains ["Sender"] "www-style-request@w3.org" {
-    fileinto ".lists.www-style";
+    fileinto "lists.www-style";
     stop;
 }
 
 if header :contains ["Sender"] "css-d-bounces@lists.css-discuss.org" {
-    fileinto ".lists.css-d";
+    fileinto "lists.css-d";
     stop;
 }
 
 if header :contains ["Sender"] "microformats-discuss-bounces@microformats.org" {
-    fileinto ".lists.microformats-discuss";
+    fileinto "lists.microformats-discuss";
     stop;
 }
 
 if header :contains ["Sender"] "london.pm-bounces@london.pm.org" {
-    fileinto ".lists.london-pm";
+    fileinto "lists.london-pm";
     stop;
 }
 
 if header :contains ["Sender"] "twitter-development-talk@googlegroups.com" {
-    fileinto ".lists.twitter-development";
+    fileinto "lists.twitter-development";
+    stop;
+}
+
+if header :contains ["Sender"] "list-bounces@webdesign-l.com" {
+    fileinto "lists.webdesign-l";
+    stop;
+}
+
+if header :contains ["Sender"] "textmate-bounces+norm=cackhanded.net@lists.macromates.com" {
+    fileinto "lists.textmate";
     stop;
 }
 
