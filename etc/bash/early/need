@@ -5,6 +5,8 @@
 # echoing a warning if it doesn't exist
 
 function need {
+    [ $interactive = 0 ]    && return
+    
     local file=${1}
     local have=0
     

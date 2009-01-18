@@ -4,6 +4,8 @@
 # source a file, echoing a warning if it doesn't exist
 
 function diff_or_warn {
+    [ $interactive = 0 ]    && return
+    
     local  file_a=${1}
     local  file_b=${2}
     local warning=${3:-${file_a} and ${file_b} are not different}
@@ -16,6 +18,8 @@ function diff_or_warn {
 }
 
 function diff_and_warn {
+    [ $interactive = 0 ]    && return
+    
     local  file_a=${1}
     local  file_b=${2}
     local warning=${3:-${file_a} and ${file_b} are different}
