@@ -1,0 +1,13 @@
+# $Id$
+PortSystem 1.0
+PortGroup perl5 1.0
+
+perl5.setup		Mac-Growl 0.67
+maintainers		nomaintainer
+categories              aqua perl
+description		Comments that do more than just sit there 
+long_description	${description}
+checksums		md5 09da224d5b2d8bbd7669e4d4dfc912d7
+platforms		darwin
+
+depends_lib     port:p5-mac-glue
