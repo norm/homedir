@@ -55,6 +55,9 @@ WEB             libxslt             # no-variants (pre-req of php5)
 WEB             bzip2               # no-variants (pre-req of php5)
 WEB             freetype            +macosx
 WEB             php5                +macosx +fastcgi +pear +sqlite
+WEB             fontconfig          +doc
+WEB             gd2                 +no_x11
+WEB             p5-gd
 
 # file storage
 STORE           hellanzb
