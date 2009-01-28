@@ -25,8 +25,13 @@ Projects/
 Public/
 Sites/
 Sources/
+Code/
 
 
 # ignore server stuff
 Maildir/
 etc/sievec
+
+
+# ignore anything else
+.gem
