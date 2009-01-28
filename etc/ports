@@ -50,6 +50,8 @@ DEV             p5-mac-carbon
 WEB             p5-text-template
 WEB             p5-uri
 WEB             p5-fcgi
+WEB             p5-cache-fastmmap
+WEB             p5-module-pluggable-dependency
 WEB             lighttpd            +davprops +cml
 WEB             libxslt             # no-variants (pre-req of php5)
 WEB             bzip2               # no-variants (pre-req of php5)

@@ -1,0 +1,10 @@
+# $Id$
+PortSystem 1.0
+PortGroup perl5 1.0
+
+perl5.setup		Module-Pluggable-Dependency 0.0.4
+maintainers		nomaintainer
+description		Order plugins based on inter-plugin dependencies
+long_description	${description}
+checksums		md5 252536a79656f1876d0a6829dc328531
+platforms		darwin
