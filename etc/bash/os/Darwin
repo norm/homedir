@@ -25,6 +25,12 @@ function eject {
 }
 
 
+# prefer BSD vi to vim
+need nvi <<end
+    alias vi='nvi';
+end
+
+
 # open new tab in Terminal at current or given directory
 function nt {
     local dir="${1:-$PWD}"
