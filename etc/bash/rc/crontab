@@ -5,8 +5,14 @@
 
 export REAL_CRONTAB=`which crontab`
 export CRONTAB_FILE=${HOME}/etc/crontabs/${HOST}
+export BASE_CRONTAB="${HOME}/etc/crontabs/_default"
 
 function crontab {
+    # initialise it if necessary
+    if [ ! -f ${CRONTAB_FILE} ]; then
+        cat ${BASE_CRONTAB} > ${CRONTAB_FILE}
+    fi
+    
     case "${1}" in
         -l)
             cat ${CRONTAB_FILE}

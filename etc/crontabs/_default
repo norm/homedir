@@ -1,0 +1,8 @@
+# crontab.XXX
+# -*- Mode: Apache; tab-width: 3; indent-tabs-mode: nil -*-
+
+  MAILTO=norm@cackhanded.net
+    PATH=/ports/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin
+PERL5LIB=/Users/norm/lib/perl
+
+#mn   hr    dom   mon   dow   cmd
