@@ -3,10 +3,4 @@
 #
 # bash startup commands specifically for NetBSD boxes
 
-# setup things installed via pkgsrc
-if [ -x /ports/bin ]; then
-       PATH="/ports/bin:${PATH}:/usr/games"
-    MANPATH="/ports/man:${MANPATH}"
-    
-    source_or_warn  /ports/share/bash-completion/bash_completion
-fi
+PATH="${PATH}:/usr/games"

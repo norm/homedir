@@ -1,0 +1,12 @@
+# ~/etc/bash/rc/pkgsrc
+# -*- Mode: Bash; tab-width: 4; indent-tabs-mode: nil -*-
+#
+# bash startup commands specifically for pkgsrc
+
+if [ -x /ports/bin ]; then
+       PATH="/ports/bin:/ports/sbin:${PATH}:/usr/games"
+    MANPATH="/ports/man:${MANPATH}"
+    
+    BASH_COMPLETION='/ports/share/bash-completion/bash_completion'
+    source_or_warn  ${BASH_COMPLETION}
+fi
