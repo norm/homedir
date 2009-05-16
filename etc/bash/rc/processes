@@ -11,7 +11,7 @@ alias    psg="echo ${ps_title}; ps | egrep -i"
 alias   stop='sudo kill -STOP'
 alias   cont='sudo kill -CONT'
 alias    top='top -s5 -ocpu'
-
+alias      z='suspend'
 
 # show the top n memory hogs (default 10)
 function mem {
