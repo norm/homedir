@@ -18,6 +18,7 @@ Desktop/
 Documents/
 Downloads/
 Library/
+Memory/
 Movies/
 Music/
 Pictures/
@@ -31,7 +32,11 @@ Code/
 # ignore server stuff
 Maildir/
 etc/sievec
+ec2/
 
 
 # ignore anything else
 .gem
+.cpan
+.cpanplus
+.cups
