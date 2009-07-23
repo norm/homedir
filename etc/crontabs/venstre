@@ -1,0 +1,9 @@
+# crontab.venstre
+# -*- Mode: Apache; tab-width: 3; indent-tabs-mode: nil -*-
+
+  MAILTO=norm@cackhanded.net
+    PATH=/ports/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin
+
+#mn   hr    dom   mon   dow   cmd
+*/5   *     *     *     *     /home/norm/twitter.pl
+
