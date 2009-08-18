@@ -46,3 +46,21 @@ function nt {
         end tell
 APPLESCRIPT
 }
+
+
+# perform fast user switching without needing the menu extra visible
+function uswitch {
+    local menuextras='/System/Library/CoreServices/Menu Extras/'
+    local   usermenu="${menuextras}/User.menu/Contents/Resources/CGSession"
+
+    id=`id -u $1`
+    case "$id" in
+        $UID) 
+            # do nothing
+        ;;
+
+        *)
+            "$usermenu" -switchToUserID $id
+        ;;
+    esac
+}
