@@ -1,0 +1,19 @@
+#!/bin/sh
+# -*- Mode: Bash; tab-width: 4; indent-tabs-mode: nil; -*-
+
+if [ -n "$1" ]; then
+
+    # open file(s) in TextMate for editing -- by opening each file as a
+    # separate invocation, we avoid the scenario where a new "project" window
+    # is opened for the named files, rather than opening them in an already
+    # existing window
+    for f in "$@"; do
+        mate "$f"
+    done
+
+else
+    
+    # no arguments means use stdin (piping stuff to TextMate)
+    mate
+
+fi
