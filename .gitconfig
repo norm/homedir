@@ -6,6 +6,9 @@
 	email = norm@cackhanded.net
 	name  = Mark Norman Francis
 
+[core]
+	whitespace = -trailing-space
+
 [color]
 	status = auto
 	diff   = auto
