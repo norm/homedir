@@ -3,6 +3,7 @@
 # copy home directory files to the named machine
 
 host="${1}"
+just_ssh="${2}"
 
 if [ -n "${host}" ]; then
     
@@ -10,25 +11,22 @@ if [ -n "${host}" ]; then
     SKELETON="${HOME}/Projects/homedir"
     KEYSFILE="${HOME}/.ssh/authorized_keys"
     
-    # over-ride base files if a yahoo host
-    is_yahoo=`echo ${host} | grep yahoo.com`
-    if [ -n "${is_yahoo}" ]; then
-        SKELETON="${HOME}/Projects/homedir.yahoo"
-        KEYSFILE="${HOME}/.ssh/authorized_keys.yahoo"
+    if [ -z $just_ssh ]; then
+        # make sure the skeleton is up-to-date
+        cd ${SKELETON} 
+        git pull
     fi
-    
-    # make sure the skeleton is up-to-date
-    cd ${SKELETON} 
-    git pull
     
     # first transfer the keys file
     ssh ${host} "mkdir -p .ssh"
     rsync -v ${KEYSFILE} ${host}:.ssh/authorized_keys
     
-    # then copy everything else (this has the side effect
-    # of illustrating whether ssh now works passwordless)
-    rsync -aHvP . ${host}:.
-
+    if [ -z $just_ssh ]; then
+        # then copy everything else (this has the side effect
+        # of illustrating whether ssh now works passwordless)
+        rsync -aHvP . ${host}:.
+    fi
+    
 else
     echo "Usage: home <host>"
     exit 1
