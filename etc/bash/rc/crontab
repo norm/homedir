@@ -1,11 +1,11 @@
 # ~/etc/bash/rc/crontab
 # -*- Mode: Bash; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 2 -*-
 #
-# keep the master copy of the crontab file in ~/etc, not /var/cron
+# keep the master copy of the crontab file in ~/var, not /var
 
 export REAL_CRONTAB=`which crontab`
-export CRONTAB_FILE=${HOME}/etc/crontabs/${HOST}
-export BASE_CRONTAB="${HOME}/etc/crontabs/_default"
+export CRONTAB_FILE=${HOME}/var/cron/${HOST}
+export BASE_CRONTAB="${HOME}/var/cron/_default"
 
 function crontab {
     # initialise it if necessary
