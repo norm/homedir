@@ -6,6 +6,9 @@
 # tab lists all matches immediately
 set         show-all-if-ambiguous           on
 
+# don't stop before a symlink
+set         mark-directories                on
+set         mark-symlinked-directories      on
 
 # search partial matches in history using [Esc]+[P], +[N] and arrow keys
 "\ep":      history-search-backward
