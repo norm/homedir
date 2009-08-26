@@ -10,8 +10,11 @@ function blog {
     blog="$1"
     post="$2"
     
+    local dir=$( dirname $post )
+    local base="${SITES_BASE}/${blog}/content/${dir}"
     files=$( echo ${SITES_BASE}/${blog}/content/${post}.{meta,frame} )
     
+    mkdir -p $base
     touch $files
     $BLOG_EDITOR $files
 }
@@ -28,15 +31,19 @@ _blog() {
     local depth
     
     case "$COMP_CWORD" in
-        1)  cd $base_dir
-            dirnames=$( find . -type d -depth 1 | cut -c3- )
+        1)  pushd $base_dir >/dev/null
+            dirnames=$( find * -type d -depth 0 )
             COMPREPLY=( $(compgen -W "${dirnames}" -- ${current} ) )
-            cd - >/dev/null
+            popd >/dev/null
         ;;
-        2)  cd $base_dir/$prev/content
-            COMPREPLY=( $(compgen -f ${current} ) )
+        2)  pushd $base_dir/$prev/content >/dev/null
+            dirnames=$( 
+                    find * -type f | sed -E 's/\.(frame|meta)$//' | sort -u 
+                )
+            COMPREPLY=( $(compgen -W "${dirnames}" -- ${current} ) )
+            popd >/dev/null
         ;;
     esac
     
 }
-complete -o filenames -F _blog blog
+complete -F _blog blog
