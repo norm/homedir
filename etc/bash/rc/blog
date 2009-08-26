@@ -1,0 +1,42 @@
+# ~/etc/bash/rc/blog
+# -*- Mode: Bash; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 2 -*-
+# 
+# blogging stuff
+
+export  SITES_BASE='/sites/htdocs'
+export BLOG_EDITOR='tm'
+
+function blog {
+    blog="$1"
+    post="$2"
+    
+    files=$( echo ${SITES_BASE}/${blog}/content/${post}.{meta,frame} )
+    
+    touch $files
+    $BLOG_EDITOR $files
+}
+
+_blog() {
+    
+    COMPREPLY=()
+    
+    local this_dir=`pwd`
+    local base_dir=${SITES_BASE}
+    local current="${COMP_WORDS[COMP_CWORD]}"
+    local prev="${COMP_WORDS[COMP_CWORD-1]}"
+    local dirnames
+    local depth
+    
+    case "$COMP_CWORD" in
+        1)  cd $base_dir
+            dirnames=$( find . -type d -depth 1 | cut -c3- )
+            COMPREPLY=( $(compgen -W "${dirnames}" -- ${current} ) )
+            cd - >/dev/null
+        ;;
+        2)  cd $base_dir/$prev/content
+            COMPREPLY=( $(compgen -f ${current} ) )
+        ;;
+    esac
+    
+}
+complete -o filenames -F _blog blog
