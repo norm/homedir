@@ -45,30 +45,35 @@ foreach my $id ( keys %articles ) {
     my $shared  = defined $shared{ $id };
     my $noted   = defined $noted{ $id };
     
-    say "$id "
+    my $textual_representation = "$id "
         . ( $starred ? '*' : '' )
         . ( $shared  ? '$' : '' )
-        . ( $noted   ? '#' : '' );
-    say $article->title;
+        . ( $noted   ? '#' : '' )
+        . "\n"
+        . $article->title;
     
     # this means nothing to me (aah, vienna)
     if ( $starred && $shared && $noted ) {
-        say "Error: item flagged as starred, shared and has a note.";
+        say "$textual_representation\n"
+            . "Error: item flagged as starred, shared and has a note.";
     }
     
     # read this later
     elsif ( $starred && $shared ) {
         post_to_instapaper( $article->link->href );
+        remove_flags( $article );
     }
     
     # bookmark, flagged for later review
     elsif ( $starred && $noted ) {
         bookmark_article( $article, 'action:review' );
+        remove_flags( $article, $NOTED_TAG );
     }
     
     # bookmark, flagged to be published
     elsif ( $shared && $noted ) {
         bookmark_article( $article, 'action:publish' );
+        remove_flags( $article );
     }
     
     # defer to later
@@ -87,7 +92,6 @@ foreach my $id ( keys %articles ) {
     }
     
     $reader->tag_entry( $article, $PROCESSED_TAG );
-    say q();
 }
 exit;
 
@@ -156,6 +160,17 @@ sub get_articles {
     
     return %entries;
 }
+sub remove_flags {
+    my $article = shift;
+    my @tags    = @_;
+    
+    # remove all 'state' tags if no tag list given
+    if ( $#tags == -1 ) {
+        @tags = ( $STARRED_TAG, $SHARED_TAG, $NOTED_TAG );
+    } 
+    
+    $reader->unstate_entry( $article, @tags );
+}
 
 
 sub post_to_instapaper {
@@ -172,11 +187,8 @@ sub post_to_instapaper {
             },
         );
     
-    if ( $response->is_success ) {
-        say "-> posted to instapaper";
-    }
-    else {
-        say "** error posting to instapaper";
+    if ( ! $response->is_success ) {
+        die  "error posting to instapaper";
     }
 }
 sub post_to_delicious {
@@ -190,11 +202,8 @@ sub post_to_delicious {
             tags        => join ' ', @tags,
         } );
     
-    if ( $worked ) {
-        say "-> posted to delicious";
-    }
-    else {
-        say "** error posting to delicious";
+    if ( ! $worked ) {
+        die "error posting to delicious";
     }
 }
 
