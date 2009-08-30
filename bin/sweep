@@ -91,7 +91,7 @@ foreach my $id ( keys %articles ) {
         bookmark_article( $article );
     }
     
-    $reader->tag_entry( $article, $PROCESSED_TAG );
+    $reader->state_entry( $article, $PROCESSED_TAG );
 }
 exit;
 
