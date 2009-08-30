@@ -29,6 +29,10 @@ Sources/
 Code/
 
 
+# ignore sensitive config files
+etc/sweep.conf
+
+
 # ignore server stuff
 Maildir/
 etc/sievec
