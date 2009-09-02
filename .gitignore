@@ -4,6 +4,9 @@ var
 
 # ignore sensitive files
 .ssh
+.gitconfig
+etc/sweep.conf
+etc/prowl.conf
 
 
 # ignore OS X stuff
@@ -27,11 +30,6 @@ Public/
 Sites/
 Sources/
 Code/
-
-
-# ignore sensitive config files
-etc/sweep.conf
-etc/prowl.conf
 
 
 # ignore server stuff
