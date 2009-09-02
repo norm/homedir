@@ -30,3 +30,28 @@ function diff_and_warn {
         print "${bold}${red}${warning}${reset}"
     fi
 }
+
+function diff_and_warn_ignore_replacements {
+    [ $interactive = 0 ]    && return
+    
+    local  file_a=${1}
+    local  file_b=${2}
+    local warning=${3:-${file_a} and example ${file_b} are different}
+    
+    local diff_args="--side-by-side 
+                     --suppress-common-lines
+                     --ignore-tab-expansion 
+                     --ignore-space-change 
+                     --ignore-blank-lines"
+    
+    local check_diff=$( 
+        /usr/bin/diff ${diff_args} ${file_a} ${file_b} \
+            | grep -v REPLACE_ME
+    )
+    
+    if [ -n "$check_diff" ]; then
+        print "${bold}${red}${warning}${reset}"
+        /usr/bin/diff ${diff_args} ${file_a} ${file_b} \
+            | grep -v REPLACE_ME
+    fi
+}
