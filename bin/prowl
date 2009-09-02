@@ -1,0 +1,28 @@
+#!/ports/bin/perl
+
+use Modern::Perl;
+
+use Config::Std;
+use Getopt::Std;
+use WebService::Prowl;
+
+my %opt = (
+        f => "$ENV{'HOME'}/etc/prowl.conf",
+        a => 'Command Line',
+        e => 'Notification'
+    );
+getopts( 'a:e:f:', \%opt );
+read_config $opt{'f'} => my %config;
+
+my $message = join( ' ', @ARGV );
+my $prowl   = WebService::Prowl->new( 
+        apikey => $config{''}{'prowl_api_key'} 
+    );
+
+$prowl->add(
+        application => $opt{'a'},
+        event       => $opt{'e'},
+        description => $message
+    )
+    or die $prowl->error();
+

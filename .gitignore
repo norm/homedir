@@ -31,6 +31,7 @@ Code/
 
 # ignore sensitive config files
 etc/sweep.conf
+etc/prowl.conf
 
 
 # ignore server stuff
