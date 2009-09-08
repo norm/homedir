@@ -3,6 +3,8 @@
 #
 # commands specific to host sinister
 
+export VMWARE_MACHINES=/Volumes/data/vmware
+
 need tm <<end
     export VISUAL="${HOME}/bin/textmate";
     alias commit='git diff --cached | tm ; git commit';
