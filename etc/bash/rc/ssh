@@ -16,7 +16,7 @@ function setup_ssh_agent {
     esac
 }
 
-export     AUTH_BASE="/var/tmp/${UID}"
-export SSH_AUTH_SOCK="${AUTH_BASE}/ssh-agent"
+export     AUTH_BASE="${AUTH_BASE:=/var/tmp/${UID}}"
+export SSH_AUTH_SOCK="${SSH_AUTH_SOCK:=${AUTH_BASE}/ssh-agent}"
 
 setup_ssh_agent
