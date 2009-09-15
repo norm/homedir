@@ -1,0 +1,17 @@
+# ~/etc/bash/rc/code
+# -*- Mode: Bash; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 2 -*-
+#
+# working with code of various sorts
+
+export PYTHONLIB="${HOME}/lib/python"
+
+function tidyjson {
+    perl -MJSON -nE'
+        say to_json(
+            from_json( 
+                $_, 
+                { allow_nonref => 1 }
+            ),
+            { pretty => 1 }
+        );' "$@"
+}
