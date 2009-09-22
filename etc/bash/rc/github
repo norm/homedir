@@ -1,7 +1,7 @@
-# ~/etc/bash/rc/github-start
+# ~/etc/bash/rc/github
 # -*- Mode: Bash; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 2 -*-
 #
-# initialise a new github-hosted repository
+# working with github
 
 function github-start {
     repo="$1"
@@ -26,9 +26,31 @@ function github-start {
 }
 
 function github-clone {
-    repo="$1"
-    git_user=`git config github.user`
-    git_repo="git@github.com:${git_user}/${repo}.git"
-
-    git clone ${git_repo}
+    # shortcut for checking out in my most common location
+    if [ "$1" = '-c' ]; then
+        cd $HOME/Code
+        shift
+    fi
+    
+    local    user="$1"
+    local    repo="$2"
+    local private="$3"
+    local method='git://'
+    local    sep='/'
+    
+    # if no repo given, assume it is owned by me already
+    if [ -z "${repo}" ]; then
+           user=`git config github.user`
+           repo="$1"
+        private="$2"
+    fi
+    
+    # pass -p flag at the end to enable a private
+    # checkout, even for someone else's repository
+    if [ "$private" = '-p' ]; then
+        method='git@'
+           sep=':'
+    fi
+    
+    git clone "${method}github.com${sep}${user}/${repo}.git"
 }
