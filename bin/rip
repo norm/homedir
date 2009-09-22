@@ -1,0 +1,485 @@
+#!/ports/bin/perl
+# -*- Mode: Perl; tab-width: 4; indent-tabs-mode: nil; -*-
+
+use Modern::Perl;
+
+use CDDB;
+use Config::Std     { def_sep => '=' };
+use FileHandle;
+use Getopt::Std;
+use Readonly;
+use Term::Menu;
+
+
+# TODO
+#   *   validate option r, provide menu when multiple rips can be restarted
+#   *   bash completion for -r
+
+$| = 1;
+
+Readonly my $LEAD_OUT_TRACK     => 162;
+Readonly my $DETAILS_FILE       => 'details.conf';
+Readonly my $WORKING_DIRECTORY  => $ENV{'RIP_TMP'} 
+                                   // "${ENV{'HOME'}}/Music/rips";
+Readonly my $EDITOR             => $ENV{'RIP_EDITOR'}
+                                   // $ENV{'VISUAL'} 
+                                   // $ENV{'EDITOR'} 
+                                   // 'vi';
+Readonly my %DEFAULT_TRACK_TAGS => ( 
+        title  => '',
+    );
+Readonly my %DEFAULT_ALBUM_TAGS => ( 
+        compilation => 'false',
+        album       => '',
+        artist      => '',
+        year        => '1970',
+        disk        => '1/1',
+    );
+
+
+my %option;
+getopts( 'dr:t', \%option );
+
+# clean up afterwards
+if ( defined $option{'d'} && defined $option{'r'} ) {
+    system "/bin/rm -rf ${WORKING_DIRECTORY}/${option{'r'}}";
+    exit;
+}
+
+if ( !defined $option{'r'} ) {
+    # if we aren't resuming an existing rip, first fetch the CD details
+    # from freedb and write them to a file
+    my $cddb_details = get_disk_cddb_details();
+    
+    $option{'r'} = $cddb_details->{'discid'};
+    say '-> DISC ID ' . $option{'r'};
+    
+    # create the working directory, save the details to a file and allow
+    # the user to edit the details
+    mkdir "${WORKING_DIRECTORY}/${option{'r'}}"
+          or die "mkdir: $!";
+    chdir "${WORKING_DIRECTORY}/${option{'r'}}";
+    write_details_to_config( $cddb_details );
+    open_conversion_directory();
+    system "${EDITOR} ${DETAILS_FILE}";
+    
+    # after ripping the tracks eject the CD, as we are done with it
+    rip_tracks_from_cd( $cddb_details );
+    system "drutil eject";
+    
+    # confirm before continuing to convert the files
+    print "
+        Before continuing, ensure you have:
+
+    *   made any required modifications to the source audio
+        (splitting tracks, etc.)
+    *   entered the correct titles, artists, years, etc. into the 
+        description file
+    *   scanned the cover image and saved it as 'cover.jpg'
+
+        Pressing [^C] now will interrupt this process. You can always return
+        to the job later with the command 'rip -r ${option{'r'}}'.
+";
+    my $continue = <>;
+}
+else {
+    chdir "${WORKING_DIRECTORY}/${option{'r'}}"
+          or die "chdir: $!";
+}
+
+read_config $DETAILS_FILE, my %config;
+
+if ( !defined $option{'t'} ) {
+    convert_tracks_to_aac( \%config );
+    relocate_wav_files( \%config );
+}
+
+tag_converted_tracks( \%config );
+
+print "
+${config{''}{'album'}} - done. 
+
+You can delete the directory once the rip has been confirmed with
+the command: 'rip -dr ${option{'r'}}'.
+";
+exit;
+
+
+
+sub get_disk_cddb_details {
+    my $cddbp   = CDDB->new() 
+                  or die $!;
+
+    # get the disk information
+    my $disk;
+    my @disk_toc  = calculate_disk_toc();
+    my @disk_info = $cddbp->calculate_id( @disk_toc ); 
+    my @disks     = $cddbp->get_discs( 
+                          $disk_info['0'], 
+                          $disk_info['3'], 
+                          $disk_info['4']
+                      );
+    
+    # choose from multiple matches:
+    if ( 0 < $#disks ) {
+        my $count = 0;
+        my( %menu, $key );
+        
+        foreach my $option ( @disks ) {
+            my $id    = $option->['1'];
+            my $title = $option->['2'];
+               $key  = chr( ord('a') + $count );
+            
+            $menu{ $count } = [ $title, $key ];
+            $count++;
+        }
+        $key = chr( ord('a') + $count );
+        $menu{ $count } = [ "None of the above", $key ];
+        
+        
+        my $options = Term::Menu->new(
+                beforetext => 'Multiple matches - choose from the following:',
+                aftertext  => '',
+                tries      => 0,
+            );
+        my $answer  = $options->menu( %menu );
+
+        $disk = $disks[ $answer ];
+    }
+    # single or zero matches:
+    else {
+        $disk = pop @disks;
+    }
+    
+    my $result = $cddbp->get_disc_details( $disk->['0'], $disk->['1'] );
+    
+    # if no data was retrieved, create a dummy entry
+    if ( !defined $result ) {
+        $result = {
+                discid => $disk_info['0'],
+                dtitle => 'Unknown Artist / Unknown Album'
+            };
+        foreach my $track ( @{ $disk_info['1'] } ) {
+            push @{ $result->{'ttitles'} }, "Track $track";
+        }
+    }
+
+    return $result;
+}
+sub write_details_to_config {
+    my $details = shift;
+    
+    my %config;
+    my( $artist, $title, $disk ) 
+        = extract_info_from_title( $details->{'dtitle'} );
+
+    foreach my $tag ( keys %DEFAULT_ALBUM_TAGS ) {
+        $config{''}{ $tag } = $DEFAULT_ALBUM_TAGS{ $tag };
+    }
+    
+    $config{''}{'artist'} = $artist;
+    $config{''}{'album'}  = $title;
+    $config{''}{'year'}   = $details->{'dyear'}
+                            if defined $details->{'dyear'};
+    $config{''}{'genre'}  = $details->{'genre'}
+                            if defined $details->{'genre'};
+    $config{''}{'disk'}   = "${disk}/?"
+                            if defined $disk;
+    
+    my $various_artists = is_various_artists( $details );
+    if ( $various_artists ) {
+        $config{''}{'artist'}          = "Various Artists";
+        $config{''}{'original_artist'} = $artist;
+        $config{''}{'compilation'}     = 'true';
+    }
+    
+    my $current_track = 1;
+    foreach my $track ( @{ $details->{'ttitles'} } ) {
+        my $track_number = sprintf '%02d', $current_track;
+        
+        foreach my $tag ( keys %DEFAULT_TRACK_TAGS ) {
+            $config{ $track_number }{ $tag } = $DEFAULT_TRACK_TAGS{ $tag };
+        }
+        
+        if ( $various_artists ) {
+            my ( $artist, $title ) = get_artist_and_title( $track );
+            $config{ $track_number }{'artist'} = $artist;
+            $config{ $track_number }{'title'}  = $title;
+        }
+        else {
+            $config{ $track_number }{'title'} = $track;
+        }
+        
+        $current_track++;
+    }
+    
+    write_config %config, $DETAILS_FILE;
+    
+    # massage the default output of Config::Std a little
+    {
+        local $/;
+        
+        my $handle = FileHandle->new( $DETAILS_FILE, 'r' );
+        my $contents = <$handle>;
+        undef $handle;
+        
+        # remove extraneous blank lines
+        $contents =~ s{\n\n}{\n}gs;
+        
+        # blank lines before tracks
+        $contents =~ s{\n\[}{\n\n[}gs;
+        
+        # comment out "original artist"
+        $contents =~ s{^original_artist =}{# original_artist =}m;
+        
+        # add a comment to the first track
+        my $comment = "# tracks can also over-ride options, such as:\n"
+                    . "#   artist = <track artist>\n"
+                    . "#   genre  = <track genre>\n"
+                    . "#   year   = <track year>\n"
+                    . "#\n"
+                    . "# other options:\n"
+                    . "# grouping = <grouping>\n"
+                    . "# comment = [instrumental]\n";
+        $contents =~ s{^(.*?\n)\[}{${1}${comment}\[}s;
+        
+        $handle = FileHandle->new( $DETAILS_FILE, 'w' );
+        print {$handle} $contents;
+    }
+}
+sub extract_info_from_title {
+    my $text = shift;
+    
+    my $artist_title_split_regexp = qr{
+            ^
+            \s*
+            (.*)                # artist
+            [ ] [/] [ ]
+            (.*?)               # album title
+            \s*
+            (?:                 # optional " - CD2" rider
+                (?: [-] \s* )
+                CD \s* (\d+)
+            )?
+            $
+        }x;
+    
+    if ( $text =~ $artist_title_split_regexp ) {
+        return $1, $2, $3;
+    }
+    
+    return $text, '', '';
+}
+sub is_various_artists {
+    my $details = shift;
+    
+    # check each track
+    foreach my $track ( @{ $details->{'ttitles'} } ) {
+        my ( $artist, $track ) = get_artist_and_title( $track, 1 );
+        
+        if ( !defined $artist ) {
+            return 0;
+        }
+    }
+    
+    return 1;
+}
+sub get_artist_and_title {
+    my $track     = shift;
+    my $no_prompt = shift;
+    
+    my $split_by_slash = qr{
+            ^
+            (?<first> .* )
+            \s*
+            /
+            \s*
+            (?<second> .* )
+            $
+        }x;
+    if ( $track =~ $split_by_slash ) {
+        my $should_prompt = !defined $option{'artist_first'}
+                         && !$no_prompt;
+        
+        if ( $should_prompt ) {
+            my %menu = (
+                    artist => [ 'Artist First', 'a' ],
+                    title  => [ 'Title First',  't' ],
+                );
+
+            my $options = Term::Menu->new(
+                    beforetext => "\nTrack 1: $track\n\nHow are the track names split?",
+                    aftertext  => '',
+                    tries      => 0,
+                );
+            my $answer  = $options->menu( %menu );
+            
+            $option{'artist_first'} = ( 'artist' eq $answer );
+        }
+        
+        if ( $option{'artist_first'} ) {
+            return( $+{'first'}, $+{'second'} );
+        }
+        else {
+            return( $+{'second'}, $+{'first'} );
+        }
+    }
+    return( undef, $track );
+}
+
+
+sub rip_tracks_from_cd {
+    my $details = shift;
+    
+    my $number_of_tracks = $#{ $details->{'ttitles'} } + 1;
+    
+    print "\nRIPPING:\n";
+    
+    foreach my $track ( 1 .. $number_of_tracks ) {
+        print "$track. " . $details->{'ttitles'}->[$track-1] . "\n";
+        system "cdparanoia -qP ${track} ${track}.wav";
+    }
+}
+sub convert_tracks_to_aac {
+    my $config = shift;
+    
+    my $tracks = count_tracks( $config );
+    
+    print "CONVERTING: ";
+    
+    # convert them to AAC
+    foreach my $track ( 1 .. $tracks ) {
+        # faac is giving weird echoes?
+        # system "faac -wQ --mpeg-vers 4 -q 500 ${track}.wav";
+        system "afconvert -f m4af -d aac -s 3 -u vbrq 127 ${track}.wav";
+        print ".";
+    }
+    print "\n";
+}
+sub tag_converted_tracks {
+    my $details = shift;
+    
+    print "TAGGING: ";
+    
+    foreach my $track ( 1 .. count_tracks( $details ) ) {
+        # remove artwork, otherwise it is not properly replaced
+        my $command_line = '--artwork REMOVE_ALL';
+        system "atomic-parsley ${track}.m4a ${command_line} >/dev/null";
+        
+        # apply new metadata
+        $command_line = get_atomic_parsley_options( $details, $track );
+        system "atomic-parsley ${track}.m4a ${command_line} >/dev/null";
+        print ".";
+    }
+    print "\n";
+}
+sub open_conversion_directory {
+    system "open -a Finder .";
+}
+sub relocate_wav_files {
+    my $details = shift;
+    
+    print "RELOCATING WAVs: ";
+    mkdir 'wavs';
+    
+    my $number_of_tracks = ( scalar keys %{ $details } )- 1;
+    foreach my $track ( 1 .. $number_of_tracks ) {
+        rename "${track}.wav", "wavs/${track}.wav"
+               or die "Cannot rename: $!";
+        print ".";
+    }
+    print "\n";
+}
+
+sub get_atomic_parsley_options {
+    my $details = shift;
+    my $track   = shift;
+    
+    my $track_number = sprintf '%02d', $track;
+    
+    my %options;
+    my $tracks       = count_tracks( $details );
+    my $command_line = "--overWrite --tracknum ${track}/${tracks} ";
+    # my $command_line = "--tracknum ${track}/${tracks} ";
+    
+    # album-wide options
+    foreach my $option ( keys %{ $details->{''} } ) {
+        if ( 'artist' eq $option ) {
+            $options{'albumArtist'} = $details->{''}{ $option };
+            $options{'artist'}      = $details->{''}{ $option };
+        }
+        else {
+            $options{ $option }     = $details->{''}{ $option };
+        }
+    }
+    
+    # over-ride with per-track options
+    foreach my $option ( keys %{ $details->{ $track_number } } ) {
+        $options{ $option } = $details->{ $track_number }{ $option };
+    }
+    
+    # add options to command line string
+    foreach my $option ( keys %options ) {
+        my $value  = $options{ $option };
+           $value =~ s{"}{\\"}gs;
+        
+        $command_line .= qq{--$option "$value" };
+    }
+    
+    # add artwork if it exists
+    if ( -f "cover.jpg" ) {
+        $command_line .= "--artwork cover.jpg";
+    }
+    
+    return $command_line;
+}
+
+sub calculate_disk_toc {
+    my @toc;
+    my $lead_out;
+    my $current_track  = 1;
+    my $handle         = FileHandle->new( "cdparanoia --query 2>&1 |" )
+                         or die "$!";
+    
+    while ( my $line = <$handle> ) {
+        my $current_track_regexp = qr{
+                ^
+                track_num [ ] = [ ] ${current_track} [ ]
+                start [ ] sector [ ] \d+ [ ] msf: [ ]
+                (\d+),
+                (\d+),
+                (\d+)
+            }x;
+        my $lead_out_track_regexp = qr{
+                ^
+                track_num [ ] = [ ] ${LEAD_OUT_TRACK} [ ]
+                start [ ] sector [ ] \d+ [ ] msf: [ ]
+                (\d+),
+                (\d+),
+                (\d+)
+            }x;
+        
+        if ( $line =~ $current_track_regexp ) {
+            push @toc, "$current_track $1 $2 $3";
+            $current_track++;
+        }
+        elsif ( $line =~ $lead_out_track_regexp ) {
+            $lead_out = "999 $1 $2 $3";
+        }
+    }
+    
+    push @toc, $lead_out;
+    return @toc;
+}
+sub count_tracks {
+    my $config = shift;
+    
+    # count the tracks based upon config entries only
+    my $tracks = 0;
+    foreach my $key ( keys %{ $config } ) {
+        next if '' eq $key;
+        $tracks++;
+    }
+    
+    return $tracks;
+}
