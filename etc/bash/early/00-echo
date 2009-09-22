@@ -3,4 +3,7 @@
 #
 # echo output, allowing raw characters (ansi colour codes)
 
-alias   print='echo -e'
+function print {
+    local string=`echo "$@" | sed -e 's/%/%%/'`
+    printf "${string}\n"
+}
