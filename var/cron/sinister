@@ -2,18 +2,27 @@
 # -*- Mode: Apache; tab-width: 3; indent-tabs-mode: nil; c-basic-offset: 2 -*-
 
   MAILTO=norm@cackhanded.net
-    PATH=/ports/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin
-PERL5LIB=/Users/mfrancis/lib/perl
+    PATH=/ports/bin:/ports/sbin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin
+PERL5LIB=/home/norm/lib/perl
+
+#mn   hr    dom   mon   dow   cmd
+
+# update rss feeds
+00    *     *     *     *     /sites/htdocs/mirroredfeeds/update
+
+# update pkgsrc and check for vulnerabilities
+00    13    *     *     *     cd /ports/src && cvs update -dP >/dev/null 2>&1
+00    14    *     *     *     pkg_admin fetch-pkg-vulnerabilities
+10    14    *     *     *     pkg_admin audit
+15    14    *     *     *     pkg_chk -un
 
 # grab regular pictures from the isight
-*     *     *     *     *     ${HOME}/bin/capture
+# *     *     *     *     *     ${HOME}/bin/capture
 
 # growl notifications of battery remaining time
-*     *     *     *     *     ${HOME}/bin/battnotify
+# *     *     *     *     *     ${HOME}/bin/battnotify
 
-# #mn   hr    dom   mon   dow   cmd
 # 05    00    *     *     *     ${HOME}/bin/update_brain
-# 30    10    *     *     1     /ports/bin/port outdated
 # 
 # # backups to work external disk using rsnapshot
 # # 30    10    *     *     1-5   ${HOME}/bin/rsnap pile daily
@@ -23,12 +32,3 @@ PERL5LIB=/Users/mfrancis/lib/perl
 # 15    *     *     *     *     ${HOME}/bin/rsnap often hourly        >/dev/null
 # 35    16    *     *     *     ${HOME}/bin/rsnap often daily         >/dev/null
 # 55    16    *     *     1     ${HOME}/bin/rsnap often weekly        >/dev/null
-# 
-# # sync iphone at defined intervals if docked 
-# # (morning, just before lunch, before leaving)
-# # 30    09    *     *     1-5   osascript ${HOME}/Library/Scripts/Sync.scpt
-# # 55    11    *     *     1-5   osascript ${HOME}/Library/Scripts/Sync.scpt
-# # 00    17    *     *     1-5   osascript ${HOME}/Library/Scripts/Sync.scpt
-# 
-# # superduper automated backups
-# 55  11 *  *  1,2,3,4,5   open file:///Users/mfrancis/Library/Application\%20Support/SuperDuper\%21/Scheduled\%20Copies/Smart\%20Update\%20safetynet\%20from\%20sinister.sdsp/Copy\%20Job.app
