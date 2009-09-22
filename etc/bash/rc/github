@@ -26,33 +26,49 @@ function github-start {
 }
 
 function github-clone {
-    # shortcut for checking out in my most common location
-    if [ "$1" = '-c' ]; then
-        cd $HOME/Code
-        shift
-    fi
+    local  option=0
+    local    move=0
+    local    code=0
+    local private=0
+    local  method='git://'
+    local     sep='/' 
+    local  OPTIND=0
     
-    local    user="$1"
-    local    repo="$2"
-    local private="$3"
-    local method='git://'
-    local    sep='/'
+    while getopts "cmp" option; do
+        case $option in
+            c)  code=1 ;;
+            m)  move=1 ;;
+            p)  private=1 ;;
+        esac
+    done
+    shift $(( OPTIND - 1 ))
+    
+    local user="$1"
+    local repo="$2"
+    
+    # shortcut for checking out in my most common location
+    if [ 1 = $code ]; then
+        cd $HOME/Code
+    fi
     
     # if no repo given, assume it is owned by me already
     if [ -z "${repo}" ]; then
-           user=`git config github.user`
-           repo="$1"
-        private="$2"
+        user=`git config github.user`
+        repo="$1"
     fi
     
     # pass -p flag at the end to enable a private
     # checkout, even for someone else's repository
-    if [ "$private" = '-p' ]; then
+    if [ 1 = $private ]; then
         method='git@'
            sep=':'
     fi
     
     git clone "${method}github.com${sep}${user}/${repo}.git"
+    
+    if [ 1 = $move ]; then
+        mv "$repo" "${user}-${repo}"
+    fi
 }
 
 function github-open {
