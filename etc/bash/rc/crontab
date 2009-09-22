@@ -7,11 +7,14 @@ export REAL_CRONTAB=`which crontab`
 export CRONTAB_FILE=${HOME}/var/cron/${HOST}
 export BASE_CRONTAB="${HOME}/var/cron/_default"
 
-function crontab {
+function init_crontab {
     # initialise it if necessary
     if [ ! -f ${CRONTAB_FILE} ]; then
         cat ${BASE_CRONTAB} > ${CRONTAB_FILE}
     fi
+}
+function crontab {
+    init_crontab
     
     case "${1}" in
         -l)
@@ -36,6 +39,19 @@ function check_crontab {
                   "crontab file not properly installed"
     
     rm -f ${tmp_real_crontab}
+}
+
+function add_to_crontab {
+    init_crontab
+    local line
+    
+    echo '' >> ${CRONTAB_FILE}
+    echo "# -- added automatically" `date` >> ${CRONTAB_FILE}
+    for line in "$@"; do
+        echo "$line" >> ${CRONTAB_FILE}
+    done
+    
+    crontab -e
 }
 
 check_crontab

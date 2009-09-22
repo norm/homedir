@@ -2,7 +2,7 @@
 # -*- Mode: Apache; tab-width: 3; indent-tabs-mode: nil -*-
 
   MAILTO=norm@cackhanded.net
-    PATH=/ports/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin
+    PATH=/ports/bin:/ports/sbin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin
 PERL5LIB=/home/norm/lib/perl
 
 #mn   hr    dom   mon   dow   cmd
