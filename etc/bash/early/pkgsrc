@@ -7,6 +7,7 @@ if [ -x /ports/bin ]; then
        PATH="/ports/bin:/ports/sbin:${PATH}:/usr/games"
     MANPATH="/ports/man:${MANPATH}"
     
-    BASH_COMPLETION='/ports/share/bash-completion/bash_completion'
+        BASH_COMPLETION='/ports/share/bash-completion/bash_completion'
+    BASH_COMPLETION_DIR='/ports/share/bash-completion/contrib'
     source_or_warn  ${BASH_COMPLETION}
 fi
