@@ -54,3 +54,14 @@ function github-clone {
     
     git clone "${method}github.com${sep}${user}/${repo}.git"
 }
+
+function github-open {
+    local     origin=`git config remote.origin.url`
+    local match_repo="git[:@/]+github.com[:/](.*)\.git" 
+    
+    if [[ $origin =~ $match_repo ]]; then
+        open "http://github.com/${BASH_REMATCH[1]}"
+    else
+        echo "Not in a github repository."
+    fi
+}
