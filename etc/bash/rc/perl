@@ -6,10 +6,20 @@
 # location for personal modules not properly installed
 export PERL5LIB="${HOME}/lib/perl"
 
-unixdate='print UnixDate( shift, "%s\n" );'
+alias pm='perl Makefile.PL ; make ; make test'
 
-alias   stamp="perl -MDate::Manip -e '${unixdate}'"
-alias      pm='perl Makefile.PL ; make ; make test'
+# convert to/from timestamps
+function stamp {
+    perl -MDate::Manip -e "
+        \$time = q(${*});
+        if ( \$time =~ m{^\d+$} ) {
+            print scalar( gmtime \$time ) . qq(\n);
+        }
+        else {
+            print UnixDate( \$time, qq(%s\n) );
+        }
+    "
+}
 
 # module starter
 need module-starter <<end
