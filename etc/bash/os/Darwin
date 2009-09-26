@@ -7,8 +7,9 @@
 export     JAVA_HOME="/System/Library/Frameworks/JavaVM.framework/Home"
 
 
-# get the hostname as set in the Sharing preference pane
-# hostname=`scutil --get LocalHostName`
+# get the hostname and domain from the Sharing preference pane
+export   HOST=`scutil --get LocalHostName | sed -e "s/\..*//"`
+export DOMAIN=`scutil --get LocalHostName | sed -e "s/${HOST}.//"`
 
 
 # hibernation program

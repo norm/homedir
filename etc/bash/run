@@ -4,11 +4,9 @@
 # anything in this file gets applied to every bash shell, login or otherwise
 
 # useful flags
-  hostos=`uname`
-hostname=`hostname -s`
-
-export  HOSTOS="${hostos}"
-export    HOST="${hostname}"
+export  HOSTOS=`uname`
+export    HOST=`hostname -s`
+export  DOMAIN=`hostname | sed -e "s/${HOST}.//"`
 
 interactive=1
 [[ $- != *i* ]] && interactive=0
@@ -22,13 +20,16 @@ done
 
 
 # os-specific settings
-source_if_exists ~/etc/bash/os/${hostos}
+source_if_exists ~/etc/bash/os/${HOSTOS}
 
 # type-specific settings
 source_if_exists ~/etc/bash/arch/${HOSTTYPE}
 
+# domain-specific settings
+source_if_exists ~/etc/bash/domain/${DOMAIN}
+
 # host-specific settings
-source_if_exists ~/etc/bash/host/${hostname}
+source_if_exists ~/etc/bash/host/${HOST}
 
 
 # most common bash settings kept in separate rc files

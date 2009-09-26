@@ -6,7 +6,7 @@
 # most basic prompt
 current_path="${pbold}\$(pwdn 2)${preset}"
 prompt_symbol="${PROMPT_SYMBOLS}%"
-PS1="${hostname}"
+PS1="${HOST}"
 
 # root prompt symbol
 [ `id -u` == '0' ]          && prompt_symbol="${PROMPT_SYMBOLS}#"
