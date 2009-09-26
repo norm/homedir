@@ -7,6 +7,39 @@ diff_and_warn_ignore_replacements           \
         ${HOME}/.gitconfig                  \
         ${HOME}/share/examples/gitconfig
 
+function git-start {
+    if [ "$1" = '-p' ]; then
+        cd ${HOME}/Projects
+        shift
+    fi
+    
+    local   repo=${1}
+    local  start=${2:-README.markdown}
+    local server=${3}
+    local   user=${4}
+    
+    # chained so any failure stops the whole operation
+    mkdir ${repo}                              \
+        && cd ${repo}                          \
+        && git init                            \
+        && touch ${start}                      \
+        && ${VISUAL} ${start}                  \
+        && git add ${start}                    \
+        && git commit -m 'started project'     \
+        && git-push-first $repo $server $user
+}
+
+function git-push-first {
+    local   repo=${1}
+    local server=${2:-${GIT_SERVER}}
+    local   user=${3}
+    
+    local git_repo=git@${server}:${user:+${user}/}${repo}.git
+    
+    echo "Push to ${git_repo}"                  \
+        && git remote add origin ${git_repo}    \
+        && git push origin master
+}
 
 function git_status_prompt {
     local  clean='nothing to commit (working directory clean)'
