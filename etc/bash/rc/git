@@ -3,7 +3,10 @@
 #
 # git-related commands
 
-diff_and_warn_ignore_replacements .gitconfig  share/examples/gitconfig
+diff_and_warn_ignore_replacements           \
+        ${HOME}/.gitconfig                  \
+        ${HOME}/share/examples/gitconfig
+
 
 function git_status_prompt {
     local  clean='nothing to commit (working directory clean)'
