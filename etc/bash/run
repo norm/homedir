@@ -37,6 +37,9 @@ do
     source $rc_file
 done
 
+# bash completion
+source_or_warn ${BASH_COMPLETION:=/etc/bash_completion}
+
 
 # prompt comes last
 source_or_warn ~/etc/bash/prompt
