@@ -7,13 +7,9 @@
 function need {
     [ $interactive = 0 ]    && return
     
-    local file=${1}
-    local have=0
-    
-    type $1 &> /dev/null    && have=1
-    
-    if [ 0 = ${have} ]; then
-        print "${bold}${red}${file} is not installed${reset}"
+    have $1
+    if [ 0 = $? ]; then
+        print "${bold}${red}${1} is not installed${reset}"
     else
         # perform what was passed as stdin (BEWARE: this is not quite normal
         # bash syntax, so semi-colons are almost certainly required)
@@ -21,4 +17,11 @@ function need {
     fi
     
     return ${have}
+}
+
+function have {
+    type $1 &> /dev/null \
+        && return 1
+    
+    return 0
 }
