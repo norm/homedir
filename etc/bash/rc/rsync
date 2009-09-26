@@ -18,3 +18,9 @@ alias    rsd="rs --delete"
 # disk-to-s3 synchronisation (when mounted via JungleDisk)
 alias    rs3="rsync -rptgvP ${rs_s3_options} ${rs_ignore}"
 alias   rs3d="rs3 --delete"
+
+# tab completion
+complete -o filenames -o nospace -F _rsync rs
+complete -o filenames -o nospace -F _rsync rsd
+complete -o filenames -o nospace -F _rsync rs3
+complete -o filenames -o nospace -F _rsync rs3d
