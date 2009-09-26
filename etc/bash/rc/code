@@ -5,7 +5,7 @@
 
 export PYTHONLIB="${HOME}/lib/python"
 
-function tidyjson {
+function jsontidy {
     perl -MJSON -nE'
         say to_json(
             from_json( 
