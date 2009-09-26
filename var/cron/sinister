@@ -16,6 +16,9 @@ PERL5LIB=/home/norm/lib/perl
 10    14    *     *     *     pkg_admin audit
 15    14    *     *     *     pkg_chk -un
 
+# check for new OS X updates
+30    10    *     *     1     softwareupdate -l
+
 # grab regular pictures from the isight
 # *     *     *     *     *     ${HOME}/bin/capture
 
