@@ -3,7 +3,9 @@
 # 
 # miscellaneous settings
 
-export    CVS_RSH='/usr/bin/ssh'
+export CVS_RSH='/usr/bin/ssh'
+alias cvsupq='cvs update -dP 2>/dev/null'
+
 export     EXINIT="set sh=/bin/sh sw=4 ai redraw report=2"
 export   LC_CTYPE='en_GB.UTF-8'
 export    INPUTRC="${HOME}/etc/input"
