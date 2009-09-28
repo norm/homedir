@@ -24,4 +24,5 @@
 	dc = diff --cached
 	p  = push
 	s  = status
+	l  = "log --oneline"
 
