@@ -8,7 +8,9 @@ function diff_or_warn {
     
     local  file_a=${1}
     local  file_b=${2}
-    local warning=${3:-${file_a} and ${file_b} are not different}
+    local wfile_a="${file_a##/home/norm/}"
+    local wfile_b="${file_b##/home/norm/}"
+    local warning=${3:-${wfile_a} and ${wfile_b} are not different}
     
     diff ${file_a} ${file_b} &> /dev/null
     
@@ -22,7 +24,9 @@ function diff_and_warn {
     
     local  file_a=${1}
     local  file_b=${2}
-    local warning=${3:-${file_a} and ${file_b} are different}
+    local wfile_a="${file_a##/home/norm/}"
+    local wfile_b="${file_b##/home/norm/}"
+    local warning=${3:-${wfile_a} and ${wfile_b} are different}
     
     diff ${file_a} ${file_b} &> /dev/null
     
@@ -36,7 +40,9 @@ function diff_and_warn_ignore_replacements {
     
     local  file_a=${1}
     local  file_b=${2}
-    local warning=${3:-${file_a} and example ${file_b} are different}
+    local wfile_a="${file_a##/home/norm/}"
+    local wfile_b="${file_b##/home/norm/}"
+    local warning=${3:-${wfile_a} and example ${wfile_b} are different}
     
     local diff_args="--side-by-side 
                      --suppress-common-lines
