@@ -68,11 +68,9 @@ function update_pkgsrc {
 function check_pkgsrc_conf {
     if [ -d ${PORTS_BASE} ]; then
         cat ${mk_conf_preserve} ${local_mk_conf} > /tmp/mk.conf
-        diff_and_warn /tmp/mk.conf.$$ ${mk_conf} \
-            "${mk_conf} has been updated"
+        diff_and_warn /tmp/mk.conf.$$ ${mk_conf}
         
-        diff_and_warn ${pkgchk_conf} ${local_pkgchk_conf} \
-            "${pkgchk_conf} has been updated"
+        diff_and_warn ${pkgchk_conf} ${local_pkgchk_conf}
     fi
 }
 
