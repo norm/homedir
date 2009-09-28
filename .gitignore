@@ -7,6 +7,7 @@ var
 .gitconfig
 etc/sweep.conf
 etc/prowl.conf
+etc/ec2
 
 
 # ignore OS X stuff

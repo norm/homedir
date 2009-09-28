@@ -1,0 +1,7 @@
+# ~/etc/bash/rc/aws
+# -*- Mode: Bash; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 2 -*-
+# 
+# working with Amazon Web Services
+
+export EC2_PRIVATE_KEY=$( echo ${HOME}/etc/ec2/pk-* )
+export        EC2_CERT=$( echo ${HOME}/etc/ec2/cert-* )
