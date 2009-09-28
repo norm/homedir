@@ -3,8 +3,53 @@
 #
 # working with github
 
+function github-repo-create {
+    local        name=$1
+    local description=$2
+    local         url=$3
+    local      public=${4:-1}
+    
+    if [ -z "${name}" ]; then
+        echo "Usage: github-repo-create 'name' ['desc' 'url' 'public']"
+        return
+    fi
+    
+    local error=$( 
+        curl -s                                                 \
+            -F login=`git config github.user`                   \
+            -F token=`git config github.token`                  \
+            -F "name=${name}"                                   \
+            -F "description=${description}"                     \
+            -F "homepage=${url}"                                \
+            -F "public=${public}"                               \
+                'http://github.com/api/v2/json/repos/create'    \
+        | jsontidy                                              \
+        | grep '"error" : "'
+    )
+    
+    [ -z "$error" ] \
+        && return 0
+    
+    print                                   \
+        "${bold}${red}Error:"               \
+        ${error##         \"error\" : }     \
+        ${reset}
+    return 1
+}
+
 function github-start {
-    git-start "$@" README.markdown github.com norm
+    local opt_p=''
+    
+    if [ "$1" = '-p' ]; then
+        opt_p='-p'
+        shift
+    fi
+    
+    local name=$1
+    shift
+    
+    github-repo-create ${name} "$@"
+    git-start ${opt_p} ${name} README.markdown github.com norm
 }
 
 function github-clone {
