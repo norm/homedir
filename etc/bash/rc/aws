@@ -9,3 +9,15 @@ export     EC2_KEYPAIR='mnf-keypair'
 export      AMI_BUCKET='cackhanded-ami'
 export  EC2_AVAIL_ZONE='us-east-1a'
 
+function aws-setenv {
+    export           AWS_USER_ID=$( getpassword AWS_USER_ID )
+    export     AWS_ACCESS_KEY_ID=$( getpassword AWS_ACCESS_KEY_ID )
+    export AWS_SECRET_ACCESS_KEY=$( getpassword AWS_SECRET_ACCESS_KEY )
+}
+
+function aws-killenv {
+    unset                       \
+        AWS_USER_ID             \
+        AWS_ACCESS_KEY_ID       \
+        AWS_SECRET_ACCESS_KEY
+}
