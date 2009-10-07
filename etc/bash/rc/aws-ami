@@ -1,0 +1,81 @@
+# ~/etc/bash/rc/aws-rebundle
+# -*- Mode: Bash; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 2 -*-
+# 
+# working with Amazon Machine Images
+
+# turn a running EC2 instance into a new AMI that you can use
+function ec2-rebundle-as-ami {
+    local    name=${1}
+    local ip_addr=${2:-$ami_ip}
+    
+    if [ -z "$name" -o -z "$ip_addr" ]; then
+        echo "Usage: ec2-rebundle-as-ami <name> [<ip>]"
+        return
+    fi
+    
+    aws-setenv
+    
+    ami-bundle ${name} ${ip_addr}
+    
+    echo '';
+    echo "** UPLOADING BUNDLE";
+    
+    ami-upload ${name} ${ip_addr}
+    ami-register ${name}
+    
+    aws-killenv
+}
+
+# create an AMI image from a running machine, ready for uploading
+function ami-bundle {
+    local    name=${1}
+    local ip_addr=${2:-$ami_ip}
+    
+    scp $EC2_PRIVATE_KEY    \
+        $EC2_CERT           \
+        ${ip_addr}:/tmp
+    
+    local excludes='/mnt,/tmp/,/root/.ssh'
+    
+    ssh $ip_addr <<END
+        if [ $(uname -m) = 'x86_64' ]; then
+            arch=x86_64
+        else
+            arch=i386
+        fi
+        
+        sudo -E                                 \
+            ec2-bundle-vol                      \
+                -r \$arch                       \
+                -d /mnt                         \
+                -p ${name}                      \
+                -u ${AWS_USER_ID}               \
+                -k /tmp/pk-*.pem                \
+                -c /tmp/cert-*.pem              \
+                -s 1024                         \
+                -e ${excludes};
+END
+}
+
+# upload the files of a new AMI image into an S3 bucket
+function ami-upload {
+    local    name=${1}
+    local ip_addr=${2:-$ami_ip}
+    
+    ssh $ip_addr <<END
+        ec2-upload-bundle                       \
+            -b ${AMI_BUCKET}                    \
+            -m /mnt/${name}.manifest.xml        \
+            -a ${AWS_ACCESS_KEY_ID}             \
+            -s ${AWS_SECRET_ACCESS_KEY}
+END
+}
+
+# register an AMI image uploaded to S3 with EC2
+function ami-register {
+    local   name=$1
+    local bucket=${2:-$AMI_BUCKET}
+    
+    run_with_status \
+        ec2-register ${bucket}/${name}.manifest.xml
+}

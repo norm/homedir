@@ -1,0 +1,117 @@
+# ~/etc/bash/rc/ec2-volumes
+# -*- Mode: Bash; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 2 -*-
+# 
+# working with Elastic Block Storage volumes
+
+# To enable easier interaction with the volumes, they can be assigned names
+# which are stored in this file. This name is purely for convenience, and
+# this is not something that is provided by EC2 (so unless you move the
+# file around, the "names" will not work on another computer)
+export VOLUMES_LIST="${HOME}/var/ebs_volumes"
+
+# mount a block store (by name or volume ID) on the given
+# running instance  (either instance or common AMI name)
+function ebs-mount {
+    local   volume=$( ebs-name-to-volume $1 )
+    local instance=$( ec2-ami-name-to-instance $2 )
+    local    mount=${3:-/mnt}
+    local   device=${4:-/dev/sdh}
+    
+    local ip_addr=$( ec2-instance-ip $instance )
+    
+    if [ -n "${ip_addr}" ]; then
+        if [ -n "${volume}" ]; then
+            ec2-attach-volume ${volume} -i ${instance} -d ${device}
+            status_line ssh ${ip_addr} "sudo mount ${device} ${mount}"
+            ssh ${ip_addr} "sudo mount ${device} ${mount}"
+        else
+            echo "Error: no volume found for $2"
+        fi
+    else
+        echo "Error: no IP address found for $1"
+    fi
+}
+
+# unmount a block store (by name or volume ID) from the given
+# running instance  (either instance or common AMI name)
+function ebs-umount {
+    local   volume=$( ebs-name-to-volume $1 )
+    local instance=$( ec2-ami-name-to-instance $2 )
+    local    mount=${3:-/mnt}
+    
+    local ip_addr=$( ec2-instance-ip $instance )
+    
+    ssh ${ip_addr} "sudo umount ${mount}"
+    ec2-detach-volume ${volume} -i ${instance}
+}
+
+# create a volume and assign the a name
+function ebs-create {
+    local size=${1:-100}
+    local name=$2
+    
+    local output="/tmp/ec2-run-output.$$"
+    
+    # create the volume, saving the output
+    ec2-create-volume -s ${size} -z ${EC2_AVAIL_ZONE}   \
+        | tee ${output}
+    
+    # if a name argument was given, register the volume under that name
+    if [ -n "${name}" ]; then
+        local volume=$( cat ${output} | awk -F\t '{ print $2 }' )
+        ebs-name-volume ${volume} ${name}
+    fi
+    
+    rm -f ${output}
+}
+
+# delete a named volume (removing the name from our file)
+function ebs-delete {
+    local   name=$1
+    local volume=$( ebs-name-to-volume $name )
+    
+    local temp_file=/tmp/ebs-delete.$$
+    
+    grep -v '^${name}=' ${VOLUMES_LIST} > ${temp_file}      \
+        && mv ${temp_file} ${VOLUMES_LIST}
+
+    ec2-delete-volume $volume
+}
+
+# list the two most useful pieces of information about all created volumes:
+# their size and name (or volume ID if they are not named in our file)
+function ebs-list {
+    local volumes=$( 
+        ec2-describe-volumes \
+            | awk -F\t '{ printf "%s:%s ", $3, $2 }' 
+    )
+    
+    for i in $volumes; do
+        local   size=$( echo $i | awk -F: '{ print $1 }' )
+        local volume=$( echo $i | awk -F: '{ print $2 }' )
+        local   name=$( ebs-volume-to-name $volume )
+        
+        printf '%-4s %s\n' $size ${name:-$volume}
+    done
+}
+
+# store a name for a volume ID
+# (NOTE: no uniqueness enforced, using the same name 
+# more than once will give undefined results)
+function ebs-name-volume {
+    local volume=$1
+    local   name=$2
+    
+    echo "${name}=${volume}" >> ${VOLUMES_LIST}
+}
+
+function ebs-name-to-volume {
+    echo 'name to volume'
+    grep $1 ${VOLUMES_LIST}             \
+        | awk -F= '{ print $2 }'
+}
+
+function ebs-volume-to-name {
+    grep $1 ${VOLUMES_LIST}             \
+        | awk -F= '{ print $1 }'
+}

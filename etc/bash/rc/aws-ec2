@@ -1,0 +1,158 @@
+# ~/etc/bash/rc/aws-ec2
+# -*- Mode: Bash; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 2 -*-
+# 
+# working with Amazon Web Services Elastic Compute Cloud instances
+
+export DEFAULT_AMI_IMAGE='ubuntu'
+
+# start an EC2 instance by name or by AMI ID, confirming that it spins up 
+# properly (Ubuntu images sometimes get the controlling public key before
+# the network is up[1]; confirms that claimed ssh fingerprint matches
+# the fingerprint reported in the console).
+#
+# [1]: https://bugs.launchpad.net/ubuntu-on-ec2/+bug/308530
+function ec2-spinup {
+    local   name=${1:-$DEFAULT_AMI_IMAGE}
+    
+    local  output="/tmp/ec2-run-output.$$"
+    local     ami=$( ami-from-name ${name} )
+    local running=0
+    
+    local is_ami=${ami#ami-}
+    if [ "$is_ami" = "$ami" ]; then
+        echo "No AMI '$ami' found"
+        return 1
+    fi
+    
+    # personal images are logged into as norm, public images as ubuntu
+                 name=$( ami-as-name $ami )
+    local   is_ubuntu=${name#ubuntu-}
+    local remote_user="norm"
+    if [ "$is_ubuntu" != "$name" ]; then
+        remote_user="ubuntu"
+    fi
+    
+    while [ 0 = $running ]; do
+        # run the AMI
+        ec2-run-instances ${ami}        \
+                -k ${EC2_KEYPAIR}       \
+                -z ${EC2_AVAIL_ZONE}    \
+            | tee ${output}
+        
+        # grab the instance
+           ami_instance=$( awk -F\t '{ print $2 }' ${output} | tail -1 )
+                 ami_ip=
+        ami_fingerprint=
+        
+        echo ''
+        echo "instance:    ${ami_instance}"
+        
+        # get the ip address
+        while [ -z "${ami_ip}" ]; do
+            status_line "waiting for ip address"
+            sleep 3
+            ami_ip=$( ec2-instance-ip ${ami_instance} )
+        done
+        clear_status_line "ip addr:     ${ami_ip}"
+        
+        # get the fingerprint from the console
+        while [ -z "${ami_fingerprint}" ]; do
+            status_line "waiting on ssh fingerprint"
+            sleep 5
+        
+            ec2-get-console-output ${ami_instance} > ${output}
+            ami_fingerprint=$(
+                grep '2048.*rsa' ${output}  \
+                    | awk '{ print $3 }'
+            )
+        done
+        clear_status_line "fingerprint: ${ami_fingerprint}"
+        
+        # watch out -- ubuntu images boot too fast sometimes
+        local check_for_failure=$(
+            grep 'Unable to connect to 169.254.169.254' ${output}
+        )
+        if [ -n "$check_for_failure" ]; then
+            echo "Error: Image span up too fast (ubuntu problem)"
+        else
+            # one last check for ssh fingerprints (that also conveniently
+            # bypasses any later "Are you sure?" checking for us)
+            local remote_fingerprint=$(
+                ssh -q -o StrictHostKeyChecking=no                          \
+                        ${remote_user}@${ami_ip}                            \
+                        'ssh-keygen -l -f /etc/ssh/ssh_host_rsa_key.pub'    \
+                    | awk '{ print $2 }'
+            )
+            echo "confirmed:   $remote_fingerprint"
+            
+            if [ "$remote_fingerprint" != "$ami_fingerprint" ]; then
+                echo "Error: fingerprints did not match"
+                running=0
+            else
+                running=1
+            fi
+        fi
+        
+        if [ 0 = $running ]; then
+            echo "** restarting AMI"
+            ec2-spindown $ami_instance
+        fi
+    done
+    
+    rm -f ${output}
+}
+
+# shut down EC2 instances by name or ID, or "all" to kill all running AMIs
+function ec2-spindown {
+    local name=${1:-$ami_instance}
+    local ami
+    local i
+    
+    if [ "$name" = "all" ]; then
+        ec2-terminate-instances $( ec2-running | awk '{ print $2 }' )
+    else
+        name=''
+        for i in "$@"; do
+             ami=$( ami-from-name $i )
+            name="$name $( ec2-ami-name-to-instance $ami )"
+        done
+        ec2-terminate-instances $name
+    fi
+}
+
+# list currently running EC2 instances with only the useful information
+function ec2-spinning {
+    ec2-running                             \
+        | sed $( ami-common-as-sed )        \
+        | awk -F\t '{ printf "%-16s %s (%s)\n", $17, $2, $3 }'
+}
+
+# list instances that are actually running, not all recent
+function ec2-running {
+    ec2-describe-instances              \
+        | grep INSTANCE                 \
+        | grep -v terminated
+}
+
+# get the IP address of a given instance
+function ec2-instance-ip {
+    ec2-describe-instances              \
+        | grep $1                       \
+        | awk -F\t '{ print $17 }'
+}
+
+# lookup running instances from a common or personal AMI name (eg. "ubuntu")
+function ec2-ami-name-to-instance {
+    local     name=$1
+    local instance=${1#i-}
+    
+    if [ "$name" = "$instance" ]; then
+        echo $(
+            ec2-running                             \
+                | grep $( ami-from-name $name )     \
+                | awk -F\t '{ print $2 }'
+        )
+    else
+        echo $name
+    fi
+}
