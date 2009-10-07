@@ -1,0 +1,39 @@
+# ~/etc/bash/rc/status
+# -*- Mode: Bash; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 2 -*-
+#
+# send a status line, which is a spinning progress indicator, your text,
+# padded to 79 characters and a carriage return so the next line replaces it
+
+function status_line {
+    local text="$*"
+    
+    local char=$(( (( main_counter++ )) % 4 ))
+    local spinner=( '/' '-' '\' '|' )
+    
+    printf '\r%s %-77s\r' ${spinner[$char]} "$text"
+}
+
+function clear_status_line {
+    local text="$*"
+    
+    printf '\r%-79s\n' "$text"
+}
+
+function snooze {
+    local  count=$1
+    local during=$2
+    local  after=$3
+    
+    while [ 0 -lt $count ]; do
+        status_line $2
+        count=$(( count - 1 ))
+        sleep 1
+    done
+    clear_status_line $3
+}
+
+function run_with_status {
+    status_line "$*"
+    local update=$( "$@" )
+    clear_status_line $update
+}
