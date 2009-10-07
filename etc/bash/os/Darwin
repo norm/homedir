@@ -16,6 +16,10 @@ export DOMAIN=`scutil --get LocalHostName | sed -e "s/${HOST}.//"`
 [ -x /usr/local/bin/deepsleep ]     && alias hibernate='sudo deepsleep'
 
 
+# locate not turned on by default in Snow Leopard, but that's ok
+alias locate='mdfind -name'
+
+
 # cd burning
 alias mkiso='hdiutil makehybrid -iso -joliet'
 
