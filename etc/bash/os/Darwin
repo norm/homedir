@@ -28,6 +28,19 @@ alias mkiso='hdiutil makehybrid -iso -joliet'
 function eject {
     hdiutil eject /Volumes/$1
 }
+function _eject {
+    local current="${COMP_WORDS[COMP_CWORD]}"
+    local    opts=""
+    
+    case "$COMP_CWORD" in
+        1)  pushd /Volumes                      >/dev/null
+            local IFS=$'\n'
+            opts=$( /bin/ls )
+            COMPREPLY=( $(compgen -W "${opts}" -- ${current} ) )
+            popd                                >/dev/null
+    esac
+}
+complete -F _eject eject
 
 
 # prefer BSD vi to vim
