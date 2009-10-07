@@ -7,6 +7,5 @@ if [ -x /ports/bin ]; then
        PATH="/ports/bin:/ports/sbin:${PATH}"
     MANPATH="/ports/man:${MANPATH}"
     
-        BASH_COMPLETION='/ports/share/bash-completion/bash_completion'
-    BASH_COMPLETION_DIR='/ports/share/bash-completion.d'
+    BASH_COMPLETION='/ports/share/bash-completion/bash_completion'
 fi
