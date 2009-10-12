@@ -21,3 +21,15 @@ function aws-killenv {
         AWS_ACCESS_KEY_ID       \
         AWS_SECRET_ACCESS_KEY
 }
+
+function aws-growl {
+    have growlnotify
+    if [ 1 = $? ]; then
+        growlnotify                                 \
+            --sticky                                \
+            --image ${HOME}/etc/ec2/growl.icns      \
+            --name 'Amazon Web Services'            \
+            --message "$2"                          \
+            --title "$1"
+    fi
+}

@@ -99,6 +99,8 @@ function ec2-spinup {
         fi
     done
     
+    aws-growl "Spinup $name" "Instance $ami_instance\nIP: $ami_ip"
+    
     rm -f ${output}
 }
 
