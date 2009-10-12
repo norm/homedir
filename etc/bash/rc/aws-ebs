@@ -12,18 +12,24 @@ export VOLUMES_LIST="${HOME}/var/ebs_volumes"
 # mount a block store (by name or volume ID) on the given
 # running instance  (either instance or common AMI name)
 function ebs-mount {
-    local   volume=$( ebs-name-to-volume $1 )
-    local instance=$( ec2-ami-name-to-instance $2 )
-    local    mount=${3:-/mnt}
-    local   device=${4:-/dev/sdh}
+    if [ -z "$*" ]; then
+        echo "Usage: ebs-mount volume [instance] [/dev/sd*] [/mnt]"
+        return 1
+    fi
     
-    local ip_addr=$( ec2-instance-ip $instance )
+    local volume=$( ebs-name-to-volume $1 )
+    local   name=${2:-$ami_instance}
+    local device=${3:-/dev/sdh}
+    local  mount=${4:-/mnt}
+    
+    local instance=$( ec2-ami-name-to-instance $name )
+    local  ip_addr=$( ec2-instance-ip $instance )
     
     if [ -n "${ip_addr}" ]; then
         if [ -n "${volume}" ]; then
-            ec2-attach-volume ${volume} -i ${instance} -d ${device}
-            status_line ssh ${ip_addr} "sudo mount ${device} ${mount}"
-            ssh ${ip_addr} "sudo mount ${device} ${mount}"
+            ebs-attach ${volume} ${instance} ${device}
+            run_with_status \
+                ssh ${ip_addr} "sudo mount ${device} ${mount}"
         else
             echo "Error: no volume found for $2"
         fi
@@ -35,14 +41,45 @@ function ebs-mount {
 # unmount a block store (by name or volume ID) from the given
 # running instance  (either instance or common AMI name)
 function ebs-umount {
+    if [ -z "$*" ]; then
+        echo "Usage: ebs-umount volume [instance] [/dev/sd*] [/mnt]"
+        return 1
+    fi
+    
+    local volume=$( ebs-name-to-volume $1 )
+    local   name=${2:-$ami_instance}
+    local  mount=${3:-/mnt}
+    
+    local instance=$( ec2-ami-name-to-instance $2 )
+    local  ip_addr=$( ec2-instance-ip $instance )
+    
+    run_with_status \
+        ssh ${ip_addr} "sudo umount ${mount}"
+    ebs-detach ${volume} ${instance}
+}
+
+# attach a volume to an instance by name
+function ebs-attach {
+    local   volume=$( ebs-name-to-volume $1 )
+    local     name=${2:-$ami_instance}
+    local   device=${3:-/dev/sdh}
+    
+    local instance=$( ec2-ami-name-to-instance $name )
+    
+    if [ -n "$instance" ]; then
+        run_with_status \
+            ec2-attach-volume ${volume} -i ${instance} -d ${device}
+        ec2-attach-volume ${volume} -i ${instance} -d ${device}
+    fi
+}
+
+# detach a volume from an instance by name
+function ebs-detach {
     local   volume=$( ebs-name-to-volume $1 )
     local instance=$( ec2-ami-name-to-instance $2 )
-    local    mount=${3:-/mnt}
     
-    local ip_addr=$( ec2-instance-ip $instance )
-    
-    ssh ${ip_addr} "sudo umount ${mount}"
-    ec2-detach-volume ${volume} -i ${instance}
+    run_with_status \
+        ec2-detach-volume $volume -i $instance
 }
 
 # create a volume and assign the a name
@@ -106,7 +143,6 @@ function ebs-name-volume {
 }
 
 function ebs-name-to-volume {
-    echo 'name to volume'
     grep $1 ${VOLUMES_LIST}             \
         | awk -F= '{ print $2 }'
 }
