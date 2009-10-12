@@ -60,10 +60,26 @@ END
         
         # add keychain fingerprint logging to /etc/rc.local
         sudo sed -e 's:exit 0::' /etc/rc.local > /tmp/rc.local;
+        sudo echo 'echo ""' >> /tmp/rc.local
+        sudo echo 'echo "** SSH FINGERPRINT **"' >> /tmp/rc.local
+        sudo echo "$keygen" >> /tmp/rc.local
+        sudo echo 'chmod 1777 /tmp' >> /tmp/rc.local
+        sudo echo 'exit 0' >> /tmp/rc.local
+        
         sudo mv /tmp/rc.local /etc/rc.local
-        sudo echo 'echo ""' >> /etc/rc.local
-        sudo echo 'echo "** SSH FINGERPRINT **"' >> /etc/rc.local
-        sudo echo "$keygen" >> /etc/rc.local
-        sudo echo 'chmod 1777 /tmp' >> /etc/rc.local
+        sudo chown root /etc/rc.local 
+        sudo chmod 744 /etc/rc.local
+END
+}
+
+function ec2-setup-encrypted-filesystems {
+    local ip_addr=${1:-$ami_ip}
+    
+    ssh ${ip_addr} <<END
+        sudo apt-get install -y cryptsetup xfsprogs
+        for i in sha256 dm_crypt xfs; do 
+            sudo modprobe $i
+            echo $i | sudo tee -a /etc/modules
+        done
 END
 }
