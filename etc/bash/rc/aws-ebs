@@ -28,7 +28,7 @@ function ebs-mount {
     if [ -n "${ip_addr}" ]; then
         if [ -n "${volume}" ]; then
             ebs-attach ${volume} ${instance} ${device}
-            run_with_status \
+            status_run \
                 ssh ${ip_addr} "sudo mount ${device} ${mount}"
         else
             echo "Error: no volume found for $2"
@@ -53,7 +53,7 @@ function ebs-umount {
     local instance=$( ec2-ami-name-to-instance $2 )
     local  ip_addr=$( ec2-instance-ip $instance )
     
-    run_with_status \
+    status_run \
         ssh ${ip_addr} "sudo umount ${mount}"
     ebs-detach ${volume} ${instance}
 }
@@ -67,7 +67,7 @@ function ebs-attach {
     local instance=$( ec2-ami-name-to-instance $name )
     
     if [ -n "$instance" ]; then
-        run_with_status \
+        status_run \
             ec2-attach-volume ${volume} -i ${instance} -d ${device}
         ec2-attach-volume ${volume} -i ${instance} -d ${device}
     fi
@@ -78,7 +78,7 @@ function ebs-detach {
     local   volume=$( ebs-name-to-volume $1 )
     local instance=$( ec2-ami-name-to-instance $2 )
     
-    run_with_status \
+    status_run \
         ec2-detach-volume $volume -i $instance
 }
 

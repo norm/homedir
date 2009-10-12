@@ -32,8 +32,12 @@ function snooze {
     clear_status_line $3
 }
 
-function run_with_status {
+function status_run {
+    local temp_file=/tmp/bash.status.$$
+    
     status_line "$*"
-    local update=$( "$@" )
-    clear_status_line $update
+    "$@" > ${temp_file}
+    status_line ' '
+    
+    cat ${temp_file}
 }

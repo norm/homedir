@@ -76,6 +76,6 @@ function ami-register {
     local   name=$1
     local bucket=${2:-$AMI_BUCKET}
     
-    run_with_status \
+    status_run \
         ec2-register ${bucket}/${name}.manifest.xml
 }
