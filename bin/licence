@@ -49,8 +49,7 @@ case "$1" in
             fi
             ;;
             
-    *)      echo "arg: $1"
-            if [ -z "$1" ]; then
+    *)      if [ -z "$1" ]; then
                 echo >&2 \
                     "Usage: license [-c] [-e] [-n] [new] [<software name>]"
             fi
@@ -140,6 +139,14 @@ licence keys. For example, C<licence windows> will find any stored keys
 with the word 'windows' in the filename, including such files as 'Windows XP.txt' and/or 'Newsleecher (Windows).txt'.
 
 =back
+
+=head1 RATIONALE
+
+Keeping licence keys in a disk image (either normal DMG or sparse bundle)
+which is encrypted. This script mounts and unmounts the disk image 
+automatically. Keeping the disk image's password in a Keychain is not 
+recommended, but can be done to make the process seamless.
+
 
 =cut
 
