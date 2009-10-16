@@ -4,5 +4,6 @@
   MAILTO=norm@cackhanded.net
     PATH=/ports/bin:/ports/sbin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin
 PERL5LIB=/home/norm/lib/perl
+    HOST=XXX
 
 #mn   hr    dom   mon   dow   cmd
