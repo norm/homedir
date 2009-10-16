@@ -1,0 +1,146 @@
+#!/bin/bash
+# -*- Mode: Bash; tab-width: 4; indent-tabs-mode: nil; -*-
+#
+# documentation kept in POD format - run "perldoc licence" 
+# or "licence -h" in order to read it
+
+source ${HOME}/etc/bash/early/status
+
+ DISK_IMAGE="${LICENCE_DISK_IMAGE:-${HOME}/Documents/Keys.sparsebundle}"
+MOUNT_POINT="${LICENSE_MOUNT_POINT:-/Volumes/Keys}"
+
+copy_to_clipboard=0
+        edit_file=0
+      eject_after=1
+        show_help=0
+
+while getopts "cehn" option; do
+    case $option in
+        e)  edit_file=1 ;;
+        h)  show_help=1 ;;
+        n)  eject_after=0 ;;
+        c)  copy_to_clipboard=1 ;;
+    esac
+done
+shift $(( OPTIND - 1 ))
+
+if [ 1 = $show_help ]; then
+    perldoc $0
+fi
+
+while [ ! -d $MOUNT_POINT ]; do
+    status_line "Attempting to open image..."
+    open ${DISK_IMAGE}
+    sleep 2
+done
+empty_status_line
+
+case "$1" in
+    new)    if [ -n "$2" ]; then
+                shift
+                status_line 'Enter licence key...'
+                sleep 2
+                empty_status_line
+                
+                cat > "${MOUNT_POINT}/$*.txt"
+            else
+                open ${MOUNT_POINT}
+                eject_after=0
+            fi
+            ;;
+            
+    *)      echo "arg: $1"
+            if [ -z "$1" ]; then
+                echo >&2 \
+                    "Usage: license [-c] [-e] [-n] [new] [<software name>]"
+            fi
+            
+            tmp_file=$( mktemp /tmp/license_lookup.XXXXX )
+            cd ${MOUNT_POINT}
+            find *                                  \
+                | grep -i "${1:-xxx}"               \
+                | sed -e 's:^:open ":' -e 's:$:":'  \
+                    > ${tmp_file} 2> /dev/null
+            
+            # if result is a single text file, and we're not
+            # supposed to edit it, just cat it to stdout
+            if [ 0 = $edit_file ]; then
+                  lines=$( wc -l ${tmp_file} | awk '{ print $1 }' )
+                is_text=$( grep '.txt"$' ${tmp_file} )
+            
+                if [ 1 = ${lines} -a -n "${is_text}" ]; then
+                    find *                                      \
+                        | grep -i $1                            \
+                        | sed -e 's:^:cat ":' -e 's:$:":'       > ${tmp_file}
+                fi
+            fi
+            
+            if [ 1 = ${copy_to_clipboard} ]; then
+                bash $tmp_file | pbcopy
+            else
+                /bin/bash $tmp_file
+            fi
+            cd - >/dev/null
+            
+            ;;
+esac
+
+if [ 1 = $eject_after ]; then
+    while [ -d $MOUNT_POINT ]; do
+        status_run \
+            hdiutil eject ${MOUNT_POINT} >/dev/null
+    done
+fi
+
+exit 0
+
+<<POD
+
+=head1 NAME
+
+licence - Access licence keys stored in a disk image
+
+=head1 SYNOPSIS
+
+license [-n] [-e] [-p] [new] [<software name>]
+
+=head1 OPTIONS
+
+=over
+
+=item -n
+
+Do not unmount the disk image afterwards. 
+
+=item -e
+
+Only when the licence is a single text file, opens it in your text editor
+rather than just echoing the key to STDOUT.
+
+=item -c
+
+Only when the licence is a single text file, copy it to the clipboard rather
+than just echoing the key to STDOUT.
+
+=item new
+
+Create a new licence key, rather than searching for existing ones. The key
+details are taken from STDIN and saved to a text file named C<software name.txt> after the remaining arguments.
+
+If you wish to store a file (some software uses image-based licence keys or
+XML files rather than a simple textual string), run C<licence> without any
+arguments to open the mounted volume instead (implies -n).
+
+=item <software name>
+
+In combination with the C<new> argument, names the new text licence file.
+
+Without C<new>, is a case-insensitive substring to match against stored 
+licence keys. For example, C<licence windows> will find any stored keys 
+with the word 'windows' in the filename, including such files as 'Windows XP.txt' and/or 'Newsleecher (Windows).txt'.
+
+=back
+
+=cut
+
+POD
