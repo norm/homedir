@@ -19,6 +19,10 @@ function clear_status_line {
     printf '\r%-79s\n' "$text"
 }
 
+function empty_status_line {
+    printf '\r%-79s\r' ''
+}
+
 function snooze {
     local  count=$1
     local during=$2
