@@ -1,33 +1,35 @@
-#!/ports/bin/perl
+#!/usr/bin/env perl
+# github:bin/scr
+# -*- Mode: Perl; tab-width: 4; indent-tabs-mode: nil; -*-
 #
-# Start or resume a GNU screen session, allowing for different configurations.
-# Run `perldoc scr` or `scr help` for documentation.
+#       Start or resume a GNU screen session, allowing for different
+#       configurations. Run 'perldoc ~/bin/scr' or 'scr -h' for documentation.
 
+use 5.10.0;
 use strict;
 use warnings;
 
 use FileHandle;
 use Pod::Usage;
-use Readonly;
-use Switch;
+
+use constant SETTINGS_DIRECTORY => $ENV{'SCREEN_DIRECTORY'}
+                                   // "$ENV{'HOME'}/etc/screen";
+use constant SCREEN_COMMAND     => qw( screen -A -O );
+use constant ENVIRONMENT_HINT   => 'SCREEN_RC_FILE';
 
 
-Readonly my $SETTINGS_DIRECTORY => "$ENV{'HOME'}/etc/screen";
-Readonly my $SCREEN_COMMAND     => 'screen -A -O';
-Readonly my $ENVIRONMENT_HINT   => 'SCREEN_RC_FILE';
 
 my $command = shift;
    $command = 'resume' unless defined $command;
 
-switch ( $command ) {
-    case 'new'      { new_session(); }
-    case 'resume'   { resume_session(); }
-    case [0..9]     { restart_session_window( $command ); }
-    case '-h'       { print_help_and_exit(); }
-    case 'help'     { print_help_and_exit(); }
-    else            { die "Unknown command: $command"; }
+given ( $command ) {
+    when ( 'new' )     { new_session(); }
+    when ( 'resume' )  { resume_session(); }
+    when ( /[0..9]/ )  { restart_session_window( $command ); }
+    when ( '-h' )      { print_help_and_exit(); }
+    when ( 'help' )    { print_help_and_exit(); }
+    default             { die "Unknown command: $command"; }
 }
-
 exit;
 
 
@@ -37,18 +39,18 @@ sub new_session {
     
     if ( !defined $file ) {
         $file = determine_rc_file()
-            or die "No rc file in ${SETTINGS_DIRECTORY}";
+            or die "No rc file in " . SETTINGS_DIRECTORY;
     }
     
-    $ENV{$ENVIRONMENT_HINT} = $file;
-    system "${SCREEN_COMMAND} -c ${file}";
+    $ENV{ ENVIRONMENT_HINT } = $file;
+    system( SCREEN_COMMAND, '-c', $file );
 }
 sub resume_session {
     my $choice  = shift @ARGV;
     my $session = determine_default_session( $choice );
 
     if ( defined $session ) {
-        system "${SCREEN_COMMAND} -R -d ${session}";
+        system( SCREEN_COMMAND, '-R', '-d', $session );
     }
     else {
         new_session();
@@ -94,28 +96,33 @@ sub determine_rc_file {
     # (it can't ever pass the -f test as it then resolves to the directory)
     {   no warnings;
         @try = (
-            "${SETTINGS_DIRECTORY}/$ENV{'HOST'}",
-            "${SETTINGS_DIRECTORY}/$ENV{'HOSTNAME'}",
-            "${SETTINGS_DIRECTORY}/${hostname}",
-            "${SETTINGS_DIRECTORY}/$ENV{'HOSTOS'}",
-            "${SETTINGS_DIRECTORY}/default",
+            SETTINGS_DIRECTORY . "/$ENV{'HOST'}",
+            SETTINGS_DIRECTORY . "/$ENV{'HOSTNAME'}",
+            SETTINGS_DIRECTORY . "/${hostname}",
+            SETTINGS_DIRECTORY . "/$ENV{'HOSTOS'}",
+            SETTINGS_DIRECTORY . "/default",
             "$ENV{'HOME'}/.screenrc",
         );
     }
     
     # return the first existing file
     foreach my $file ( @try ) {
-        return $file if ( -f $file );
+        return $file 
+            if -f $file;
     }
     
     return;
 }
 sub determine_default_session {
-    my $choice = shift || 0;    # invalid default--so no accidental resumes
+    my $choice = shift
+                 // 0;    # invalid default--so no accidental resumes
     
-    # the format of each existing screen session is PID.TTY.HOSTNAME
-    # (STATUS) -- eg: "926.ttys003.chancebed-lm	(Detached)" -- or
-    # PID.NAME (STATUS) -- eg: "926.my-awesome-screen (Attached)"
+    # the format of each existing screen session is 
+    #   PID.TTY.HOSTNAME (STATUS) 
+    #   "926.ttys003.sinister	(Detached)"
+    # or
+    #   PID.NAME (STATUS) 
+    #   "926.my-awesome-screen (Attached)"
     my $regexp = qr{
         ^ 
         \s+
@@ -176,13 +183,9 @@ sub determine_session_file {
     # no STY, not running under screen
     return unless $ENV{'STY'};
     
-    # this script sets a hint as to which file is used
-    if ( defined $ENV{$ENVIRONMENT_HINT} ) {
-        return $ENV{$ENVIRONMENT_HINT};
-    }
-    
-    # otherwise guess...
-    return determine_rc_file();
+    # this script sets a hint as to which file is used, otherwise guess...
+    return $ENV{ ENVIRONMENT_HINT }
+           // determine_rc_file();
 }
 
 __END__
@@ -269,25 +272,26 @@ in preferential order:
 
 =item B<$HOST>
 
-A file named after the contents of the C<HOST> environment variable (e.g. 'mac-laptop'). This is not a common setting, and is one I personally use
-sometimes to set to a value different from the output of C<hostname>.
+A file with a name that matches the contents of the C<HOST> environment
+variable (e.g. 'mac-laptop'). This is set by the home-base bash startup.
 
 =item B<$HOSTNAME>
 
-A file named after the contents of the C<HOSTNAME> environment variable. This
-is normally set by the shell.
+A file with a name that matches the contents of the C<HOSTNAME> environment
+variable. This is normally set by the shell.
 
 =item B<hostname -s>
 
-A file named after the output of the C<hostname> command when given the short 
-flag (which trims off any domain names). This is normally identical to the
-C<HOSTNAME> environment variable, but is used incase it has not been set.
+A file with a name that matches the output of the C<hostname> command when
+given the short flag (which trims off any domain names). This is normally
+identical to the C<HOSTNAME> environment variable, but is used incase it has
+not been set.
 
 =item B<$HOSTOS>
 
-A file named after the contents of the C<HOSTOS> environment variable 
-(which I always set to the Operating System type of the current host -- eg.
-C<Darwin> on Mac OS X machines).
+A file with a name that matches the contents of the C<HOSTOS> environment
+variable (which I always set to the Operating System type of the current host
+-- eg. C<Darwin> on Mac OS X machines).
 
 =item B<default>
 
@@ -295,8 +299,8 @@ A file named F<default>.
 
 =item B<~/.screenrc>
 
-The final resort is the F<.screenrc> file in the home directory (this is
-where screen normally looks anyway).
+The final resort is the F<.screenrc> file in the home directory (which is
+where screen normally looks).
 
 =back
 

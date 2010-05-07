@@ -1,13 +1,13 @@
 #!/bin/bash
+# github:norm:homedir:bin/licence
 # -*- Mode: Bash; tab-width: 4; indent-tabs-mode: nil; -*-
 #
-# documentation kept in POD format - run "perldoc licence" 
-# or "licence -h" in order to read it
+#       Tool to access licence keys kept in an encrypted disk image.
 
-source ${HOME}/etc/bash/early/status
+source ${HOME}/etc/bash/function/00.output
 
  DISK_IMAGE="${LICENCE_DISK_IMAGE:-${HOME}/Documents/Keys.sparsebundle}"
-MOUNT_POINT="${LICENSE_MOUNT_POINT:-/Volumes/Keys}"
+MOUNT_POINT="${LICENCE_MOUNT_POINT:-/Volumes/Keys}"
 
 copy_to_clipboard=0
         edit_file=0
@@ -26,6 +26,7 @@ shift $(( OPTIND - 1 ))
 
 if [ 1 = $show_help ]; then
     perldoc $0
+    exit
 fi
 
 while [ ! -d $MOUNT_POINT ]; do
@@ -49,12 +50,10 @@ case "$1" in
             fi
             ;;
             
-    *)      if [ -z "$1" ]; then
-                echo >&2 \
-                    "Usage: license [-c] [-e] [-n] [new] [<software name>]"
-            fi
-            
-            tmp_file=$( mktemp /tmp/license_lookup.XXXXX )
+    '')     eject_after=0
+	    ;;
+
+    *)      tmp_file=$( mktemp /tmp/licence_lookup.XXXXX )
             cd ${MOUNT_POINT}
             find *                                  \
                 | grep -i "${1:-xxx}"               \
@@ -86,7 +85,7 @@ esac
 
 if [ 1 = $eject_after ]; then
     while [ -d $MOUNT_POINT ]; do
-        status_run \
+        status_then_run \
             hdiutil eject ${MOUNT_POINT} >/dev/null
     done
 fi
@@ -101,7 +100,19 @@ licence - Access licence keys stored in a disk image
 
 =head1 SYNOPSIS
 
-license [-n] [-e] [-p] [new] [<software name>]
+licence [-n] [-e] [-p] [new] [<software name>]
+
+=head1 DESCRIPTION
+
+This program automates storing and retrieving files from a disk image,
+automatically mounting and unmounting it. 
+
+If the disk image is encrypted and passworded, you will be prompted for the
+password. This can be further automated by keeping the password for the 
+disk image in the Keychain, although this will decrease security.
+
+Whilst the program was conceived as a lookup for software licence keys, it
+is in no way limited to them.
 
 =head1 OPTIONS
 
@@ -113,22 +124,23 @@ Do not unmount the disk image afterwards.
 
 =item -e
 
-Only when the licence is a single text file, opens it in your text editor
-rather than just echoing the key to STDOUT.
+If there is only one matching licence, and it is a text file, open it in
+your text editor.
 
 =item -c
 
-Only when the licence is a single text file, copy it to the clipboard rather
-than just echoing the key to STDOUT.
+If there is only one matching licence, and it is a text file, copy the 
+contents of the file into the clipboard.
 
 =item new
 
 Create a new licence key, rather than searching for existing ones. The key
-details are taken from STDIN and saved to a text file named C<software name.txt> after the remaining arguments.
+details are taken from STDIN and saved to a text file named 
+C<software name.txt>, as defined by the remaining arguments.
 
 If you wish to store a file (some software uses image-based licence keys or
 XML files rather than a simple textual string), run C<licence> without any
-arguments to open the mounted volume instead (implies -n).
+arguments to open the mounted volume instead (no arguments implies -n).
 
 =item <software name>
 
@@ -136,17 +148,25 @@ In combination with the C<new> argument, names the new text licence file.
 
 Without C<new>, is a case-insensitive substring to match against stored 
 licence keys. For example, C<licence windows> will find any stored keys 
-with the word 'windows' in the filename, including such files as 'Windows XP.txt' and/or 'Newsleecher (Windows).txt'.
+with the word 'windows' in the filename, including such files as 
+C<Windows XP.txt> and/or C<Newsleecher (Windows).txt>.
 
 =back
 
-=head1 RATIONALE
+=head1 ENVIRONMENT
 
-Keeping licence keys in a disk image (either normal DMG or sparse bundle)
-which is encrypted. This script mounts and unmounts the disk image 
-automatically. Keeping the disk image's password in a Keychain is not 
-recommended, but can be done to make the process seamless.
+Two environment variables can be set to alter the workings of this program:
 
+=over
+
+=item LICENCE_DISK_IMAGE
+
+The disk image to open that contains the licence key files. Defaults to
+F<~/Documents/Keys.sparsebundle>.
+
+=item LICENCE
+
+=back
 
 =cut
 

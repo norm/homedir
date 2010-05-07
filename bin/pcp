@@ -1,7 +1,11 @@
-#!/ports/bin/perl
+#!/usr/bin/env perl
+# github:bin/pmv
+# -*- Mode: Perl; tab-width: 4; indent-tabs-mode: nil; -*-
+#
+#       Move file(s), showing a progress bar. Useful for feedback when
+#       dealing with very large files.
 
-use strict;
-use warnings;
+use Modern::Perl;
 
 use Copy::Progress  qw( copy_progress );
 use File::Basename;

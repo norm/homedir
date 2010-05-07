@@ -1,8 +1,10 @@
-#!/ports/bin/perl
-# -*- Mode: Perl; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 2 -*-
+#!/usr/bin/env perl
+# github:norm:homedir:bin/pwgen
+# -*- Mode: Perl; tab-width: 4; indent-tabs-mode: nil; -*-
+#
+#       Generate a random password.
 
-use strict;
-use warnings;
+use Modern::Perl;
 
 my $length = 16;
 my %types = (

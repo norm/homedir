@@ -1,14 +1,16 @@
 #!/bin/sh
+# github:norm:homedir:bin/rsnap
+# -*- Mode: Perl; tab-width: 4; indent-tabs-mode: nil; -*-
 #
-# simple wrapper around rsnapshot to enable easier 
-# use of multiple configuration files
+#       Simple wrapper around rsnapshot to enable easier use of multiple
+#       configuration files stored in a standard location.
 
   config=$1
 interval=$2
 
 if [ -n "$config" -a -n "$interval" ]; then
 
-    /ports/bin/rsnapshot -c ${HOME}/etc/rsnapshot/${config}.conf ${interval}
+    rsnapshot -c ${HOME}/etc/rsnapshot/${config}.conf ${interval}
 
 else
     echo 'Usage: rsnap <config> <interval>'

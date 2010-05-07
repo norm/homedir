@@ -1,5 +1,8 @@
-#!/ports/bin/perl
+#!/usr/bin/env perl
+# github:norm:homedir:bin/rip
 # -*- Mode: Perl; tab-width: 4; indent-tabs-mode: nil; -*-
+#
+#       Rip CDs in a paranoid, metadata-obsessed fashion.
 
 use Modern::Perl;
 

@@ -1,4 +1,9 @@
-#!/ports/bin/perl
+#!/usr/bin/env perl
+# github:norm:homedir:bin/prowl
+# -*- Mode: Perl; tab-width: 4; indent-tabs-mode: nil; -*-
+#
+#       Send a notification to the Prowl (iPhone push notifications)
+#       web service API. http://prowl.weks.net/ <- FIXME
 
 use Modern::Perl;
 
@@ -25,4 +30,3 @@ $prowl->add(
         description => $message
     )
     or die $prowl->error();
-

@@ -1,24 +1,29 @@
 #!/bin/sh
-# -*- Mode: Bash; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 2 -*-
+# github:norm:homedir:bin/capture
+# -*- Mode: Bash; tab-width: 4; indent-tabs-mode: nil; -*-
+#
+#       Capture a still image from the built-in iSight on Mac computers.
 
-CAPTURE_BASE="${HOME}/Documents/captures"
-   DIRECTORY="${CAPTURE_BASE}/"`date +%Y/%m/%d`
-        FILE="${DIRECTORY}/"`date +%H-%M-%S.jpg`
+CAPTURE_BASE="${CAPTURE_BASE:=${HOME}/Documents/captures}"
 
-mkdir -p ${DIRECTORY}
+     directory="${CAPTURE_BASE}/"`date +%Y/%m/%d`
+  capture_file="${directory}/"`date +%H-%M-%S.jpg`
+  capture_type='jpg'
+ capture_width='1600'
+capture_height='1200'
 
-  CAPTURE_TYPE='jpg'
- CAPTURE_WIDTH='1600'
-CAPTURE_HEIGHT='1200'
+mkdir -p ${directory}
 
-# redirects to /dev/null to ignore any "FATAL: timeout. cam lense closed ?" 
-# errors that occasionally occur
-OUTPUT='/dev/null'
-[ ${VISUAL} ]   &&  OUTPUT='/dev/stdout'    \
-                &&  echo "${FILE}"
+# When not running interactively, redirect to /dev/null to ignore any 
+# "FATAL: timeout. cam lense closed ?" errors that occasionally occur.
+if [ "$INTERACTIVE" -eq 0 ]; then
+    output=/dev/null
+else
+    output=/dev/stdout
+    echo Saving image to $file
+fi
 
-isightcapture -t ${CAPTURE_TYPE}                \
-              -w ${CAPTURE_WIDTH}               \
-              -h ${CAPTURE_HEIGHT}              \
-              "${FILE}" > ${OUTPUT}
-
+isightcapture -t ${capture_type}        \
+              -w ${capture_width}       \
+              -h ${capture_height}      \
+              "${capture_file}"         >/dev/null

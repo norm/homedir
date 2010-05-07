@@ -1,5 +1,9 @@
-#!/ports/bin/perl
+#!/usr/bin/env perl
+# github:norm:homedir:bin/sweep
 # -*- Mode: Perl; tab-width: 4; indent-tabs-mode: nil; -*-
+#
+#       Cleaning up after my Byline usage with Google Reader. Read about this in
+#       more detail at <http://marknormanfrancis.com/code/home-directory/sweep>.
 
 use Modern::Perl;
 
