@@ -1,0 +1,9 @@
+# github:etc/bash/defaults/00.user
+# -*- Mode: Bash; tab-width: 4; indent-tabs-mode: nil; -*-
+#
+#       Setup the default user. This must be overridden later, or it will
+#       trigger an error. This is to get people to explore.
+#
+#       See ~/share/home/setup.markdown for more information.
+
+export DEFAULT_USER='NOTCONFIGURED'

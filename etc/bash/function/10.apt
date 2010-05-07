@@ -1,0 +1,4 @@
+# github:etc/bash/function/10.apt
+# -*- Mode: Bash; tab-width: 4; indent-tabs-mode: nil; -*-
+#
+#       Setup the paths of the apt packaging system.

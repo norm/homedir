@@ -1,0 +1,6 @@
+" github:etc/vim/vimrc
+" -*- Mode: Vimrc; tab-width: 4; indent-tabs-mode: nil; -*-
+"
+"       Separate out vim settings into files in ~/etc/vim/rc.
+
+runtime! rc/*

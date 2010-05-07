@@ -1,0 +1,20 @@
+# github:etc/bash/defaults/10.prompt
+# -*- Mode: Bash; tab-width: 4; indent-tabs-mode: nil; -*-
+#
+#       Setup the default PS1-4 prompts, and things that are used in
+#       the prompt templates. 
+#
+#       See ~/share/home/bash-prompt.markdown for more.
+
+# Truncate paths to a maximum of "five chars, ellipsis, five chars".
+PWDN_MAX_WORD='10'
+
+# Default prompt macros.
+GIT_STATUS_FORMATTER='git_status_formatter'
+         PROMPT_USER='${USER}@'
+       PROMPT_WINDOW='%ccscr${WINDOW}%cn '
+        PS1_TEMPLATE='([window][user][host] %B[pwd 2]%b%cy[git]%cn)[%%] '
+  PS1_TITLE_TEMPLATE='${USER}@[host]'
+        PS2_TEMPLATE='%B...%b> '
+        PS3_TEMPLATE='Which? '
+        PS4_TEMPLATE='+> '

@@ -1,0 +1,36 @@
+# github:etc/bash/function/00.have
+# -*- Mode: Bash; tab-width: 4; indent-tabs-mode: nil; -*-
+#
+#       Extensions allowing us to declare a requirement for
+#       a specific program to be installed, or variable to
+#       be set before performing specific initialisations.
+
+function available {
+    type $1 &> /dev/null
+}
+
+function need {
+    available $1
+    local avail=$?
+    
+    # 0 is "true" in this case (the last command worked)
+    [ $avail -eq 0 ] \
+        || warn "${1} is not available"
+    
+    return $avail
+}
+
+function var_set {
+    [ -n "${!1}" ]
+}
+
+function need_var {
+    var_set $1
+    local is_set=$?
+    
+    # 0 is "true" in this case (the last command worked)
+    [ $is_set -eq 0 ] \
+        || warn "$1: not set"
+    
+    return $is_set
+}

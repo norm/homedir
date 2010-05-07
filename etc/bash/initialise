@@ -1,0 +1,41 @@
+# github:etc/bash/initialise
+# -*- Mode: Bash; tab-width: 4; indent-tabs-mode: nil; -*-
+#
+#       This is the master initialisation (rc) file for bash. Anything in this
+#       file gets applied to every bash shell, "login" or otherwise.
+#       
+#       Read ~/share/home/customising.markdown before making any changes.
+
+# Allow overriding of the default location of bash setup.
+# (Useful when debugging.)
+BASH_BASE="${BASH_DIR:=${HOME}/etc/bash}"
+
+# Sane defaults.
+for rc_file in $( echo ${BASH_BASE}/defaults/* ); do
+    source $rc_file
+done
+
+# Setup functions required during the shell initialisation.
+for rc_file in $( echo ${BASH_BASE}/function/* ); do
+    source $rc_file
+done
+
+# Setup anything that is specific to the current location/hardware.
+source_if_exists ${BASH_BASE}/os/${HOSTOS}/*
+source_if_exists ${BASH_BASE}/arch/${HOSTTYPE}/*
+source_if_exists ${BASH_BASE}/domain/${DOMAIN}/*
+source_if_exists ${BASH_BASE}/host/${HOST}/*
+
+# Setup bash completion.
+if [ "$USE_BASH_COMPLETION" = 'yes' ]; then
+    source_or_warn ${BASH_COMPLETION:=/etc/bash_completion}
+    source_if_exists "${BASH_BASE}/completion/*"
+fi
+
+# Setup the common bash settings, that apply regardless of location/hardware.
+for rc_file in $( echo ${BASH_BASE}/rc/* ); do
+    source_if_exists $rc_file
+done
+
+# Setup the prompt.
+source_or_warn "${BASH_BASE}/prompt"

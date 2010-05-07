@@ -1,0 +1,14 @@
+# github:etc/bash/defaults/10.packaging
+# -*- Mode: Bash; tab-width: 4; indent-tabs-mode: nil; -*-
+#
+#       Setup the default locations of packaging system files.
+
+    MK_CONF='/etc/mk.conf'
+PKGSRC_BASE='/usr/pkg'
+PKGCHK_CONF='/etc/pkg_chk.conf'
+
+MACPORTS_BASE='/opt/local'
+
+# TODO
+#   *   homebrew
+#   *   apt

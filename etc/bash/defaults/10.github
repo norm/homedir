@@ -1,0 +1,7 @@
+# github:etc/bash/defaults/10.github
+# -*- Mode: Bash; tab-width: 4; indent-tabs-mode: nil; -*-
+#
+#       See ~/share/home/setup.markdown for more information.
+
+export CHECK_GITHUB_UPDATES='yes'
+export GITHUB_UPDATES_STAMP="${HOME}/var/last.list-home-updates"

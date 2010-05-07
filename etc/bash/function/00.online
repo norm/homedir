@@ -1,0 +1,17 @@
+# github:etc/bash/defaults/00.online
+# -*- Mode: Bash; tab-width: 4; indent-tabs-mode: nil; -*-
+#
+#       Simple (and therefore fallible) check to see if we are online.
+
+function online {
+    unset -v online
+    
+    ping -qot3 www.google.com >&/dev/null \
+        && online='yes'
+}
+
+function offline {
+    unset -v offline
+    
+    online || offline='yes'
+}

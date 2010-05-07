@@ -1,6 +1,7 @@
-# crontab.XXX
+# github:var/cron/_default
 # -*- Mode: Apache; tab-width: 3; indent-tabs-mode: nil -*-
 
+# customise these settings appropriately (not all are even necessary)
   MAILTO=norm@cackhanded.net
     PATH=/ports/bin:/ports/sbin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin
 PERL5LIB=/home/norm/lib/perl

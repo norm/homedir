@@ -1,0 +1,28 @@
+# github:etc/bash/function/01.source
+# -*- Mode: Bash; tab-width: 4; indent-tabs-mode: nil; -*-
+#
+#       Extensions to the standard "source" command.
+
+# Source the named script, emitting a warning if it is not found.
+function source_or_warn {
+    local file=$1
+    
+    if [ -f $file ]; then
+        source $file
+    else
+        warn "${file} does not exist"
+    fi
+}
+
+# Source the named script(s) if they exist (missing files are not an error).
+function source_if_exists {
+    local file="$1"
+    
+    while [ -n "$file" ]; do
+        [ -f $file ] \
+            && source $file
+        
+        shift
+        file="$1"
+    done
+}

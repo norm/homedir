@@ -1,0 +1,4 @@
+# github:etc/bash/function/10.homebrew
+# -*- Mode: Bash; tab-width: 4; indent-tabs-mode: nil; -*-
+#
+#       Setup the paths of the homebrew packaging system.

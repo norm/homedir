@@ -1,0 +1,125 @@
+#!/usr/bin/env perl
+# github:bin/list-home-updates
+# -*- Mode: Perl; tab-width: 4; indent-tabs-mode: nil; -*-
+#
+#       Check for updates to any script/config file in home-base that has a
+#       location trigger.
+
+use 5.10.0;
+use strict;
+use warnings;
+
+use Digest::MD5     qw(md5_hex);
+use FileHandle;
+use File::Find;
+use HTTP::Lite;
+use Term::ANSIColor;
+
+my @directories_to_scan = qw( etc bin );
+my %files_to_check;
+
+# github signatures look like:
+#   "# github:etc/bash/initialise"
+#   "# github:norm:homedir:bin/home"
+my $github_signature = qr{
+        (?: \# )                # comment
+        \s+
+        github                  # signature trigger
+        (?:
+            :
+            (?'user' [^:]+ )    # capture the optional user
+            :
+            (?'repo' [^:]+ )    # capture the optional repo
+        )?
+        :
+        (?'path' .* )           # $1: signature details
+        \s*
+    }x;
+
+
+
+foreach my $directory ( @directories_to_scan ) {
+    find(   {
+                wanted      => \&check_file_for_github_signature,
+                follow      => 1,
+                no_chdir    => 1,
+            },
+            $directory
+        );
+}
+
+while ( my( $file, $url ) = each %files_to_check ) {
+    say "${file}: (${url})"
+        if file_has_newer_version( $file, $url );
+}
+
+exit;
+
+
+
+sub check_file_for_github_signature {
+    my $file = $File::Find::name;
+    return unless -f $file;
+    
+    my $handle = FileHandle->new( $file );
+    return unless $handle;
+    
+    # check the first three lines for x
+    my $count = 0;
+    while ( $count < 3 ) {
+        my $line = <$handle>;
+        last unless defined $line;
+        
+        $count++;
+        
+        if ( $line =~ m{^ $github_signature $}x ) {
+            $files_to_check{ $file } = get_github_url( %+ );
+        }
+    }
+}
+sub get_github_url {
+    my %details = @_;
+    
+    # a signature like "github:etc/bash/initialise" becomes:
+    # "http://github.com/norm/home/raw/master/etc/bash/initialise"
+    
+    my $user    = $details{'user'} // 'norm';
+    my $repo    = $details{'repo'} // 'home';
+    my $branch  = $details{'branch'} // 'master';
+    my $path    = $details{'path'};
+    
+    return "http://github.com/${user}/${repo}/raw/${branch}/${path}";
+}
+sub file_has_newer_version {
+    my $file = shift;
+    my $url  = shift;
+    
+    my $handle      = FileHandle->new( $file );
+    my $content     = do { local $/; <$handle>; };
+    my $this_md5    = md5_hex( $content );
+    
+    my $http        = HTTP::Lite->new();
+    my $code        = $http->request( $url );
+    
+    if ( 200 != $code ) {
+        warn colored( "${code}: ${url}\n", 'bold magenta' );
+        return 0;
+    }
+    
+    my $that_md5                = md5_hex( $http->body() );
+    my $remote_has_signature    = has_github_url( $http->body() );
+    
+    # If the remote file doesn't have a "github:..." signature,
+    # remove the local signature before comparing the two files.
+    if ( ! $remote_has_signature ) {
+        $content =~ s{ $github_signature \n }{}sx;
+        $this_md5 = md5_hex( $content );
+    }
+    
+    return ( $this_md5 ne $that_md5 );
+}
+sub has_github_url {
+    my $string = shift;
+    
+    return $string =~ m{^ $github_signature $}mx;
+}

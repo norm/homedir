@@ -1,0 +1,53 @@
+# github:etc/bash/function/01.diff
+# -*- Mode: Bash; tab-width: 4; indent-tabs-mode: nil; -*-
+#
+#       Extensions allowing us to check for files that are different to
+#       their canonical versions.
+
+function warn_if_different {
+    $must_be_interactive
+    
+    local  file_a="$1"
+    local  file_b="$2"
+    
+    # shorten the filenames in the warning
+    local wfile_a="${file_a##$HOME}"
+    local wfile_b="${file_b##$HOME}"
+    local warning="${3:-${wfile_a} and ${wfile_b} are different}"
+    
+    diff "$file_a" "$file_b" &> /dev/null
+    
+    [ 1 = $? ] \
+        && warn $warning
+}
+
+# Some file templates have "REPLACE_ME" placeholders. Ignore these when
+# diffing the files, only warning when other parts have changed.
+function warn_if_different_ignoring_placeholders {
+    $must_be_interactive
+    
+    local example="$2"
+    local    file="$1"
+    
+    # shorten the filenames in the warning
+    local    wfile="${file##$HOME/}"
+    local wexample="${example##$HOME/}"
+    local  warning="${3:-${wfile} and example ${wexample} are different}"
+    
+    local diff_args="--side-by-side
+                     --suppress-common-lines
+                     --ignore-tab-expansion
+                     --ignore-space-change
+                     --ignore-blank-lines"
+    
+    local check_diff=$( 
+        /usr/bin/diff $diff_args "$example" "$file" \
+            | grep -v REPLACE_ME
+    )
+    
+    if [ -n "$check_diff" ]; then
+        warn $warning
+        /usr/bin/diff ${diff_args} "$example" "$file" \
+            | grep -v REPLACE_ME
+    fi
+}
