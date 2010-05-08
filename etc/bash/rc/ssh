@@ -1,22 +1,26 @@
-# ~/etc/bash/rc/ssh
-# -*- Mode: Bash; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 2 -*-
-# 
-# commands for working with ssh
+# github:norm:homedir:etc/bash/rc/ssh
+# -*- Mode: Bash; tab-width: 4; indent-tabs-mode: nil; -*-
+#
+#       Working with ssh.
+
+# Provide an ssh-agent if one is not already available, and it is desired.
+var_set NO_SSH_AGENT \
+    && return
+
+export SSH_AUTH_BASE="${SSH_AUTH_BASE:=/var/tmp/${UID}}"
+export SSH_AUTH_SOCK="${SSH_AUTH_SOCK:=${SSH_AUTH_BASE}/ssh-agent}"
 
 function setup_ssh_agent {
-    [ 0 = ${interactive} ] && return
+    $must_be_interactive
     
     ssh-add -l &> /dev/null
     case $? in
         2)
-            mkdir -p ${AUTH_BASE}
-            chmod 1700 ${AUTH_BASE}
-            ssh-agent -a ${SSH_AUTH_SOCK} > /dev/null
+            mkdir -p "$SSH_AUTH_BASE"
+            chmod 1700 "$SSH_AUTH_BASE"
+            ssh-agent -a "$SSH_AUTH_SOCK" > /dev/null
         ;;
     esac
 }
-
-export     AUTH_BASE="${AUTH_BASE:=/var/tmp/${UID}}"
-export SSH_AUTH_SOCK="${SSH_AUTH_SOCK:=${AUTH_BASE}/ssh-agent}"
 
 setup_ssh_agent
