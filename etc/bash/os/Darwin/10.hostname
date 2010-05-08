@@ -1,0 +1,13 @@
+# github:etc/bash/os/Darwin/10.hostname
+# -*- Mode: Bash; tab-width: 4; indent-tabs-mode: nil; -*-
+#
+#       Override the values of hostname and domain as given by
+#       'hostname' (often mangled by DHCP) with the values from
+#       the Sharing preference pane.
+
+if [ "$FIX_HOSTNAME_ON_OSX" = 'yes' ]; then
+    export   HOST=$( scutil --get LocalHostName | sed -e "s/-.*//" )
+    export DOMAIN=$(
+        scutil --get LocalHostName | sed -e "s/${HOST}-//" -e 's/-/./'
+    )
+fi
