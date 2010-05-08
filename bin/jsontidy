@@ -1,0 +1,21 @@
+#!/usr/bin/env perl
+# github:norm:homedir:bin/jsontidy
+# -*- Mode: Perl; tab-width: 4; indent-tabs-mode: nil; -*-
+#
+#       Reformat JSON to be more readable.
+
+use 5.10.0;
+use JSON;
+
+foreach my $file ( @ARGV ) {
+    my $json_data = from_json( 
+	    $file, 
+	    { allow_nonref => 1 }
+	);
+    my $output = to_json( 
+	    $json_data, 
+	    { pretty => 1 } 
+	);
+
+    say $output;
+}
