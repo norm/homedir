@@ -1,0 +1,19 @@
+# github:norm:homedir:etc/bash/host/sinister/textmate
+# -*- Mode: Bash; tab-width: 4; indent-tabs-mode: nil; -*-
+#
+#       Working with TextMate.
+
+need mate && {
+    export VISUAL='textmate'
+
+    function pdtm {
+        perldoc -t $1 | tm
+    }
+    function gd {
+        git diff "$@" | tm
+    }
+    function sd {
+        svn diff "$@" | tm
+    }
+}
+

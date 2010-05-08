@@ -1,0 +1,17 @@
+# github:norm:homedir:etc/bash/host/sinister/perl
+# -*- Mode: Bash; tab-width: 4; indent-tabs-mode: nil; -*-
+#
+#       Authoring perl code.
+
+need module-starter && {
+    export MODULE_STARTER_DIR="${HOME}/etc/perl/module-starter"
+    function newmod {
+        module="$1"
+        shift
+        module-starter --module=$module "$@"
+    }
+}
+
+need perltidy && {
+    export PERLTIDY="${HOME}/etc/perl/tidy"
+}
