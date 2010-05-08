@@ -1,34 +1,9 @@
-# ~/etc/bash/rc/disk
-# -*- Mode: Bash; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 2 -*-
-# 
-# readable output from disk utilities
+# github:norm:homedir:etc/bash/rc/disk
+# -*- Mode: Bash; tab-width: 4; indent-tabs-mode: nil; -*-
+#
+#       Working with disk space.
 
 export BLOCKSIZE='1k'
 
-alias   dff=`which df`
-alias   du='du -h'
-
-# current directory usage (sorted least-to-most) with total
-alias   dus='\du -s * | sort -n ; du -s .'
-
-function df {
-    /bin/df -h "$@" 2>/dev/null | perl -e '
-$prefix     = <>;
-$longest_fs = 20;
-
-while ( <> ) {
-    m{^ ( [\S+\s]+? ) \s+ (\S+) \s+ (\S+) \s+ (\S+) \s+ (\S+) \s+ (/.*) $}x;
-
-    push @fs, [ $6, $2, $3, $4, $5 ];
-    $longest_mount = length( $1 ) if length $1 > $longest_mount;
-    $longest_fs    = length( $6 ) if length $6 > $longest_fs;
-}
-
-$tmpl = "%-${longest_fs}s    %9s %9s %9s %9s\n";
-
-printf $tmpl, "Mounted on", qw( Size Used Avail Capacity );
-foreach my $fs ( @fs ) {
-    printf $tmpl, @{ $fs };
-}'
-
-}
+alias  du='du -h'
+alias dus='\du -s * | sort -n ; du -s .'
