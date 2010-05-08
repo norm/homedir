@@ -1,26 +1,29 @@
-# ~/etc/bash/rc/rsync
-# -*- Mode: Bash; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 2 -*-
-# 
-# commonly used rsync options
+# github:norm:homedir:etc/bash/rc/rsync
+# -*- Mode: Bash; tab-width: 4; indent-tabs-mode: nil; -*-
+#
+#       Working with rsync.
 
 export RSYNC_RSH='/usr/bin/ssh'
 
-    rs_ignore="--exclude '.Trash'"
-    rs_ignore="${rs_ignore} --exclude '.Trashes'"
-    rs_ignore="${rs_ignore} --exclude '.Spotlight-V100'"
-    rs_ignore="${rs_ignore} --exclude '.DS_Store'"
-rs_s3_options="--size-only --inplace"
+ rs_ignore="--exclude '.Trash'"
+ rs_ignore="${rs_ignore} --exclude '.Trashes'"
+ rs_ignore="${rs_ignore} --exclude '.Spotlight-V100'"
+ rs_ignore="${rs_ignore} --exclude '.DS_Store'"
+rs_limited="--size-only --inplace"
 
-# disk-to-disk synchronisation
-alias     rs="rsync -aHvP ${rs_ignore}"
-alias    rsd="rs --delete"
+# Standard rsync operations.
+alias  rs="rsync -aHvP ${rs_ignore}"
+alias rsd="rs --delete"
 
-# disk-to-s3 synchronisation (when mounted via JungleDisk)
-alias    rs3="rsync -rptgvP ${rs_s3_options} ${rs_ignore}"
-alias   rs3d="rs3 --delete"
+# Support for limited filesystems without decent metadata
+# support (such as S3 mounted as a local filesystem).
+alias  rsl="rsync -rptgvP ${rs_limited} ${rs_ignore}"
+alias rsld="rsl --delete"
 
-# tab completion
-complete -o filenames -o nospace -F _rsync rs
-complete -o filenames -o nospace -F _rsync rsd
-complete -o filenames -o nospace -F _rsync rs3
-complete -o filenames -o nospace -F _rsync rs3d
+# Apply the '_rsync' completion function provided by bash_completion.
+available _rsync && {
+    complete -o filenames -o nospace -F _rsync rs
+    complete -o filenames -o nospace -F _rsync rsd
+    complete -o filenames -o nospace -F _rsync rsl
+    complete -o filenames -o nospace -F _rsync rsld
+}
