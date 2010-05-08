@@ -1,11 +1,9 @@
-# ~/etc/bash/rc/perl
-# -*- Mode: Bash; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 2 -*-
+# github:norm:homedir:etc/bash/rc/perl
+# -*- Mode: Bash; tab-width: 4; indent-tabs-mode: nil; -*-
 #
-# working with perl
+#       Working with perl.
 
-# location for personal modules not properly installed
+# Modules I've written that are not installed via CPAN.
 export PERL5LIB="${HOME}/lib/perl"
 
-alias pm='perl Makefile.PL ; make ; make test'
-
-
+alias pm='perl Makefile.PL; make; test'
