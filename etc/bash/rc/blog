@@ -1,26 +1,47 @@
-# ~/etc/bash/rc/blog
-# -*- Mode: Bash; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 2 -*-
-# 
-# blogging stuff
+# github:norm:homedir:etc/bash/rc/blog
+# -*- Mode: Bash; tab-width: 4; indent-tabs-mode: nil; -*-
+#
+#       Filename completion for new and existing blog posts.
+#
+#       The expected directory structure is:
+#
+#       $SITES_BASE/
+#       [marknormanfrancis.com]/
+#       content/
+#           [some topic]/
+#                       [blog_post].frame   <-- the body copy
+#                       [blog_post].meta    <-- the post metadata
 
-export  SITES_BASE='/sites/htdocs'
-export BLOG_EDITOR='tm'
+need_var SITES_BASE \
+    || return
 
 function blog {
-    blog="$1"
-    post="$2"
+    local blog="$1"
+    local post="$2"
     
     local dir=$( dirname $post )
     local base="${SITES_BASE}/${blog}/content/${dir}"
-    files=$( echo ${SITES_BASE}/${blog}/content/${post}.{meta,frame} )
+    local files=$( echo ${SITES_BASE}/${blog}/content/${post}.{meta,frame} )
     
     mkdir -p $base
     touch $files
-    $BLOG_EDITOR $files
+    ${BLOG_EDITOR:=${VISUAL}} $files
+}
+
+function publish {
+    local blog="$1"
+    local post="$2"
+    
+    local base="${SITES_BASE}/${blog}/content"
+    cd $base
+    
+    local files=$( echo ${post}.{meta,frame} )
+    git add $files          \
+    && git commit       \
+        && git push github
 }
 
 _blog() {
-    
     COMPREPLY=()
     
     local this_dir=`pwd`
@@ -44,6 +65,7 @@ _blog() {
             popd >/dev/null
         ;;
     esac
-    
 }
+
 complete -F _blog blog
+complete -F _blog publish
