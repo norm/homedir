@@ -1,18 +1,15 @@
-# ~/etc/bash/rc/less
-# -*- Mode: Bash; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 2 -*-
+# github:norm:homedir:etc/bash/rc/less
+# -*- Mode: Bash; tab-width: 4; indent-tabs-mode: nil; -*-
 #
-# use less in preference to more
+#       Use less in preference to more.
 
-export  PAGER='less'
-alias    more='less'
-
-export  LESSHISTFILE="${HOME}/var/less_history"
+export PAGER='less'
+alias   more='less'
 
 # add colour highlighting where possible
-need lesspipe.sh <<end
-    export  LESSOPEN='| lesspipe.sh %s';
-    export      LESS='-R';
-end
-need pygmentize <<end
-    export LESSCOLORIZER='pygmentize';
-end
+need lesspipe.sh && {
+    export LESSOPEN='| lesspipe.sh %s'
+    export     LESS='-R'
+}
+need pygmentize \
+    && export LESSCOLORIZER='pygmentize'
