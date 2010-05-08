@@ -1,0 +1,8 @@
+# github:norm:homedir:etc/bash/rc/upload
+# -*- Mode: Bash; tab-width: 4; indent-tabs-mode: nil; -*-
+#
+#       Uploading files to the internets.
+
+function bumph {
+    rsync -avP "$@" bumph.cackhanded.net:/sites/htdocs/bumph.cackhanded.net
+}

@@ -1,0 +1,6 @@
+# github:norm:homedir:etc/bash/rc/root
+# -*- Mode: Bash; tab-width: 4; indent-tabs-mode: nil; -*-
+#
+#       Working with root.
+
+alias visudo='VISUAL=vi sudo visudo'
