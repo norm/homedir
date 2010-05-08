@@ -1,0 +1,6 @@
+# github:etc/bash/os/NetBSD/10.path
+# -*- Mode: Bash; tab-width: 4; indent-tabs-mode: nil; -*-
+#
+#       Enable common extensions to the PATH.
+
+path_append '/usr/games'
