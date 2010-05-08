@@ -1,6 +1,0 @@
-# ~/etc/bash/host/southpaw
-# -*- Mode: Bash; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 2 -*-
-#
-# commands specific to host sinister
-
-alias   hella="hellanzb.py -c ~/etc/hellanzb.conf"
