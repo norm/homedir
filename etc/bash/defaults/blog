@@ -1,0 +1,2 @@
+export  SITES_BASE='/sites/htdocs'
+export BLOG_EDITOR='tm'
