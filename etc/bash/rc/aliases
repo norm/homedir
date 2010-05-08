@@ -1,0 +1,20 @@
+# github:norm:homedir:etc/bash/rc/aliases
+# -*- Mode: Bash; tab-width: 4; indent-tabs-mode: nil; -*-
+#
+#       "Fix" the defaults of various programs. This includes any useful
+#       aliases that don't really fit anywhere elsewhere.
+
+alias    ..='cd ..'
+alias   ...='cd ../..'
+alias  ....='cd ../../..'
+alias .....='cd ../../../..'
+
+alias diff='diff -u'
+
+alias     l='ls -la'
+alias    ls='ls -F'
+
+alias mkdir='mkdir -p'
+
+alias x='exit'
+alias z='suspend'
