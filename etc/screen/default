@@ -1,5 +1,6 @@
-# ~/etc/screen/default
+# github:norm:homedir:etc/screen/default
+# -*- Mode: Apache; tab-width: 4; indent-tabs-mode: nil; -*-
 # 
-# default screen settings
+#       Settings for a new screen session, when there is no specific config.
 
-source common
+source      common

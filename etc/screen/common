@@ -1,26 +1,31 @@
-# ~/etc/screen/common
+# github:norm:homedir:etc/screen/common
+# -*- Mode: Apache; tab-width: 4; indent-tabs-mode: nil; -*-
 # 
-# screen settings used in all sessions
+#       Settings used in all screen sessions.
 
-# never use ^A as the command key -- it clashes with 'start of line', and
-# has caused me to kill windows so many times when doing ^A^K to delete 
-# the current line in the shell or micro-emacs/pico like editors; ^Z has 
-# few side-effects (other than occasionally accidentally pausing a program)
-escape              ^Zz      
+# Never use ^A as the command key as it clashes with 'start of line',
+# and has caused me to kill windows so many times when doing ^A^K to
+# delete the current line in the shell or micro-emacs/pico like editors.
+# ^Z has very few side-effects (other than occasionally accidentally
+# pausing a program, which is a non-destructive act).
+escape              ^Zz
+
+# Move to the next split window with space, not tab.
+bind                ' '     focus
 
 autodetach          on
 defutf8             on
 nonblock            on
-defscrollback       1024
+defscrollback       5120
 startup_message     off
 
-# always alert to activity
+# Always alert when there is activity elsewhere.
 activity            "%n - %t"
 defmonitor          on
 msgminwait          2
 msgwait             5
 
-# only use the status line for bells
+# Use the status line in preference to audio for alerts.
 bell_msg            ' -bing!- (%n - %t)'
 vbell               on
 vbell_msg           ' -bing!- '

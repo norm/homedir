@@ -1,14 +1,16 @@
-# ~/etc/screen/southpaw
+# github:norm:homedir:etc/screen/southpaw
+# -*- Mode: Apache; tab-width: 4; indent-tabs-mode: nil; -*-
+# 
+#       Settings for southpaw.
 
-source common
+source      common
 
-screen      -t 'hella'      0   bash -ic hella
+chdir       /files/downloads
+screen      -t 'down'           0
 
-chdir       /files/downloads/
-screen      -t 'down'       1
+chdir       /files/tv
+screen      -t 'tv'             1
 
-chdir       /files/watch/
-screen      -t 'watch'      2
-
-chdir       /files/tv/
-screen      -t 'tv'         3
+chdir       /home/norm
+screen      -t 'hella'          8   hellanzb.by
+screen      -t 'enc'            9   encoder run
