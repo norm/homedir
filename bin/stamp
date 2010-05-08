@@ -1,0 +1,19 @@
+#!/usr/bin/env perl
+# github:norm:homedir:bin/stamp
+# -*- Mode: Perl; tab-width: 4; indent-tabs-mode: nil; -*-
+#
+#       Provide unix-epoch style timestamp conversion (in UTC).
+
+use 5.10.0;
+use Date::Manip;
+
+my $time = shift // 'now';
+
+# convert numeric timestamps to human-readable dates
+if ( $time =~ m{^\d+$} ) {
+    say scalar( gmtime $time );
+}
+# convert anything else to a numeric timestamp
+else {
+    say UnixDate( $time, '%s' );
+}

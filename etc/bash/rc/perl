@@ -8,16 +8,4 @@ export PERL5LIB="${HOME}/lib/perl"
 
 alias pm='perl Makefile.PL ; make ; make test'
 
-# convert to/from timestamps
-function stamp {
-    perl -MDate::Manip -e "
-        \$time = q(${*});
-        if ( \$time =~ m{^\d+$} ) {
-            print scalar( gmtime \$time ) . qq(\n);
-        }
-        else {
-            print UnixDate( \$time, qq(%s\n) );
-        }
-    "
-}
 
