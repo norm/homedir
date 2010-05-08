@@ -1,13 +1,19 @@
-# ~/etc/bash/rc/history
-# -*- Mode: Bash; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 2 -*-
+# github:norm:homedir:etc/bash/rc/history
+# -*- Mode: Bash; tab-width: 4; indent-tabs-mode: nil; -*-
 #
-# control history capturing
+#       Exercise some control over how bash keeps history.
 
-export   HISTCONTROL=erasedups
-export  HISTFILESIZE=10000
-export      HISTFILE="${HOME}/var/bash_history"
+export  HISTCONTROL=erasedups
+export     HISTFILE="${HOME}/var/bash_history.${HOST}"
+export HISTFILESIZE=10000
+export   HISTIGNORE='fhig *:h:hig *:history*:'
+export     HISTSIZE=1000
 
-alias    h='history 20'
-alias   hg='history | egrep'
+alias   h='history 20'
+alias hig='history | egrep'
+
+function fhig {
+    egrep "$@" $HISTFILE
+}
 
 shopt -s histappend
