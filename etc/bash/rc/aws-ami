@@ -1,7 +1,7 @@
-# ~/etc/bash/rc/aws-rebundle
-# -*- Mode: Bash; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 2 -*-
-# 
-# working with Amazon Machine Images
+# github:norm:homedir:etc/bash/rc/aws-ami
+# -*- Mode: Bash; tab-width: 4; indent-tabs-mode: nil; -*-
+#
+#       Working with Amazon Machine Images.
 
 # turn a running EC2 instance into a new AMI that you can use
 function ec2-rebundle-as-ami {
@@ -76,6 +76,6 @@ function ami-register {
     local   name=$1
     local bucket=${2:-$AMI_BUCKET}
     
-    status_run \
+    status_then_run \
         ec2-register ${bucket}/${name}.manifest.xml
 }

@@ -1,0 +1,17 @@
+# github:norm:homedir:etc/bash/defaults/aws
+# -*- Mode: Bash; tab-width: 4; indent-tabs-mode: nil; -*-
+#
+#       Common settings for using Amazon Web Services.
+
+export     AMI_BUCKET='cackhanded-ami'
+export EC2_AVAIL_ZONE='us-east-1a'
+export    EC2_KEYPAIR='mnf-keypair'
+
+export        EC2_CERT=$( echo ${HOME}/etc/ec2/cert-* )
+export EC2_PRIVATE_KEY=$( echo ${HOME}/etc/ec2/pk-* )
+
+# To enable easier interaction with EBS volumes, they can be assigned names
+# which are stored in this file. This name is purely for convenience, and
+# this is not something that is provided by EC2 (so unless you move the
+# file around, the "names" will not work on another computer)
+export VOLUMES_LIST="${HOME}/var/ebs_volumes"

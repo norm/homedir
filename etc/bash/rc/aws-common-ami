@@ -1,7 +1,7 @@
-# ~/etc/bash/rc/aws-common-amis
-# -*- Mode: Bash; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 2 -*-
-# 
-# provide name shortcuts to common and personal AMI images
+# github:norm:homedir:etc/bash/rc/aws-ami
+# -*- Mode: Bash; tab-width: 4; indent-tabs-mode: nil; -*-
+#
+#       Provide named shortcuts to personal and common public AMI images.
 
 # attempt to turn a name into an AMI ID
 function ami-from-name {
@@ -33,6 +33,7 @@ function ami-common-from-name {
     local name=$1
     local  ami
     
+    # TODO - update these to the latest values
     case $name in
         ubuntu|ubuntu-804|ubuntu-804-us)  ami='ami-5d59be34' ;;
                           ubuntu-804-eu)  ami='ami-30c0e844' ;;
