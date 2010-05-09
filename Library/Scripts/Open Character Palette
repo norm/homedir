@@ -1,7 +1,9 @@
 #!/bin/sh
 
-osascript <<APPLESCRIPT
-    tell application "Finder"
-        open item "System:Library:Components:CharacterPalette.component:Contents:SharedSupport:CharPaletteServer" of the startup disk
-    end tell
-APPLESCRIPT
+pid=`ps ax | grep CharacterPalette | grep -v grep | awk '{ print $1 }'`
+
+if [ -n "$pid" ]; then
+    kill $pid
+else
+    open /System/Library/Input\ Methods/CharacterPalette.app
+fi

@@ -1,7 +1,10 @@
 #!/bin/sh
 
-osascript <<APPLESCRIPT
-    tell application "Finder"
-        open item "System:Library:Components:KeyboardViewer.component:Contents:SharedSupport:KeyboardViewerServer.app" of the startup disk
-    end tell
-APPLESCRIPT
+pid=`ps ax | grep KeyboardViewer | grep -v grep | awk '{ print $1 }'`
+
+if [ -n "$pid" ]; then
+    kill $pid
+else
+    # this is found at - http://github.com/nriley/keyboardViewer/downloads
+    keyboardViewer
+fi
