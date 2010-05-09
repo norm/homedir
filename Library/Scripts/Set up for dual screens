@@ -1,14 +1,19 @@
 #!/bin/sh
 
+# In this script, you should bind to a space before resizing.
 osascript <<APPLESCRIPT
-    
+
     set_spaces_binding( "com.apple.mail", 65544 )
     resize_application( "Mail", { 1920, 22, 2854, 1200 } )
     
     set_spaces_binding( "com.apple.ical", 65544 )
     resize_application( "iCal", { 1920, 22, 2854, 1200 } )
     
+    resize_application( "iTunes", { 1920, 300, 3360, 1200 } )
+    
     resize_application( "Adium", { 2655, 650, 3360, 1200 } )
+    
+    resize_application( "Things", { 1920, 300, 2720, 1200 } )
     
     
     
