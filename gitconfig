@@ -23,6 +23,7 @@
 
 [alias]
     b       = branch
+    br      = "for-each-ref --sort=-committerdate refs/heads/ --format='%(committerdate:short) %(refname:short)'"
     cf      = 'commit --fixup'
     ci      = commit
     co      = checkout
