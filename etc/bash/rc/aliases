@@ -9,7 +9,5 @@ alias   ...='cd ../..'
 alias  ....='cd ../../..'
 alias .....='cd ../../../..'
 
-alias diff='diff -u'
-
 alias x='exit'
 alias z='suspend'
