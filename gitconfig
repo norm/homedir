@@ -1,7 +1,6 @@
-# github:norm:homedir:share/examples/gitconfig
-# -*- Mode: Apache; tab-width: 4; indent-tabs-mode: nil; -*-
+# github:norm/homedir:gitconfig
 #
-#       'Global' user preferences for git.
+# Global user preferences for git.
 
 [github]
     user  = norm
