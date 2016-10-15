@@ -30,5 +30,12 @@
     l       = "log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr)%Creset' --abbrev-commit --date=relative"
     lo      = "log --oneline"
     p       = push
+    pf      = push --force-with-lease
     rbi     = "rebase -i"
     s       = "status -bs"
+
+[fetch]
+    prune   = true
+
+[push]
+    default = simple
