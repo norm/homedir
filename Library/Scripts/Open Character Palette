@@ -1,9 +1,0 @@
-#!/bin/sh
-
-pid=`ps ax | grep CharacterPalette | grep -v grep | awk '{ print $1 }'`
-
-if [ -n "$pid" ]; then
-    kill $pid
-else
-    open /System/Library/Input\ Methods/CharacterPalette.app
-fi
