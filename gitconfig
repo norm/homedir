@@ -3,32 +3,32 @@
 # Global user preferences for git.
 
 [github]
-    user  = norm
-    token = REPLACE_ME_WITH_TOKEN
+    user    = norm
+    token   = REPLACE_ME_WITH_TOKEN
 
 [user]
-    email = norm@cackhanded.net
-    name  = Mark Norman Francis
+    email   = norm@cackhanded.net
+    name    = Mark Norman Francis
 
 [core]
     whitespace = -trailing-space
 
 [color]
-    status = auto
-    diff   = auto
-    branch = auto
+    branch  = auto
+    diff    = auto
+    status  = auto
 
 [merge]
-    tool = opendiff
+    tool    = opendiff
 
 [alias]
-    br  = branch
-    ci  = commit
-    co  = checkout
-    d   = diff
-    dc  = diff --cached
-    l   = "log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr)%Creset' --abbrev-commit --date=relative"
-    lo  = "log --oneline"
-    p   = push
-    rbi = "rebase -i HEAD~10"
-    s   = status
+    br      = branch
+    ci      = commit
+    co      = checkout
+    d       = diff
+    dc      = diff --cached
+    l       = "log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr)%Creset' --abbrev-commit --date=relative"
+    lo      = "log --oneline"
+    p       = push
+    rbi     = "rebase -i HEAD~10"
+    s       = status
