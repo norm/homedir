@@ -4,7 +4,6 @@
 
 [github]
     user    = norm
-    token   = REPLACE_ME_WITH_TOKEN
 
 [user]
     email   = norm@201created.com
@@ -17,8 +16,10 @@
     branch  = auto
     diff    = auto
     status  = auto
+    ui      = true
 
 [merge]
+    ff      = only
     tool    = opendiff
 
 [alias]
