@@ -1,7 +1,6 @@
-# github:norm:homedir:etc/bash/os/Darwin/volumes
-# -*- Mode: Bash; tab-width: 4; indent-tabs-mode: nil; -*-
+# github:norm/homedir:etc/bash/rc/os-Darwin/volumes
 #
-#       Working with volumes (mounted disks) in OS X.
+# Working with volumes (mounted disks) in OS X.
 
 function eject {
     hdiutil eject "/Volumes/$*"
