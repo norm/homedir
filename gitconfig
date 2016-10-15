@@ -23,6 +23,7 @@
 
 [alias]
     b       = branch
+    cf      = 'commit --fixup'
     ci      = commit
     co      = checkout
     d       = diff
@@ -31,6 +32,8 @@
     lo      = "log --oneline"
     p       = push
     pf      = push --force-with-lease
+    rba     = "rebase --abort"
+    rbc     = "rebase --continue"
     rbi     = "rebase -i"
     s       = "status -bs"
 
@@ -42,3 +45,6 @@
 
 [push]
     default = simple
+
+[rebase]
+    autosquash = true
