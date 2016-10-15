@@ -22,13 +22,13 @@
     tool    = opendiff
 
 [alias]
-    br      = branch
+    b       = branch
     ci      = commit
     co      = checkout
     d       = diff
-    dc      = diff --cached
+    dc      = "diff --cached"
     l       = "log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr)%Creset' --abbrev-commit --date=relative"
     lo      = "log --oneline"
     p       = push
-    rbi     = "rebase -i HEAD~10"
-    s       = status
+    rbi     = "rebase -i"
+    s       = "status -bs"
