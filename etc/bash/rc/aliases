@@ -11,10 +11,5 @@ alias .....='cd ../../../..'
 
 alias diff='diff -u'
 
-alias     l='ls -la'
-alias    ls='ls -F'
-
-alias mkdir='mkdir -p'
-
 alias x='exit'
 alias z='suspend'
