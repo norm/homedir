@@ -1,7 +1,6 @@
-# github:norm:homedir:etc/input
-# -*- Mode: Apache; tab-width: 4; indent-tabs-mode: nil; -*-
+# github:norm/homedir:etc/input
 # 
-#       Control the readline library functions.
+# Control the readline library functions.
 
 # make [Tab] completion more useful
 set         show-all-if-ambiguous           on
