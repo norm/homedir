@@ -1,9 +1,0 @@
-# github:norm:homedir:etc/bash/rc/perl
-# -*- Mode: Bash; tab-width: 4; indent-tabs-mode: nil; -*-
-#
-#       Working with perl.
-
-# Modules I've written that are not installed via CPAN.
-export PERL5LIB="${HOME}/lib/perl"
-
-alias pm='perl Makefile.PL; make; test'

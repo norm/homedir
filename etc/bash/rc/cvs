@@ -1,8 +1,0 @@
-# github:norm:homedir:etc/bash/rc/cvs
-# -*- Mode: Bash; tab-width: 4; indent-tabs-mode: nil; -*-
-#
-#       Working with CVS repositories.
-
-export CVS_RSH='/usr/bin/ssh'
-
-alias cvsup='cvs update -dP 2>/dev/null'
