@@ -1,2 +1,8 @@
 #!/bin/sh
-mate -w "$@"
+# github:norm/homedir:bin/textmate
+# 
+# Edit files in a new window, waiting for the window to be closed before
+# exiting. This script makes TextMate easier to use via tools such as git
+# by setting `VISUAL=textmate`.
+
+mate --wait "$@"
