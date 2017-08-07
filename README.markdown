@@ -10,7 +10,7 @@ one big melange of a dotfile.
 
 ## copying individual files
 
-You are welcome to copy any of these files to your own home directory.
+You are welcome to copy the content any of these files to your own dotfiles.
 
 However, each file has a line specifying origin context line, such as:
 
