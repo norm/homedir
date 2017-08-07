@@ -1,33 +1,35 @@
 #!/bin/sh
-# github:norm:homedir:bin/df
-# -*- Mode: Perl; tab-width: 4; indent-tabs-mode: nil; -*-
+# github:norm/homedir:bin/df
 #
-#       Present the output of `df` in a more understandable fashion.
+# Present the output of `df` in a more understandable fashion.
 
 /bin/df -h "$@" 2>/dev/null | perl -e '
     $prefix     = <>;
     $longest_fs = 20;
 
     while ( <> ) {
-	m{
-	    ^ 
-	    ( [\S+\s]+? ) \s+ 	# Filesystem
-	    (\S+) \s+           # Size
-	    (\S+) \s+ 		# Used
-	    (\S+) \s+ 		# Avail
-	    (\S+) \s+ 		# Capacity (%)
-	    (/.*) 		# Mounted on
-	    $
-	}x;
+        m{
+            ^
+            ( [\S+\s]+? ) \s+       # Filesystem
+            (\S+) \s+               # Size
+            (\S+) \s+               # Used
+            (\S+) \s+               # Avail
+            (\S+) \s+               # Capacity (%)
+            (\S+) \s+               # iused
+            (\S+) \s+               # ifree
+            (\S+) \s+               # %iused
+            (/.*)                   # Mounted on
+            $
+        }x;
 
-	push @fs, [ $6, $2, $3, $4, $5 ];
-	$longest_fs = length( $6 ) if length $6 > $longest_fs;
+        push @fs, [ $9, $2, $3, $4, $5 ];
+        $longest_fs = length( $9 ) if length $9 > $longest_fs;
     }
 
     $tmpl = "%-${longest_fs}s %9s %9s %9s %9s\n";
 
     printf $tmpl, "Mounted on", qw( Size Used Avail Capacity );
     foreach my $fs ( @fs ) {
-	printf $tmpl, @{ $fs };
+        printf $tmpl, @{ $fs };
     }
 '
