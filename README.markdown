@@ -1,20 +1,27 @@
 home directory
 ==============
 
-This is my home directory. It is based, in part, on my base, ['starter kit'] 
-home directory project on github. Please see it's [README] for more description
-as to why I lay things out as I do.
+This is my home directory. It contains all of the settings and custom 
+configuration I like to use on a Unix computer.
 
-If you like what you see here, I would recommend forking that, not this. 
+It is built on top of my [bash-composition] project, because I like to
+keep my shell initialisation in many small, purposeful files rather than
+one big melange of a dotfile.
 
-You can borrow any individual files or settings from this project and
-integrate it into your fork of the base home directory project. That comes
-with a script `list-home-updates` which will compare your files against the
-registered copies on github. By default this runs once a week, so when I
-update any of my files here that you are using wholesale, you will be
-occasionally reminded to look for updates.
+## copying individual files
+
+You are welcome to copy any of these files to your own home directory.
+
+However, each file has a line specifying origin context line, such as:
+
+    # github:norm/homedir:etc/bash/rc/filesystem.sh
+
+If you are using [bash-composition] and retain the origin context line,
+you can run the command `composition-chages` to scan your home directory,
+and it will check every file it finds with an origin against the source
+on GitHub. That way, if I update anything you have previously copied,
+you can find out.
 
 -- Mark Norman Francis.
 
-['starter kit']:http://github.com/norm/home/
-[README]:http://github.com/norm/home/master/README.markdown
+[bash-composition]: https://github.com/norm/bash-composition
