@@ -12,3 +12,7 @@ cpanm $(cat cpanm.txt)
 
 # install python dependencies
 /usr/local/opt/python/libexec/bin/pip install -r requirements.txt
+
+# turn off perl-window session saving introduced in a recent macOS
+# (as found in /etc/bashrc_Apple_Terminal)
+touch $HOME/.bash_sessions_disable
