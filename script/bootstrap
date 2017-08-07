@@ -3,9 +3,12 @@
 rsync -a --itemize-changes bin/. $HOME/bin/.
 rsync -a --itemize-changes etc/. $HOME/etc/.
 
-# install python
+# install perl, python and anything else
 brew update
 brew bundle
+
+# install perl dependencies
+cpanm $(cat cpanm.txt)
 
 # install python dependencies
 /usr/local/opt/python/libexec/bin/pip install -r requirements.txt
