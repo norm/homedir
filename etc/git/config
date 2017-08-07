@@ -39,6 +39,7 @@
     dc      = "diff --cached"
     l       = "log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr)%Creset' --abbrev-commit --date=relative"
     lm      = ! git l | sed -e '/master)/,$d'
+    m       = merge --no-edit --no-ff
     p       = push
     pf      = push --force-with-lease
     rba     = "rebase --abort"
