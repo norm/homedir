@@ -1,0 +1,59 @@
+# github:norm/homedir:etc/git/config
+#
+# Global user preferences for git.
+
+[github]
+    user    = norm
+
+[user]
+    email   = norm@201created.com
+    name    = Mark Norman Francis
+
+[core]
+    whitespace = -trailing-space
+
+[color]
+    branch  = auto
+    diff    = auto
+    status  = auto
+    ui      = true
+
+[color "status"]
+    added = green
+    changed = magenta
+    untracked = cyan
+
+[merge]
+    ff      = only
+    tool    = opendiff
+
+[alias]
+    b       = branch
+    br      = "for-each-ref --sort=-committerdate refs/heads/ --format='%(committerdate:short) %(refname:short)'"
+    cam     = commit --amend
+    camn    = commit --amend --no-edit
+    cf      = commit --fixup
+    ci      = commit -v
+    co      = checkout
+    d       = diff
+    dc      = "diff --cached"
+    l       = "log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr)%Creset' --abbrev-commit --date=relative"
+    lm      = ! git l | sed -e '/master)/,$d'
+    p       = push
+    pf      = push --force-with-lease
+    rba     = "rebase --abort"
+    rbc     = "rebase --continue"
+    rbi     = "rebase -i"
+    s       = "status -bs"
+
+[diff]
+    algorithm = patience
+
+[fetch]
+    prune   = true
+
+[push]
+    default = simple
+
+[rebase]
+    autosquash = true
