@@ -3,5 +3,9 @@
 rsync -a --itemize-changes bin/. $HOME/bin/.
 rsync -a --itemize-changes etc/. $HOME/etc/.
 
+# install python
+brew update
+brew bundle
+
 # install python dependencies
-pip install -r requirements.txt
+/usr/local/opt/python/libexec/bin/pip install -r requirements.txt
