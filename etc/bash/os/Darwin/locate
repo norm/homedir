@@ -1,2 +1,0 @@
-# locate is not turned on by default in Snow Leopard, so use Spotlight
-alias locate='mdfind -name'

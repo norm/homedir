@@ -1,9 +1,0 @@
-# github:norm:homedir:etc/bash/rc/disk
-# -*- Mode: Bash; tab-width: 4; indent-tabs-mode: nil; -*-
-#
-#       Working with disk space.
-
-export BLOCKSIZE='1k'
-
-alias  du='du -h'
-alias dus='\du -s * | sort -n ; du -s .'

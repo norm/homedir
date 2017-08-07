@@ -1,0 +1,8 @@
+#!/bin/sh
+# github:norm/homedir:bin/sublime
+#
+# Edit files in a new window, waiting for the window to be closed before
+# exiting. This script makes Sublime Text easier to use via tools such as git
+# by setting `VISUAL=sublime`.
+
+subl --new-window --wait "$@"

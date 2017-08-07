@@ -1,8 +1,0 @@
-# github:etc/bash/defaults/10.crontab
-# -*- Mode: Bash; tab-width: 4; indent-tabs-mode: nil; -*-
-#
-#       If we are to keep master copies of crontabs locally, we need these.
-
-export REAL_CRONTAB=`which crontab`
-export CRONTAB_FILE=${HOME}/var/cron/${HOST}
-export BASE_CRONTAB="${HOME}/var/cron/_default"

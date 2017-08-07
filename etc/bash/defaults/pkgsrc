@@ -1,6 +1,0 @@
-# github:norm:homedir:etc/bash/rc/pkgsrc
-# -*- Mode: Bash; tab-width: 4; indent-tabs-mode: nil; -*-
-#
-#       Setup pkgsrc default locations.
-
-PKGSRC_BASE="/ports"
