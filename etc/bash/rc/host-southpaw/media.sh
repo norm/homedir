@@ -6,6 +6,7 @@
 export MEDIA_CONFIG="${HOME}/etc/media.conf"
 
 
+# List the episodes in the most recent season of a TV show.
 function tv {
     local show="${1//\//}";
     local season=$(
