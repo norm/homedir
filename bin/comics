@@ -1,0 +1,79 @@
+#!/bin/bash
+# github:norm/homedir:bin/comics
+#
+# Move new and read comics around more easily.
+
+set -e
+
+COMICS_DIR='/files/comics'
+INCOMING_DIR="${HOME}/Downloads/_usenet"
+NEW_COMICS_DIR="${COMICS_DIR}/00 new"
+SERIES_COMICS_DIR="${COMICS_DIR}/00 series"
+
+
+function get_series_name {
+    local comic="$1"
+
+    echo "$comic" | perl -npe 's/ \d\d+( ?\(\d+\))?.*//'
+}
+
+function is_regular_series {
+    local series="$1"
+
+    [ -d "$COMICS_DIR/$series" ]
+}
+
+function install_new_comics {
+    cd "$INCOMING_DIR"
+    for comic in *.cb?; do
+        series=$( get_series_name "$comic" )
+        if [ "$comic" != "$series" ]; then
+            if is_regular_series "$series"; then
+                mv "$comic" "${SERIES_COMICS_DIR}"
+                echo " ** $comic"
+            else
+                mkdir -p "${NEW_COMICS_DIR}/${series}"
+                mv "$comic" "${NEW_COMICS_DIR}/${series}"
+                echo "    ${series}/${comic}"
+            fi
+        else
+            mv "$comic" "${NEW_COMICS_DIR}"
+            echo "    ${comic}"
+        fi
+    done
+}
+
+function move_read_comics {
+    for comic in "$@"; do
+        mkdir -p "${COMICS_DIR}/${comic}"
+        series_comics=$(ls "${SERIES_COMICS_DIR}/${comic}"* 2>/dev/null | wc -l )
+
+        if [ -d "${NEW_COMICS_DIR}/${comic}/" ]; then
+            for issue in "${NEW_COMICS_DIR}/${comic}/"*; do
+                mv "$issue" "${COMICS_DIR}/${comic}"
+                filename=$( basename "$issue" )
+                echo " -> ${COMICS_DIR}/${comic}/$filename"
+            done
+            rmdir "${NEW_COMICS_DIR}/${comic}"
+        elif [ $series_comics -gt 0 ]; then
+            for issue in "${SERIES_COMICS_DIR}/${comic}"*; do
+                mv "$issue" "${COMICS_DIR}/${comic}"
+                filename=$( basename "$issue" )
+                echo " -> ${COMICS_DIR}/${comic}/$filename"
+            done
+        else
+            echo " ?? '${comic}' not found"
+        fi
+    done
+}
+
+
+case "$1" in
+    read)
+        shift
+        move_read_comics "$@"
+        ;;
+    new|*)
+        install_new_comics
+        ;;
+esac
