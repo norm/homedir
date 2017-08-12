@@ -1,0 +1,17 @@
+#!/bin/bash
+# github:norm/homedir:bin/backup-asimov
+
+if [ ! -d /Volumes/wyndham ]; then
+    echo "wyndham must be mounted in order to backup asimov"
+    exit 1
+fi
+
+echo '850,000 - approximate number of files on asimov to backup'
+echo ''
+backup \
+    /Volumes/asimov \
+    /Volumes/wyndham \
+        --exclude new-norm-tv
+
+hdiutil eject /Volumes/wyndham
+push 'asimov backed up; wyndham ejected'

@@ -1,0 +1,17 @@
+#!/bin/bash
+# github:norm/homedir:bin/backup-banks
+
+if [ ! -d /Volumes/wells ]; then
+    echo "wells must be mounted in order to backup banks"
+    exit 1
+fi
+
+echo '10,000,000 - approximate number of files on banks to backup'
+echo ''
+backup \
+    /Volumes/banks \
+    /Volumes/wells \
+        --exclude trash
+
+hdiutil eject /Volumes/wells
+push 'banks backed up; wells ejected'

@@ -1,0 +1,16 @@
+#!/bin/bash
+# github:norm/homedir:bin/backup-iTunes
+
+if [ ! -d /Volumes/wilber ]; then
+    echo "wilber must be mounted in order to backup iTunes"
+    exit 1
+fi
+
+echo '550,000 - approximate number of files on iTunes to backup'
+echo ''
+backup \
+    /Volumes/iTunes \
+    /Volumes/wilber
+
+hdiutil eject /Volumes/wilber
+push 'iTunes backed up; wilber ejected'

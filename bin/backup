@@ -1,0 +1,38 @@
+#!/bin/bash
+# github:norm/homedir:bin/backup
+#
+# Backup one directory to another with rsync. Excludes all of the root-owned
+# directories likely found in the root of a macOS volume.
+
+set -e
+
+source="$1"
+destination="$2"
+dryrun=
+shift
+shift
+
+if [ -z "$source" -o -z "$destination" ]; then
+    echo 'Usage: backup <source> <destination>'
+    exit 1
+fi
+
+if [ "$1" = '-n' ]; then
+    dryrun='-n'
+    echo "-- rsync in dry-run mode ------------------------"
+    shift
+fi
+
+rsync                                               \
+    $dryrun                                         \
+    -avP                                            \
+    --delete                                        \
+    --exclude .Spotlight-V100                       \
+    --exclude .DocumentRevisions-V100               \
+    --exclude .fseventsd                            \
+    --exclude .Trashes                              \
+    --exclude .TemporaryItems                       \
+    --exclude .com.apple.timemachine.supported      \
+    --exclude .PKInstallSandboxManager              \
+    "$@"                                            \
+        "${source}/." "${destination}/."
