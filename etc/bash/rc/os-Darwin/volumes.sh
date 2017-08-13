@@ -1,4 +1,4 @@
-# github:norm/homedir:etc/bash/rc/os-Darwin/volumes
+# github:norm/homedir:etc/bash/rc/os-Darwin/volumes.sh
 #
 # Working with volumes (mounted disks) in OS X.
 
