@@ -24,8 +24,12 @@ function install_file {
     local source="$1"
     local dest="$2"
 
+    local mode='600'
+    head -1 "$source" | grep /usr/bin/ >/dev/null \
+        && mode='700'
+
     mkdir -p "$HOME/$(dirname "$source")"
-    install -B.bak -m700 "$source" "$dest"
+    install -B.bak -m$mode "$source" "$dest"
     echo "+++ $dest"
     kvset "$source" $(shasum "$source" | cut -d' ' -f1)
 }
