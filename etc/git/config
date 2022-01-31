@@ -2,45 +2,6 @@
 #
 # Global user preferences for git.
 
-[github]
-    user    = norm
-
-[user]
-    email   = norm@201created.com
-    name    = Mark Norman Francis
-
-[core]
-    whitespace = -trailing-space
-    pager      = less -F -X
-
-[color]
-    branch  = auto
-    diff    = auto
-    status  = auto
-    ui      = true
-
-[color "status"]
-    added = green
-    changed = magenta
-    untracked = cyan
-
-[diff]
-    tool = Kaleidoscope
-
-[difftool "Kaleidoscope"]
-    cmd = ksdiff --partial-changeset --relative-path \"$MERGED\" -- \"$LOCAL\" \"$REMOTE\"
-
-[merge]
-    ff      = only
-    tool    = Kaleidoscope
-
-[mergetool]
-    prompt = false
-
-[mergetool "Kaleidoscope"]
-    cmd = ksdiff --merge --output \"$MERGED\" --base \"$BASE\" -- \"$LOCAL\" --snapshot \"$REMOTE\" --snapshot
-    trustExitCode = true
-
 [alias]
     b       = branch
     br      = "for-each-ref --sort=-committerdate refs/heads/ --format='%(committerdate:short) %(refname:short)'"
@@ -63,14 +24,51 @@
     s       = "status -bs"
     stashed = stash list --pretty=format:'%gd: %Cred%h%Creset %Cgreen[%ar]%Creset %s'
 
+[color]
+    branch  = auto
+    diff    = auto
+    status  = auto
+    ui      = true
+
+[color "status"]
+    added     = green
+    changed   = magenta
+    untracked = cyan
+
+[core]
+    pager      = less -F -X
+    whitespace = -trailing-space
+
 [diff]
     algorithm = patience
+    tool      = Kaleidoscope
+
+[difftool "Kaleidoscope"]
+    cmd = ksdiff --partial-changeset --relative-path \"$MERGED\" -- \"$LOCAL\" \"$REMOTE\"
 
 [fetch]
-    prune   = true
+    prune = true
+
+[github]
+    user = norm
+
+[merge]
+    ff      = only
+    tool    = Kaleidoscope
+
+[mergetool]
+    prompt = false
+
+[mergetool "Kaleidoscope"]
+    cmd = ksdiff --merge --output \"$MERGED\" --base \"$BASE\" -- \"$LOCAL\" --snapshot \"$REMOTE\" --snapshot
+    trustExitCode = true
 
 [push]
     default = simple
 
 [rebase]
     autosquash = true
+
+[user]
+    email = norm@201created.com
+    name  = Mark Norman Francis
