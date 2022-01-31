@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/usr/bin/env -S bash -euo pipefail
 # github:norm/homedir:bin/sublime
 #
 # Edit files in a new window, waiting for the window to be closed before

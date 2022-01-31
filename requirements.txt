@@ -1,3 +1,0 @@
-Pygments
-virtualenv
-virtualenvwrapper

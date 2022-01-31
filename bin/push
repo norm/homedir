@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env -S bash -euo pipefail
 # github:norm/homedir:bin/push
 #
 # Send a push notification to my phone via the Pushover service.

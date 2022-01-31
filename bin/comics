@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env -S bash -euo pipefail
 # github:norm/homedir:bin/comics
 #
 # Move new and read comics around more easily.

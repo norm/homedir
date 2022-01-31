@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/usr/bin/env -S bash -euo pipefail
 # github:norm/homedir:bin/df
 #
 # Present the output of `df` in a more understandable fashion.

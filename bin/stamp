@@ -1,18 +1,15 @@
-#!/usr/bin/env perl
+#!/usr/bin/env -S bash -euo pipefail
 # github:norm/homedir:bin/stamp
 #
 # Provide unix-epoch style timestamp conversion (in UTC).
 
-use 5.10.0;
-use Date::Manip;
+arg="${1:-}"
 
-my $time = shift // 'now';
-
-if ( $time =~ m{^\d+$} ) {
-    # convert numeric timestamps to human-readable dates
-    say scalar( gmtime $time );
-}
-else {
-    # convert anything else to a numeric timestamp
-    say UnixDate( $time, '%s' );
-}
+if [ "$arg" = '' ]; then
+    date -u +%s
+else
+    if [ -e "$arg" ]; then
+        arg=$(stat -f%m "$1")
+    fi
+    date -u -j -f '%s' "$arg"
+fi

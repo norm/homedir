@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env -S bash -euo pipefail
 # github:norm/homedir:bin/backup-banks
 
 if [ ! -d /Volumes/wells ]; then

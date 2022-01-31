@@ -1,0 +1,87 @@
+#!/usr/bin/env -S bash -euo pipefail
+
+function verbose {
+    [ $verbose = 0 ] || echo "$*"
+}
+
+function kvget {
+    local key="$(echo "$1" | sed 's:/:-:g')"
+    local file="$HOME/var/homedir/$key"
+
+    if [ -f "$file" ]; then
+        cat "$file"
+    fi
+}
+
+function kvset {
+    local key="$(echo "$1" | sed 's:/:-:g')"
+    local file="$HOME/var/homedir/$key"
+
+    echo "$2" > $file
+}
+
+function install_file {
+    local source="$1"
+    local dest="$2"
+
+    mkdir -p "$HOME/$(dirname "$source")"
+    install -B.bak -m700 "$source" "$dest"
+    echo "+++ $dest"
+    kvset "$source" $(shasum "$source" | cut -d' ' -f1)
+}
+
+function update_file {
+    local source="$1"
+    local dest="${2:-$HOME/$1}"
+
+    local oldsha=$(shasum "$dest" 2>/dev/null | cut -d' ' -f1)
+    local newsha=$(shasum "$source" | cut -d' ' -f1)
+    local value=$(kvget "$source")
+
+    if [ "$oldsha" == '' ]; then
+        # dest does not exist
+        install_file "$source" "$dest"
+    else
+        if [ "$value" == '' ]; then
+            # file exists, but is not registered
+            kvset "$source" "$oldsha"
+            value="$oldsha"
+        fi
+
+        if [ "$oldsha" == "$newsha" ]; then
+            # file is same
+            verbose "    $source"
+        else
+            # file has local changes
+            if [ $install -gt 0 ]; then
+                install_file "$source" "$dest"
+            elif [ $diff -gt 0 ]; then
+                /usr/bin/diff -u "$source" "$dest" || true
+                echo ''
+            else
+                echo "--- $source: local changes not replaced"
+            fi
+        fi
+    fi
+}
+
+verbose=0
+diff=0
+install=0
+[[ "${1:-}" = v* ]] && verbose=1
+[[ "${1:-}" = d* ]] && diff=1
+[[ "${1:-}" = i* ]] && install=1
+
+mkdir -p "$HOME/var/homedir"
+
+files=($(
+    find * -type f \
+        | egrep -v '^README.markdown|^script/|^LICENCE'
+))
+
+for file in "${files[@]}"; do
+    update_file "$file"
+done
+
+# turn off macOS per-window session saving (see /etc/bashrc_Apple_Terminal)
+update_file "/dev/null" "$HOME/.bash_sessions_disable"

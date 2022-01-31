@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env -S bash -euo pipefail
 # github:norm/homedir:bin/backup
 #
 # Backup one directory to another with rsync. Excludes all of the root-owned
