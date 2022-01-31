@@ -11,6 +11,7 @@
 
 [core]
     whitespace = -trailing-space
+    pager      = less -F -X
 
 [color]
     branch  = auto
@@ -37,7 +38,8 @@
     co      = checkout
     d       = diff
     dc      = "diff --cached"
-    l       = "log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr)%Creset' --abbrev-commit --date=relative"
+    l       = !git list -n20
+    list    = "log --graph --pretty=format:'%C(cyan)%h%Creset -%C(green bold)%d%Creset %s %C(yellow)(%cr)%Creset' --abbrev-commit --date=relative"
     lm      = ! git l | sed -e '/master)/,$d'
     m       = merge --no-edit --no-ff
     p       = push
@@ -46,6 +48,7 @@
     rbc     = "rebase --continue"
     rbi     = "rebase -i"
     s       = "status -bs"
+    stashed = stash list --pretty=format:'%gd: %Cred%h%Creset %Cgreen[%ar]%Creset %s'
 
 [diff]
     algorithm = patience
