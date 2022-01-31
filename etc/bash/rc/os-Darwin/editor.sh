@@ -2,13 +2,10 @@
 #
 # Improved visual editor settings.
 
-# Prefer textmate over vi, but...
-available mate \
-    && available textmate \
-    && export VISUAL=textmate
+export EXINIT='set sw=4 ai list'
 
-# ...prefer Sublime Text over TextMate. Set to need rather than available to
-# trigger a warning if it is not installed, as it is the preferred editor.
-need subl \
-    && available sublime \
-    && export VISUAL=sublime
+# Prefer Sublime Text over vi
+need subl && {
+    export VISUAL=subl
+    available sublime && export VISUAL=sublime
+}
