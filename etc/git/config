@@ -14,7 +14,6 @@
     dc      = "diff --cached"
     l       = !git list -n20
     list    = "log --graph --pretty=format:'%C(cyan)%h%Creset -%C(green bold)%d%Creset %s %C(yellow)(%cr)%Creset' --abbrev-commit --date=relative"
-    lm      = ! git l | sed -e '/master)/,$d'
     m       = merge --no-edit --no-ff
     p       = push
     pf      = push --force-with-lease
@@ -51,6 +50,9 @@
 
 [github]
     user = norm
+
+[init]
+    defaultBranch = main
 
 [merge]
     ff      = only
