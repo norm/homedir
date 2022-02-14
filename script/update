@@ -89,3 +89,6 @@ done
 
 # turn off macOS per-window session saving (see /etc/bashrc_Apple_Terminal)
 update_file "/dev/null" "$HOME/.bash_sessions_disable"
+
+# silent logins
+update_file "/dev/null" "$HOME/.hushlogin"
