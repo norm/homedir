@@ -1,4 +1,4 @@
-# github:norm/homedir:etc/bash/rc/os-Darwin/bash-completion.sh
+# github:norm/homedir:etc/bash/defaults/os-Darwin/bash-completion.sh
 #
 # Use homebrew bash completions.
 
